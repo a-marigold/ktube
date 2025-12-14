@@ -2,10 +2,14 @@ import Link, { type LinkProps } from 'next/link';
 
 import linkStyles from './NavLink.module.scss';
 
-interface NavLinkProps extends LinkProps {
+export interface NavLinkProps extends LinkProps {
     title: string;
 
-    className: string;
+    isActive: boolean;
+
+    className?: string;
+
+    'aria-label': string;
 
     icon: {
         href: `#${string}`;
@@ -17,6 +21,9 @@ interface NavLinkProps extends LinkProps {
 }
 export default function NavLink({
     title,
+
+    isActive,
+
     className,
     icon,
     ...attributes
@@ -24,13 +31,16 @@ export default function NavLink({
     return (
         <Link
             {...attributes}
-            className={`${linkStyles['nav-link']} ${className ?? ''}`}
+            className={`${linkStyles['nav-link']} ${
+                isActive ? linkStyles['active'] : ''
+            } ${className ?? ''}`}
         >
             <svg
                 width={icon.width}
                 height={icon.height}
                 color={icon.color || 'var(--icon-color)'}
                 fill={icon.fill}
+                aria-hidden='true'
             >
                 <use href={icon.href} />
             </svg>

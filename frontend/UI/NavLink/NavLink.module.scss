@@ -19,12 +19,15 @@
 
     text-decoration: none;
 
-    &:focus,
-    &:hover {
+    &:hover,
+    &:focus-visible {
         background-color: var(--hover-btn-bg);
     }
     &.active {
         background-color: var(--hover-btn-bg);
+
+        transition: background-color 0.16s ease;
+        transition-delay: 0.06s;
 
         &:hover {
             background-color: var(--dim-active-btn-bg);
@@ -34,4 +37,5 @@
 
 .title {
     font-size: var(--d-font-size);
+    font-weight: 500;
 }
