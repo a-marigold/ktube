@@ -1,8 +1,14 @@
+'use client';
+
+import { useNavbarStore } from '@/store/NavbarStore';
+
 import IconButton from '@/UI/IconButton';
 
 import headerStyles from './Header.module.scss';
 
 export default function Header() {
+    const toggleNavbar = useNavbarStore((state) => state.toggleNavbar);
+
     return (
         <header className={headerStyles['header']}>
             <div className={headerStyles['title-block']}>
@@ -11,6 +17,7 @@ export default function Header() {
                     width={24}
                     height={24}
                     aria-label='Toggle the sidebar panel'
+                    onClick={() => toggleNavbar()}
                 />
 
                 <div className={headerStyles['brand-block']}>

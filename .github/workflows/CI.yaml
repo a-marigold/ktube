@@ -38,4 +38,5 @@ jobs:
       run: pnpm lint
 
     - name: Build frontend
-      run: pnpm Build
+
+      run: pnpm build

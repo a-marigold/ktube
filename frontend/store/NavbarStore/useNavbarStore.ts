@@ -2,9 +2,9 @@ import { create } from 'zustand';
 
 interface NavbarStore {
     showNavbar: boolean;
-    setShowNavbar: (value: boolean) => void;
+    toggleNavbar: () => void;
 }
 export const useNavbarStore = create<NavbarStore>()((set) => ({
     showNavbar: true,
-    setShowNavbar: (value) => set({ showNavbar: value }),
+    toggleNavbar: () => set((state) => ({ showNavbar: !state.showNavbar })),
 }));
