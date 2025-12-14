@@ -1,0 +1,12 @@
+@use '@/styles/_mixins.scss' as *;
+
+.navbar {
+    @include flex-column;
+
+    width: 100%;
+    max-width: 240px;
+    height: 100%;
+
+    padding: 0.75rem;
+    box-sizing: border-box;
+}
