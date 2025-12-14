@@ -21,10 +21,10 @@
 
     &:hover,
     &:focus-visible {
-        background-color: var(--hover-btn-bg);
+        background-color: var(--dim-hover-btn-bg);
     }
     &.active {
-        background-color: var(--hover-btn-bg);
+        background-color: var(--dim-hover-btn-bg);
 
         transition: background-color 0.16s ease;
         transition-delay: 0.06s;
