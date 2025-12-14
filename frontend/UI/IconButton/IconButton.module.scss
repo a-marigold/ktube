@@ -1,0 +1,36 @@
+@use '@/styles/_mixins.scss' as *;
+
+.icon-button {
+    @include flex-center;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    transition: background-color 0.1s ease;
+
+    &.filled {
+        background-color: var(--dim-hover-btn-bg);
+        &:hover {
+            background-color: var(--dim-active-btn-bg);
+        }
+        &:active {
+            background-color: var(--active-btn-bg);
+        }
+    }
+
+    &.empty {
+        background-color: transparent;
+
+        &:hover {
+            background-color: var(--dim-hover-btn-bg);
+        }
+        &:active {
+            background-color: var(--active-btn-bg);
+        }
+    }
+
+    cursor: pointer;
+}
