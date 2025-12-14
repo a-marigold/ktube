@@ -25,7 +25,9 @@ export default function NavLink({
     isActive,
 
     className,
+
     icon,
+
     ...attributes
 }: NavLinkProps) {
     return (
@@ -38,7 +40,7 @@ export default function NavLink({
             <svg
                 width={icon.width}
                 height={icon.height}
-                color={icon.color || 'var(--icon-color)'}
+                color={icon.color || 'var(--font-color)'}
                 fill={icon.fill}
                 aria-hidden='true'
             >

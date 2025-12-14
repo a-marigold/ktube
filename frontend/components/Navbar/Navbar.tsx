@@ -1,4 +1,4 @@
-import { pageLinkList } from './navLists';
+import { pageLinkList, settingsLinkList } from './navLists';
 
 import NavList from './components/NavList/NavList';
 
@@ -8,6 +8,8 @@ export default function Navbar() {
     return (
         <nav className={navStyles['navbar']}>
             <NavList linkList={pageLinkList} />
+
+            <NavList linkList={settingsLinkList} />
         </nav>
     );
 }

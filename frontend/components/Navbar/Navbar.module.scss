@@ -2,6 +2,7 @@
 
 .navbar {
     @include flex-column;
+    gap: 0.75rem;
 
     width: 100%;
     max-width: 240px;
