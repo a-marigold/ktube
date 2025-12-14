@@ -17,10 +17,7 @@
         "enabled": true,
         "rules": {
             "recommended": true,
-            "complexity": { "useLiteralKeys": "off" },
-            "nursery": {
-                "noImportCycles": "off"
-            }
+            "complexity": { "useLiteralKeys": "off" }
         },
         "domains": {
             "next": "recommended",
@@ -30,7 +27,7 @@
     "assist": {
         "actions": {
             "source": {
-                "organizeImports": "on"
+                "organizeImports": "off"
             }
         }
     }
