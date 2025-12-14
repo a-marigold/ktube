@@ -17,7 +17,10 @@
         "enabled": true,
         "rules": {
             "recommended": true,
-            "complexity": { "useLiteralKeys": "info" }
+            "complexity": { "useLiteralKeys": "off" },
+            "nursery": {
+                "noImportCycles": "off"
+            }
         },
         "domains": {
             "next": "recommended",

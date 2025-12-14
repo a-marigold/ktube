@@ -19,6 +19,7 @@ export default function IconButton({
     variant = 'empty',
 
     href,
+
     width,
     height,
     color = 'var(--font-color)',
@@ -33,9 +34,8 @@ export default function IconButton({
         <button
             {...attributes}
             className={`${buttonStyles['icon-button']} ${buttonStyles[variant]}`}
-            aria-hidden='true'
         >
-            <svg width={width} height={height} color={color}>
+            <svg width={width} height={height} color={color} aria-hidden='true'>
                 <use href={href} />
             </svg>
         </button>
