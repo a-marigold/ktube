@@ -20,9 +20,9 @@ export default function Header() {
 
             <input type='text' />
 
-            <div role='group' className={headerStyles['tool-group']}>
+            <div className={headerStyles['tool-buttons']}>
                 <IconButton
-                    variant='filled'
+                    variant='empty'
                     href='#notifications-icon'
                     width={24}
                     height={24}
