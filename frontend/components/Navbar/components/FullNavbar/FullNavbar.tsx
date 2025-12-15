@@ -6,7 +6,7 @@ import navStyles from './FullNavbar.module.scss';
 
 export default function FullNavbar() {
     return (
-        <nav className={navStyles['full-navbar']}>
+        <nav className={navStyles['full-navbar']} data-testid='full-navbar'>
             <NavList linkList={pageLinkList} />
 
             <NavList linkList={settingsLinkList} />

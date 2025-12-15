@@ -26,7 +26,7 @@ export default function MiniNavbar() {
     const pathname = usePathname();
 
     return (
-        <nav className={navStyles['mini-navbar']}>
+        <nav className={navStyles['mini-navbar']} data-testid='mini-navbar'>
             {linkList.map((link) => (
                 <MiniNavLink
                     key={link.href}

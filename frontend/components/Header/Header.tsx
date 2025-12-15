@@ -18,6 +18,7 @@ export default function Header() {
                     height={24}
                     aria-label='Toggle the sidebar panel'
                     onClick={() => toggleNavbar()}
+                    data-testid='navbar-toggle-button'
                 />
 
                 <div className={headerStyles['brand-block']}>
