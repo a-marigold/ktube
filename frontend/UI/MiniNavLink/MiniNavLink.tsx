@@ -5,6 +5,8 @@ import type { SvgIconProps } from '@/types/SvgIconProps';
 import linkStyles from './MiniNavLink.module.scss';
 
 export interface MiniNavLinkProps extends LinkProps {
+    href: string;
+
     'aria-label': string;
 
     isActive: boolean;

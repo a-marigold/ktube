@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 
-import NavLink, { NavLinkProps } from '@/UI/NavLink';
+import NavLink, { type NavLinkProps } from '@/UI/NavLink';
 
 import listStyles from './NavList.module.scss';
 

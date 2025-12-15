@@ -28,7 +28,11 @@ export default function MiniNavbar() {
     return (
         <nav className={navStyles['mini-navbar']}>
             {linkList.map((link) => (
-                <MiniNavLink {...link} isActive={link.href === pathname} />
+                <MiniNavLink
+                    key={link.href}
+                    {...link}
+                    isActive={link.href === pathname}
+                />
             ))}
         </nav>
     );
