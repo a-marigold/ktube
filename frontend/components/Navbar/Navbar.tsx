@@ -1,15 +1,12 @@
-import { pageLinkList, settingsLinkList } from './navLists';
+'use client';
 
-import NavList from './components/NavList/NavList';
+import { useNavbarStore } from '@/store/NavbarStore';
 
-import navStyles from './Navbar.module.scss';
+import MiniNavbar from './components/MiniNavbar';
+import FullNavbar from './components/FullNavbar';
 
 export default function Navbar() {
-    return (
-        <nav className={navStyles['navbar']}>
-            <NavList linkList={pageLinkList} />
+    const showNavbar = useNavbarStore((state) => state.showNavbar);
 
-            <NavList linkList={settingsLinkList} />
-        </nav>
-    );
+    return showNavbar ? <FullNavbar /> : <MiniNavbar />;
 }

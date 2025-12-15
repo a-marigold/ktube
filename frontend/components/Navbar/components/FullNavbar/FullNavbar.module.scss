@@ -1,6 +1,6 @@
 @use '@/styles/_mixins.scss' as *;
 
-.navbar {
+.full-navbar {
     @include flex-column;
     gap: 0.75rem;
 
