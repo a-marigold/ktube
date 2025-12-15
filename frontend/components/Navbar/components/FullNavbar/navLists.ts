@@ -1,12 +1,9 @@
 import type { NavLinkProps } from '@/UI/NavLink';
 
-export type NavListLink = Omit<NavLinkProps, 'isActive'> & {
-    activeIconHref: `#${string}`;
-};
-
-export const pageLinkList: NavListLink[] = [
+export const pageLinkList: NavLinkProps[] = [
     {
         href: '/',
+        isActive: false,
 
         title: 'Home',
 
@@ -14,16 +11,18 @@ export const pageLinkList: NavListLink[] = [
 
         icon: {
             href: '#home-icon',
+
+            activeHref: '#fill-home-icon',
+
             width: 24,
             height: 24,
             color: 'var(--font-color)',
         },
-
-        activeIconHref: '#fill-home-icon',
     },
 
     {
         href: '/subscriptions',
+        isActive: false,
 
         title: 'Subscriptions',
 
@@ -31,18 +30,19 @@ export const pageLinkList: NavListLink[] = [
 
         icon: {
             href: '#subscriptions-icon',
+            activeHref: '#fill-subscriptions-icon',
+
             width: 24,
             height: 24,
             color: 'var(--font-color)',
         },
-
-        activeIconHref: '#fill-subscriptions-icon',
     },
 ];
 
-export const settingsLinkList: NavListLink[] = [
+export const settingsLinkList: NavLinkProps[] = [
     {
         href: '/settings',
+        isActive: false,
 
         title: 'Settings',
 
@@ -50,11 +50,12 @@ export const settingsLinkList: NavListLink[] = [
 
         icon: {
             href: '#gear-icon',
+
+            activeHref: '#fill-gear-icon',
+
             width: 24,
             height: 24,
             color: 'var(--font-color)',
         },
-
-        activeIconHref: '#fill-gear-icon',
     },
 ];
