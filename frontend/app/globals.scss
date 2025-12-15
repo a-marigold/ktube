@@ -28,12 +28,6 @@ body {
     height: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
-    }
-}
-
 :root {
     --background-color: #0f0f0f;
     --foreground-color: #ededed;
@@ -54,4 +48,6 @@ body {
     /* Sizes. Prefix "d" means "default". Prefix "m" means "medium" */
 
     --d-font-size: 0.95rem;
+
+    --d-transition-dur: 0.16s;
 }
