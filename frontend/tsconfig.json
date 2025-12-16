@@ -20,7 +20,8 @@
         ],
         "baseUrl": ".",
         "paths": {
-            "@/*": ["./*"]
+            "@/*": ["./*"],
+            "@/modals/*": ["./components/ModalRoot/modals/*"]
         }
     },
     "include": [

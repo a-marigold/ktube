@@ -4,6 +4,8 @@ import { usePathname } from 'next/navigation';
 
 import { useModalStore } from '@/store/ModalStore';
 
+import SubscriptionsModal from '@/modals/SubscriptionsModal';
+
 import MiniNavLink, { type MiniNavLinkProps } from '@/UI/MiniNavLink';
 
 import navStyles from './MiniNavbar.module.scss';
@@ -17,6 +19,19 @@ const linkList: MiniNavLinkProps[] = [
         icon: {
             href: '#home-icon',
             activeHref: '#fill-home-icon',
+
+            width: 24,
+            height: 24,
+        },
+    },
+    {
+        href: '/subscriptions',
+        isActive: false,
+
+        'aria-label': 'Go to the home page',
+        icon: {
+            href: '#subscriptions-icon',
+            activeHref: '#fill-subscriptions-icon',
 
             width: 24,
             height: 24,
@@ -37,19 +52,7 @@ export default function MiniNavbar() {
                     {...link}
                     isActive={link.href === pathname}
                     onMouseEnter={() => {
-                        openModal(
-                            <div
-                                style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    background: 'rgba(255,0,0,0.2)',
-                                    position: 'fixed',
-                                }}
-                                onClick={() => {
-                                    openModal(null);
-                                }}
-                            ></div>
-                        );
+                        openModal(<SubscriptionsModal />);
                     }}
                 />
             ))}

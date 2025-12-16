@@ -3,21 +3,21 @@ import type { ReactNode } from 'react';
 import modalStyles from './ModalBackdrop.module.scss';
 
 interface ModalBackdropProps {
-    type?: 'dark' | 'empty';
+    background?: 'dark' | 'empty';
 
     onClose: () => void;
 
     children: ReactNode;
 }
 export default function ModalBackdrop({
-    type = 'empty',
+    background = 'empty',
     onClose,
     children,
 }: ModalBackdropProps) {
     return (
         <div
             className={`${modalStyles['modal-backdrop']} ${
-                modalStyles[`type-${type}`]
+                modalStyles[`background-${background}`]
             }`}
             onClick={onClose}
         >
