@@ -1,0 +1,34 @@
+@use '@/styles/_mixins.scss' as *;
+
+.menu-modal {
+    @include flex-column;
+
+    width: 100%;
+    max-width: 256px;
+
+    background-color: var(--modal-bg-color);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+.head {
+    border-bottom: 1px var(--border-color) solid;
+
+    padding: 0.675rem 1rem;
+
+    box-sizing: border-box;
+}
+.title {
+    @include text-wo-margin(1.25rem, 700);
+}
+
+.link-list {
+    margin: 0;
+
+    @include flex-column;
+
+    padding: 0;
+
+    list-style: none;
+}
