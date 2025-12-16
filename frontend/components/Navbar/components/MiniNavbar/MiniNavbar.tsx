@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 
 import { useModalStore } from '@/store/ModalStore';
 
-import SubscriptionsModal from '@/modals/SubscriptionsModal';
+import SubscriptionsModal from '@modals/SubscriptionsModal';
 
 import MiniNavLink, { type MiniNavLinkProps } from '@/UI/MiniNavLink';
 

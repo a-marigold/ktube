@@ -1,6 +1,6 @@
 import Link, { type LinkProps } from 'next/link';
 
-import { SvgIconProps } from '@/types/SvgIconProps';
+import type { SvgIconProps } from '@/types/SvgIconProps';
 
 import linkStyles from './NavLink.module.scss';
 

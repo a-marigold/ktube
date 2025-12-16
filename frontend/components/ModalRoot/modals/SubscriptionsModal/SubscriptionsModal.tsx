@@ -1,7 +1,5 @@
 import { useModalStore } from '@/store/ModalStore';
 
-import modalStyles from './SubscriptionsModal.module.scss';
-
 import MenuModal, { type MenuModalProps } from '@/UI/MenuModal';
 
 type SubscriptionsModalProps = Pick<

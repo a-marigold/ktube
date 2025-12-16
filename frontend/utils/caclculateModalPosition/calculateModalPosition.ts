@@ -24,7 +24,7 @@ export const calculateModalPosition = (
 
     const centerX =
         relativeRect.left + relativeRect.width / 2 - modalRect.width / 2;
-    console.log(modalRect.height);
+
     const centerY =
         relativeRect.top + relativeRect.height / 2 - modalRect.height / 2;
 

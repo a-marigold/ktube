@@ -14,7 +14,6 @@ export default function ModalBackdrop({
     onClose,
     children,
 }: ModalBackdropProps) {
-    console.log(modalStyles);
     return (
         <div
             className={`${modalStyles['modal-backdrop']} ${
