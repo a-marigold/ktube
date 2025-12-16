@@ -43,7 +43,7 @@ export default function MenuModal({
                 gap
             );
         }
-    }, []);
+    }, [relativeElement, position, gap]);
 
     return (
         <ModalBackdrop background='empty' onClose={onClose}>

@@ -28,6 +28,7 @@ export default function MenuLink({
                 width={icon.width}
                 height={icon.height}
                 color={icon.color || 'var(--font-color)'}
+                aria-hidden='true'
             >
                 <use href={icon.href} />
             </svg>

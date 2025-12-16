@@ -43,10 +43,12 @@ export const calculateModalPosition = (
             modalTop = relativeRect.bottom + gap;
         },
         left: () => {
-            modalLeft = relativeRect.right + gap;
+            modalLeft = relativeRect.left - gap;
             modalTop = centerY;
         },
     };
+
+    console.log(relativeRect.right);
 
     positionHandlersMap[position]();
 
