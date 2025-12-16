@@ -2,13 +2,20 @@ import { useModalStore } from '@/store/ModalStore';
 
 import modalStyles from './SubscriptionsModal.module.scss';
 
-import MenuModal from '@/UI/MenuModal/MenuModal';
+import MenuModal, { type MenuModalProps } from '@/UI/MenuModal';
 
-export default function SubscriptionsModal() {
+type SubscriptionsModalProps = Pick<
+    MenuModalProps,
+    'relativeElement' | 'position'
+>;
+export default function SubscriptionsModal({
+    ...props
+}: SubscriptionsModalProps) {
     const closeModal = useModalStore((state) => state.closeModal);
 
     return (
         <MenuModal
+            {...props}
             title='Subscriptions'
             onClose={closeModal}
             linkList={[

@@ -51,8 +51,13 @@ export default function MiniNavbar() {
                     key={link.href}
                     {...link}
                     isActive={link.href === pathname}
-                    onMouseEnter={() => {
-                        openModal(<SubscriptionsModal />);
+                    onMouseEnter={(event) => {
+                        openModal(
+                            <SubscriptionsModal
+                                relativeElement={event.currentTarget}
+                                position='right'
+                            />
+                        );
                     }}
                 />
             ))}

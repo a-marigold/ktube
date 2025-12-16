@@ -1,24 +1,54 @@
+import { useEffect, useRef } from 'react';
+
+import { calculateModalPosition } from '@/utils/caclculateModalPosition';
+
+import type { Position } from '@/utils/caclculateModalPosition';
+
 import ModalBackdrop from '@/UI/ModalBackdrop';
 
 import MenuLink, { type MenuLinkProps } from '@/UI/MenuLink';
 
 import modalStyles from './MenuModal.module.scss';
 
-interface MenuModalProps {
+export interface MenuModalProps {
     title: string;
 
     onClose: () => void;
+
+    relativeElement: HTMLElement;
+    position: Position;
+    gap?: number;
 
     linkList: MenuLinkProps[];
 }
 export default function MenuModal({
     title,
     onClose,
+
+    relativeElement,
+
+    gap,
+    position,
+
     linkList,
 }: MenuModalProps) {
+    const modalRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (modalRef.current) {
+            calculateModalPosition(
+                modalRef.current,
+                relativeElement,
+                position,
+                gap
+            );
+        }
+    }, []);
+
     return (
         <ModalBackdrop background='empty' onClose={onClose}>
             <div
+                ref={modalRef}
                 role='dialog'
                 aria-modal='true'
                 className={modalStyles['menu-modal']}

@@ -1,1 +1,1 @@
-export { calculateModalPosition } from './calculateModalPosition';
+export * from './calculateModalPosition';

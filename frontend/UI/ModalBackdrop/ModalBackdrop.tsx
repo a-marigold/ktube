@@ -10,14 +10,15 @@ interface ModalBackdropProps {
     children: ReactNode;
 }
 export default function ModalBackdrop({
-    background = 'empty',
+    background = 'dark',
     onClose,
     children,
 }: ModalBackdropProps) {
+    console.log(modalStyles);
     return (
         <div
             className={`${modalStyles['modal-backdrop']} ${
-                modalStyles[`background-${background}`]
+                modalStyles[`${background}`]
             }`}
             onClick={onClose}
         >

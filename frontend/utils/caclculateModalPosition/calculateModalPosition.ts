@@ -23,17 +23,17 @@ export const calculateModalPosition = (
     let modalTop = 0;
 
     const centerX =
-        (relativeRect.left + relativeRect.width) / 2 + modalRect.width / 2;
-
+        relativeRect.left + relativeRect.width / 2 - modalRect.width / 2;
+    console.log(modalRect.height);
     const centerY =
-        (relativeRect.top + relativeRect.height) / 2 + modalRect.height / 2;
+        relativeRect.top + relativeRect.height / 2 - modalRect.height / 2;
 
     const positionHandlersMap: Record<Position, () => void> = {
         top: () => {
             modalLeft = centerX;
+
             modalTop = relativeRect.top - modalRect.height - gap;
         },
-
         right: () => {
             modalLeft = relativeRect.right + gap;
             modalTop = centerY;
@@ -42,7 +42,6 @@ export const calculateModalPosition = (
             modalLeft = centerX;
             modalTop = relativeRect.bottom + gap;
         },
-
         left: () => {
             modalLeft = relativeRect.right + gap;
             modalTop = centerY;

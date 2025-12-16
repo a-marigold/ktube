@@ -1,6 +1,10 @@
 @use '@/styles/_mixins.scss' as *;
 
 .menu-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+
     @include flex-column;
 
     width: 100%;
