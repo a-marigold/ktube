@@ -2,6 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 
+import { useModalStore } from '@/store/ModalStore';
+
 import MiniNavLink, { type MiniNavLinkProps } from '@/UI/MiniNavLink';
 
 import navStyles from './MiniNavbar.module.scss';
@@ -25,6 +27,8 @@ const linkList: MiniNavLinkProps[] = [
 export default function MiniNavbar() {
     const pathname = usePathname();
 
+    const openModal = useModalStore((state) => state.openModal);
+
     return (
         <nav className={navStyles['mini-navbar']} data-testid='mini-navbar'>
             {linkList.map((link) => (
@@ -32,6 +36,21 @@ export default function MiniNavbar() {
                     key={link.href}
                     {...link}
                     isActive={link.href === pathname}
+                    onMouseEnter={() => {
+                        openModal(
+                            <div
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    background: 'rgba(255,0,0,0.2)',
+                                    position: 'fixed',
+                                }}
+                                onClick={() => {
+                                    openModal(null);
+                                }}
+                            ></div>
+                        );
+                    }}
                 />
             ))}
         </nav>
