@@ -1,0 +1,1 @@
+export { calculateModalPosition } from './calculateModalPosition';
