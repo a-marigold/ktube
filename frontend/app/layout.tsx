@@ -5,6 +5,8 @@ import { Roboto } from 'next/font/google';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 
+import ModalRoot from '@/components/ModalRoot/ModalRoot';
+
 import SvgSprites from '@/UI/SvgSprites';
 
 import './globals.scss';
@@ -25,6 +27,8 @@ export default function RootLayout({
         <html lang='en'>
             <body className={roboto.className}>
                 <SvgSprites />
+
+                <ModalRoot />
 
                 <Header />
 
