@@ -1,0 +1,73 @@
+@use '@/styles/_mixins.scss' as *;
+
+.input-container {
+    display: flex;
+
+    width: 100%;
+
+    max-width: 632px;
+
+    height: 40px;
+
+    border: 1px var(--dim-border-color) solid;
+
+    border-radius: var(--input-radius);
+
+    --input-radius: 40px;
+
+    box-sizing: border-box;
+    // overflow: hidden;
+}
+.input-block {
+    @include flex-y-center;
+
+    flex: 1;
+
+    border-top-left-radius: var(--input-radius);
+    border-bottom-left-radius: var(--input-radius);
+
+    &:focus-within {
+        border: 1px var(--focus-color) solid;
+
+        & .search-icon {
+            display: block;
+        }
+    }
+}
+
+.search-input {
+    width: 100%;
+
+    background-color: transparent;
+
+    border: 0;
+    border-top-left-radius: var(--input-radius);
+    border-bottom-left-radius: var(--input-radius);
+
+    padding-left: 1rem;
+    box-sizing: border-box;
+
+    color: var(--font-color);
+    font-size: 1rem;
+
+    outline: none;
+    &:placeholder-shown {
+        color: var(--secondary-font-color);
+    }
+}
+
+.search-icon {
+    display: none;
+    padding-left: 1rem;
+}
+
+.icon-block {
+    @include flex-center;
+
+    width: 64px;
+
+    background-color: var(--foreground-color);
+
+    border-top-right-radius: var(--input-radius);
+    border-bottom-right-radius: var(--input-radius);
+}
