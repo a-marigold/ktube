@@ -4,14 +4,15 @@
     margin: 0;
     @include flex-column;
 
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 50%;
     left: 0;
+
+    max-height: 640px;
 
     background-color: var(--foreground-color);
     border-radius: 12px;
     padding: 0.5rem 0;
-
     box-sizing: border-box;
 }
 

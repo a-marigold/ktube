@@ -3,6 +3,14 @@ export type Position = 'top' | 'right' | 'bottom' | 'left';
 /**
  * Calculates modal position relative to `relativeElement` and changes modal styles.
  *
+ * Need to set the following css for `modalElement`:
+ * ```css
+ * position: absolute; // or fixed
+ * top: 0;
+ * left: 0;
+ * ```
+ *
+ *
  * @param {HTMLElement} modalElement modal html element
  * @param {HTMLElement} relativeElement element, relative to which the `modalElement` will be positioned
  * @param {Position} position `top`, `right`, `bottom`, `left` relative to the `relativeElement`

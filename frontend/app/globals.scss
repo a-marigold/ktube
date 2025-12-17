@@ -30,10 +30,13 @@ body {
 
 :root {
     --background-color: #0f0f0f;
-    --foreground-color: #ededed;
+    --foreground-color: #212121;
 
     --font-color: #f1f1f1;
+    --secondary-font-color: #6c6c6c;
+
     --border-color: #ffffff33;
+    --dim-border-color: #323232;
 
     --backdrop-bg-color: #00000080;
     --modal-bg-color: #282828;
@@ -46,6 +49,8 @@ body {
 
     --active-btn-bg: #535353;
     --dim-active-btn-bg: #3d3d3d;
+
+    --focus-color: #1c62b9;
 
     /* Sizes. Prefix "d" means "default". Prefix "m" means "medium" */
 

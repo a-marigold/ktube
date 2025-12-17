@@ -25,12 +25,12 @@ import { calculateModalPosition } from '@/utils/caclculateModalPosition';
  * const modalRef = useRef<HTMLDivElement>(null)
  * const containerRef = useRef<HTMLDivElement>(null)
  *
- * useCalculateModal(modalRef.current, buttonRef.current!, 'bottom', 16);
+ * useCalculateModal(modalRef.current, containerRef.current!, 'bottom', 16);
  *
  * return (
  *     <div ref={modalRef}> Modal </div>
  *     <div ref={containerRef}>
- *         <button ref={buttonRef}> Open modal </button>
+ *         <button> Open modal </button>
  *     </div>
  * )
  * ```

@@ -20,6 +20,7 @@ export default function SearchInput({
                     height={24}
                     color='var(--font-color)'
                     className={inputStyles['search-icon']}
+                    aria-hidden='true'
                 >
                     <use href='#search-icon' />
                 </svg>
@@ -33,7 +34,12 @@ export default function SearchInput({
             </div>
 
             <div className={inputStyles['icon-block']}>
-                <svg width={24} height={24} color='var(--font-color)'>
+                <svg
+                    width={24}
+                    height={24}
+                    color='var(--font-color)'
+                    aria-hidden='true'
+                >
                     <use href='#search-icon' />
                 </svg>
             </div>

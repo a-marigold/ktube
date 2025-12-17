@@ -1,13 +1,21 @@
 'use client';
 
 import { useNavbarStore } from '@/store/NavbarStore';
+import { useModalStore } from '@/store/ModalStore';
 
+import SearchModal from '../ModalRoot/modals/SearchModal/SearchModal';
+
+import SearchInput from '@/UI/SearchInput/SearchInput';
 import IconButton from '@/UI/IconButton';
 
 import headerStyles from './Header.module.scss';
 
 export default function Header() {
     const toggleNavbar = useNavbarStore((state) => state.toggleNavbar);
+
+    const openModal = useModalStore((state) => state.openModal);
+
+    const closeModal = useModalStore((state) => state.closeModal);
 
     return (
         <header className={headerStyles['header']}>
@@ -26,7 +34,21 @@ export default function Header() {
                 </div>
             </div>
 
-            <input type='text' />
+            <SearchInput
+                placeholder='Search'
+                aria-label='Search for content'
+                aria-controls='search-modal'
+                onFocus={(event) => {
+                    openModal(
+                        <SearchModal
+                            id='search-modal'
+                            relativeElement={event.currentTarget}
+                            position='left'
+                        />
+                    );
+                }}
+                // onBlur={closeModal}
+            />
 
             <div className={headerStyles['tool-buttons']}>
                 <IconButton
