@@ -45,16 +45,13 @@ export const useCalculateModal = (
     gap?: number
 ) => {
     useEffect(() => {
-        const calculateModalWidth = () => {
+        const calculateHandler = () => {
             if (modalElement) {
+                // Change width
                 const relativeOffsetWidth = relativeElement.offsetWidth;
-
                 modalElement.style.width = `${relativeOffsetWidth}px`;
-            }
-        };
 
-        const handleCalculateModalPosition = () => {
-            if (modalElement) {
+                // Position
                 calculateModalPosition(
                     modalElement,
                     relativeElement,
@@ -64,16 +61,12 @@ export const useCalculateModal = (
             }
         };
 
-        calculateModalWidth();
-        handleCalculateModalPosition();
+        calculateHandler();
 
-        const resizeObserver = new ResizeObserver(() => {
-            calculateModalWidth();
-            handleCalculateModalPosition();
+        window.addEventListener('resize', calculateHandler);
 
-            console.log(relativeElement, modalElement);
-        });
-
-        resizeObserver.observe(relativeElement);
+        return () => {
+            window.removeEventListener('resize', calculateHandler);
+        };
     }, [modalElement, relativeElement, position, gap]);
 };
