@@ -1,21 +1,21 @@
 'use client';
 
 import { useEffect } from 'react';
+import type { RefObject } from 'react';
 
 import type { Position } from '@/utils/caclculateModalPosition';
 
 import { calculateModalPosition } from '@/utils/caclculateModalPosition';
 
 /**
- * Calculates `modalElement` position relative to `relativeElement`.
+ * Calculates `modalRef` position relative to `relativeElement`.
  *
- * Changes `modalElement` width on `relativeElement` width.
+ * Changes `modalRef` width on `relativeElement` width.
  *
- * @param {HTMLElement} modalElement
+ *
+ * @param {RefObject<HTMLElement | null>} modalRef react ref object with modal element
  * @param {HTMLElement} relativeElement
  * @param {Position} position `top`, `right`, `bottom` or `left` modal position relative to `relativeElement`
- *
- *
  * @param {number} gap  distance between modal and relative elements.
  *
  *
@@ -36,7 +36,7 @@ import { calculateModalPosition } from '@/utils/caclculateModalPosition';
  * ```
  */
 export const useCalculateModal = (
-    modalElement: HTMLElement | null,
+    modalRef: RefObject<HTMLElement | null>,
 
     relativeElement: HTMLElement,
 
@@ -45,15 +45,15 @@ export const useCalculateModal = (
     gap?: number
 ) => {
     useEffect(() => {
-        const calculateHandler = () => {
-            if (modalElement) {
+        const handleCalculateModal = () => {
+            if (modalRef.current) {
                 // Change width
                 const relativeOffsetWidth = relativeElement.offsetWidth;
-                modalElement.style.width = `${relativeOffsetWidth}px`;
+                modalRef.current.style.width = `${relativeOffsetWidth}px`;
 
                 // Position
                 calculateModalPosition(
-                    modalElement,
+                    modalRef.current,
                     relativeElement,
                     position,
                     gap
@@ -61,12 +61,12 @@ export const useCalculateModal = (
             }
         };
 
-        calculateHandler();
+        handleCalculateModal();
 
-        window.addEventListener('resize', calculateHandler);
+        window.addEventListener('resize', handleCalculateModal);
 
         return () => {
-            window.removeEventListener('resize', calculateHandler);
+            window.removeEventListener('resize', handleCalculateModal);
         };
-    }, [modalElement, relativeElement, position, gap]);
+    }, [modalRef, relativeElement, position, gap]);
 };

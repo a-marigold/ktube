@@ -4,8 +4,8 @@
     margin: 0;
     @include flex-column;
 
-    position: absolute;
-    top: 50%;
+    position: fixed;
+    top: 0;
     left: 0;
 
     max-height: 640px;
@@ -14,6 +14,8 @@
     border-radius: 12px;
     padding: 0.5rem 0;
     box-sizing: border-box;
+
+    list-style: none;
 }
 
 .search-item {

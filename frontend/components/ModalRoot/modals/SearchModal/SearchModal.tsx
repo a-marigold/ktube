@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useCalculateModal } from '@/hooks/useCalculateModal/useCalculateModal';
 import type { Position } from '@/utils/caclculateModalPosition';
@@ -25,11 +25,14 @@ export default function SearchModal({
 
     gap,
 }: SearchModalProps) {
-    const __TEMPORARY_SEARCH_ITEMS: SearchItemProps[] = [];
+    const __TEMPORARY_SEARCH_ITEMS: SearchItemProps[] = [
+        { href: '', title: 'example' },
+    ];
 
     const modalRef = useRef<HTMLUListElement>(null);
 
-    useCalculateModal(modalRef.current, relativeElement, position, gap);
+    useCalculateModal(modalRef, relativeElement, position, gap);
+
     return (
         <ul ref={modalRef} id={id} className={searchStyles['search-modal']}>
             {__TEMPORARY_SEARCH_ITEMS.map((item) => (

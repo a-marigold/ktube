@@ -43,11 +43,11 @@ export default function Header() {
                         <SearchModal
                             id='search-modal'
                             relativeElement={event.currentTarget}
-                            position='left'
+                            position='bottom'
                         />
                     );
                 }}
-                // onBlur={closeModal}
+                onBlur={closeModal}
             />
 
             <div className={headerStyles['tool-buttons']}>
