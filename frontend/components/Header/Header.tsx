@@ -3,7 +3,7 @@
 import { useNavbarStore } from '@/store/NavbarStore';
 import { useModalStore } from '@/store/ModalStore';
 
-import SearchModal from '../ModalRoot/modals/SearchModal/SearchModal';
+import SearchModal from '../ModalRoot/modals/SearchModal';
 
 import SearchInput from '@/UI/SearchInput/SearchInput';
 import IconButton from '@/UI/IconButton';

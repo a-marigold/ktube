@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
-import { useCalculateModal } from '@/hooks/useCalculateModal/useCalculateModal';
+import { useCalculateModal } from '@/hooks/useCalculateModal';
 import type { Position } from '@/utils/caclculateModalPosition';
 
 import SearchItem from './SearchItem';
@@ -34,7 +34,14 @@ export default function SearchModal({
     useCalculateModal(modalRef, relativeElement, position, gap);
 
     return (
-        <ul ref={modalRef} id={id} className={searchStyles['search-modal']}>
+        <ul
+            ref={modalRef}
+            id={id}
+            className={searchStyles['search-modal']}
+            onClick={(event) => {
+                event.stopPropagation();
+            }}
+        >
             {__TEMPORARY_SEARCH_ITEMS.map((item) => (
                 <li key={item.href}>
                     <SearchItem {...item} />

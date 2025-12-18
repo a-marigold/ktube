@@ -56,8 +56,6 @@ export const calculateModalPosition = (
         },
     };
 
-    console.log(relativeRect.right);
-
     positionHandlersMap[position]();
 
     modalElement.style.transform = `translate(${modalLeft}px, ${modalTop}px)`;
