@@ -1,5 +1,7 @@
 'use client';
 
+import { useRef } from 'react';
+
 import { useNavbarStore } from '@/store/NavbarStore';
 import { useModalStore } from '@/store/ModalStore';
 
@@ -16,6 +18,8 @@ export default function Header() {
     const openModal = useModalStore((state) => state.openModal);
 
     const closeModal = useModalStore((state) => state.closeModal);
+
+    const modalClickedRef = useRef<boolean>(false);
 
     return (
         <header className={headerStyles['header']}>
@@ -44,10 +48,20 @@ export default function Header() {
                             id='search-modal'
                             relativeElement={event.currentTarget}
                             position='bottom'
-                        />
+                            onMouseDown={() => {
+                                modalClickedRef.current = true;
+                            }}
+                        />,
+                        false
                     );
                 }}
-                onBlur={closeModal}
+                onBlur={() => {
+                    if (modalClickedRef.current) {
+                        modalClickedRef.current = false;
+                        return;
+                    }
+                    closeModal();
+                }}
             />
 
             <div className={headerStyles['tool-buttons']}>

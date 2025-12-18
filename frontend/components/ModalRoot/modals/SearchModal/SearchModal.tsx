@@ -1,52 +1,60 @@
 'use client';
 
 import { useRef } from 'react';
+import type { HTMLAttributes } from 'react';
 
 import { useCalculateModal } from '@/hooks/useCalculateModal';
 import type { Position } from '@/utils/caclculateModalPosition';
 
+import { useModalStore } from '@/store/ModalStore';
+
 import SearchItem from './SearchItem';
 import type { SearchItemProps } from './SearchItem';
+
+import ModalBackdrop from '@/UI/ModalBackdrop';
 
 import searchStyles from './SearchModal.module.scss';
 
 interface SearchModalProps {
     id?: string;
+    onMouseDown?: HTMLAttributes<HTMLUListElement>['onMouseDown'];
 
     relativeElement: HTMLElement;
     position: Position;
     gap?: number;
 }
 export default function SearchModal({
-    relativeElement,
-    position,
-
     id,
+    onMouseDown,
 
+    relativeElement,
     gap,
+    position,
 }: SearchModalProps) {
     const __TEMPORARY_SEARCH_ITEMS: SearchItemProps[] = [
-        { href: '', title: 'example' },
+        { href: '/se', title: 'example' },
     ];
 
     const modalRef = useRef<HTMLUListElement>(null);
 
+    const closeModal = useModalStore((state) => state.closeModal);
+
     useCalculateModal(modalRef, relativeElement, position, gap);
 
     return (
-        <ul
-            ref={modalRef}
-            id={id}
-            className={searchStyles['search-modal']}
-            onClick={(event) => {
-                event.stopPropagation();
-            }}
-        >
-            {__TEMPORARY_SEARCH_ITEMS.map((item) => (
-                <li key={item.href}>
-                    <SearchItem {...item} />
-                </li>
-            ))}
-        </ul>
+        <ModalBackdrop background='empty' onClose={closeModal}>
+            <ul
+                ref={modalRef}
+                id={id}
+                className={searchStyles['search-modal']}
+                onMouseDown={onMouseDown}
+            >
+                {__TEMPORARY_SEARCH_ITEMS.map((item) => (
+                    <li key={item.href}>
+                        <SearchItem {...item} />
+                    </li>
+                ))}
+            </ul>
+        </ModalBackdrop>
     );
 }
