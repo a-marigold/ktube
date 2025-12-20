@@ -1,3 +1,1 @@
-Bun.serve({
-    routes: {},
-});
+import { listen } from 'crumb-bun';

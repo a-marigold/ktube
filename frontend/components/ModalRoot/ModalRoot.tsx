@@ -16,9 +16,7 @@ export default function ModalRoot() {
             lockBodyScroll();
         }
 
-        return () => {
-            unlockBodyScroll();
-        };
+        return unlockBodyScroll;
     }, [currentModal, lockBodyScroll, unlockBodyScroll]);
 
     return currentModal;
