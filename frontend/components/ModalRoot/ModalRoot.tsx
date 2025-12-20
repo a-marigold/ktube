@@ -8,6 +8,7 @@ import { lockBodyScroll, unlockBodyScroll } from '@/utils/lockBodyScroll';
 
 export default function ModalRoot() {
     const currentModal = useModalStore((state) => state.currentModal);
+
     const lockScroll = useModalStore((state) => state.lockScroll);
 
     useEffect(() => {
@@ -18,7 +19,7 @@ export default function ModalRoot() {
         return () => {
             unlockBodyScroll();
         };
-    }, [currentModal]);
+    }, [currentModal, lockBodyScroll, unlockBodyScroll]);
 
     return currentModal;
 }

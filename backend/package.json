@@ -2,12 +2,10 @@
     "name": "backend",
     "private": true,
     "devDependencies": {
-        "@types/bun": "latest"
+        "@types/bun": "latest",
+        "@biomejs/biome": "^2.3.10"
     },
     "peerDependencies": {
         "typescript": "^5"
-    },
-    "dependencies": {
-        "@biomejs/biome": "^2.3.10"
     }
 }
