@@ -9,6 +9,6 @@
         "typescript": "^5"
     },
     "dependencies": {
-        "crumb-bun": "^0.1.3"
+        "crumb-bun": "^0.1.5"
     }
 }

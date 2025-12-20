@@ -1,1 +1,5 @@
-import { listen } from 'crumb-bun';
+import { authRoutes } from './routes';
+
+export const buildApp = () => {
+    authRoutes();
+};
