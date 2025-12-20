@@ -44,3 +44,18 @@ jobs:
     - name: Build frontend
 
       run: pnpm build
+
+  backendCI:
+
+    name: Backend CI
+
+    runs-on: Ubuntu latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Bun
+      uses: oven-sh/setup-bun@v2
+
+    - name: Install dependencies
+      run: bun install
