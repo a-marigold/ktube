@@ -1,0 +1,41 @@
+@use '@/styles/_mixins.scss' as *;
+
+.video-item {
+    @include flex-column;
+    gap: 0.75rem;
+
+    text-decoration: none;
+    color: var(--font-color);
+
+    width: 100%;
+    max-width: 400px;
+}
+
+.info-block {
+    display: flex;
+
+    gap: 0.75rem;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+.text-block {
+    @include flex-column;
+    gap: 0.125em;
+}
+
+.title {
+    width: 100%;
+    max-width: 320px;
+
+    @include text-wo-margin(1rem, 500);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.channel-name {
+    font-size: var(--d-font-size);
+    color: var(--secondary-font-color);
+}

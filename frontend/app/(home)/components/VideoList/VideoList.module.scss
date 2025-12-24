@@ -1,0 +1,8 @@
+@use '@/styles/_mixins.scss' as *;
+
+.video-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 100%;
+}
