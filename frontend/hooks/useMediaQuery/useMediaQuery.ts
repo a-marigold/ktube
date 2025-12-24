@@ -33,7 +33,7 @@ export const useMediaQuery = (queryString: string) => {
         return () => {
             mediaQuery.removeEventListener('change', handleChange);
         };
-    }, []);
+    }, [queryString]);
 
     return isMatched;
 };
