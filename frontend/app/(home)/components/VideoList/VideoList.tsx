@@ -8,18 +8,21 @@ import videoStyles from './VideoList.module.scss';
 export default function VideoList() {
     const __test_list__: VideoCardProps[] = [
         {
-            videoUrl: '',
+            videoUrl: '1',
             title: 'Example videossssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss',
             channelName: 'Channel',
-            previewUrl: '',
-            avatarUrl: '',
+
+            previewUrl: '/__test-preview.png',
+            avatarUrl: '/__test-avatar.png',
+
+            videoViews: 600,
         },
     ];
 
     return (
         <div className={videoStyles['video-list']}>
             {__test_list__.map((videoProps) => (
-                <VideoCard {...videoProps} />
+                <VideoCard key={videoProps.videoUrl} {...videoProps} />
             ))}
         </div>
     );

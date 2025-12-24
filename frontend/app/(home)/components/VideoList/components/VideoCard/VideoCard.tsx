@@ -12,6 +12,8 @@ export interface VideoCardProps {
 
     previewUrl: string;
     avatarUrl: string;
+
+    videoViews: number;
 }
 
 export default function VideoCard({
@@ -22,6 +24,7 @@ export default function VideoCard({
 
     previewUrl,
     avatarUrl,
+    videoViews,
 }: VideoCardProps) {
     return (
         <Link
@@ -29,7 +32,13 @@ export default function VideoCard({
             prefetch={false}
             className={videoStyles['video-item']}
         >
-            <Image src={previewUrl} alt='' width={400} height={225} />
+            <Image
+                src={previewUrl}
+                alt=''
+                width={400}
+                height={225}
+                className={videoStyles['preview-image']}
+            />
 
             <div className={videoStyles['info-block']}>
                 <Image
@@ -45,8 +54,15 @@ export default function VideoCard({
                     <span className={videoStyles['channel-name']}>
                         {channelName}
                     </span>
+
+                    <div className={videoStyles['extra-info-block']}>
+                        <span className={videoStyles['extra-info']}>
+                            {videoViews} views
+                        </span>
+                    </div>
                 </div>
             </div>
+            <div className={videoStyles['scaling-background']} />
         </Link>
     );
 }
