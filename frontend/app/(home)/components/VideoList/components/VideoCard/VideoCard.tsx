@@ -32,13 +32,14 @@ export default function VideoCard({
             prefetch={false}
             className={videoStyles['video-item']}
         >
-            <Image
-                src={previewUrl}
-                alt=''
-                width={400}
-                height={225}
-                className={videoStyles['preview-image']}
-            />
+            <div className={videoStyles['preview-block']}>
+                <Image
+                    src={previewUrl}
+                    alt=''
+                    fill
+                    className={videoStyles['preview-image']}
+                />
+            </div>
 
             <div className={videoStyles['info-block']}>
                 <Image
@@ -62,6 +63,7 @@ export default function VideoCard({
                     </div>
                 </div>
             </div>
+
             <div className={videoStyles['scaling-background']} />
         </Link>
     );
