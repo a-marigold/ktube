@@ -13,16 +13,18 @@ export default function Navbar() {
     const showNavbar = useNavbarStore((state) => state.showNavbar);
 
     const maxWidthMatches = useMediaQuery(
-        `(max-width: ${mediaBreakpoints.extraLarge})`
+        `(max-width: ${mediaBreakpoints.extraLarge}px)`
     );
 
     return maxWidthMatches ? (
         <>
-            {showNavbar && <FullNavbar />}
+            <FullNavbar />
 
             <MiniNavbar />
         </>
+    ) : showNavbar ? (
+        <FullNavbar />
     ) : (
-        <>{showNavbar ? <FullNavbar /> : <MiniNavbar />}</>
+        <MiniNavbar />
     );
 }
