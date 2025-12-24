@@ -25,9 +25,9 @@ export default function Header() {
         <header className={headerStyles['header']}>
             <div className={headerStyles['title-block']}>
                 <IconButton
-                    href='#nav-toggle-icon'
-                    width={24}
-                    height={24}
+                    iconHref='#nav-toggle-icon'
+                    iconWidth={24}
+                    iconHeight={24}
                     aria-label='Toggle the sidebar panel'
                     onClick={() => toggleNavbar()}
                     data-testid='navbar-toggle-button'
@@ -67,9 +67,9 @@ export default function Header() {
             <div className={headerStyles['tool-buttons']}>
                 <IconButton
                     variant='empty'
-                    href='#notifications-icon'
-                    width={24}
-                    height={24}
+                    iconHref='#notifications-icon'
+                    iconWidth={24}
+                    iconHeight={24}
                     aria-label='Open the notifications window'
                 />
             </div>

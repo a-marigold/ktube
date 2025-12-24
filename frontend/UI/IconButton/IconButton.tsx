@@ -5,10 +5,10 @@ import buttonStyles from './IconButton.module.scss';
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'filled' | 'empty';
 
-    href: `#${string}`;
-    width: number;
+    iconHref: `#${string}`;
+    iconWidth: number;
 
-    height: number;
+    iconHeight: number;
     color?: string;
 
     'aria-label': string;
@@ -18,10 +18,10 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export default function IconButton({
     variant = 'empty',
 
-    href,
+    iconHref,
 
-    width,
-    height,
+    iconWidth,
+    iconHeight,
     color = 'var(--font-color)',
 
     hintTitle,
@@ -35,8 +35,13 @@ export default function IconButton({
             {...attributes}
             className={`${buttonStyles['icon-button']} ${buttonStyles[variant]}`}
         >
-            <svg width={width} height={height} color={color} aria-hidden='true'>
-                <use href={href} />
+            <svg
+                width={iconWidth}
+                height={iconHeight}
+                color={color}
+                aria-hidden='true'
+            >
+                <use href={iconHref} />
             </svg>
         </button>
     );
