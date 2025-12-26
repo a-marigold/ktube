@@ -83,6 +83,12 @@ html.navbar-shown .main-content {
     margin-left: var(--full-navbar-width);
 }
 
+@media (max-width: map-get($media-breakpoints, medium)) {
+    :root {
+        --mini-navbar-width: 0;
+    }
+}
+
 @media (max-width: map-get($media-breakpoints, extra-large)) {
     html.navbar-shown .main-content {
         margin-left: var(--mini-navbar-width);
