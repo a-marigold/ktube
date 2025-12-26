@@ -1,4 +1,5 @@
 @use '@/styles/_mixins.scss' as *;
+@use '@/styles/_variables.scss' as *;
 
 html,
 body {
@@ -31,8 +32,10 @@ body {
 
 .main-content {
     margin-top: var(--header-height);
-    margin-left: var(--navbar-width);
+    margin-left: var(--mini-navbar-width);
 }
+
+/* Variables */
 
 :root {
     --background-color: #0f0f0f;
@@ -53,9 +56,11 @@ body {
     --dim-hover-btn-bg: #272727;
 
     --hover-btn-bg: #ffffff1a;
+
     --alpha-hover-bg: #3f3f3f;
 
     --active-btn-bg: #535353;
+
     --dim-active-btn-bg: #3d3d3d;
 
     --focus-color: #1c62b9;
@@ -68,5 +73,18 @@ body {
 
     --d-transition-dur: 0.16s;
 
-    --navbar-width: 72px;
+    --mini-navbar-width: 72px;
+    --full-navbar-width: 240px;
+}
+
+/* global utility classes */
+
+html.navbar-shown .main-content {
+    margin-left: var(--full-navbar-width);
+}
+
+@media (max-width: map-get($media-breakpoints, extra-large)) {
+    html.navbar-shown .main-content {
+        margin-left: var(--mini-navbar-width);
+    }
 }
