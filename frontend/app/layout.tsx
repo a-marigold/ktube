@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
 import ModalRoot from '@/components/ModalRoot/ModalRoot';
-import NavbarRoot from '@/components/NavbarRoot';
 
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
@@ -28,7 +27,6 @@ export default function RootLayout({
         <html lang='en'>
             <body className={roboto.className}>
                 <ModalRoot />
-                <NavbarRoot />
                 <SvgSprites />
 
                 <Header />

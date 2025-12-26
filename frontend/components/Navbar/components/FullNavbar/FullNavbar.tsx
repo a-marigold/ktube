@@ -2,11 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
-import { useMediaQuery } from '@/hooks/useMediaQuery';
-
 import { useNavbarStore } from '@/store/NavbarStore';
-
-import { mediaBreakpoints } from '@/constants/mediaBreakpoints';
 
 import NavList from './components/NavList/NavList';
 
@@ -15,14 +11,16 @@ import { pageLinkList, settingsLinkList } from './navLists';
 import IconButton from '@/UI/IconButton';
 import navStyles from './FullNavbar.module.scss';
 
-export default function FullNavbar() {
+interface FullNavbarProps {
+    /**
+     * Max width flag to activate `position: fixed` and animations on Navbar
+     */
+    maxWidthMatches: boolean;
+}
+export default function FullNavbar({ maxWidthMatches }: FullNavbarProps) {
     const showNavbar = useNavbarStore((state) => state.showNavbar);
 
     const toggleNavbar = useNavbarStore((state) => state.toggleNavbar);
-
-    const maxWidthMatches = useMediaQuery(
-        `(max-width: ${mediaBreakpoints.extraLarge}px)`
-    );
 
     const navbarRef = useRef<HTMLElement>(null);
     const backdropRef = useRef<HTMLDivElement>(null);
