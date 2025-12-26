@@ -29,7 +29,7 @@ export default function Header() {
                     iconWidth={24}
                     iconHeight={24}
                     aria-label='Toggle the sidebar panel'
-                    onClick={() => toggleNavbar()}
+                    onClick={toggleNavbar}
                     data-testid='navbar-toggle-button'
                 />
 
@@ -41,7 +41,7 @@ export default function Header() {
             <SearchInput
                 placeholder='Search'
                 aria-label='Search for content'
-                aria-controls='search-modal'
+                aria-controls='#search-modal'
                 onFocus={(event) => {
                     openModal(
                         <SearchModal

@@ -18,7 +18,9 @@ import { useState, useEffect } from 'react';
  */
 export const useMediaQuery = (queryString: string) => {
     const [isMatched, setIsMatched] = useState<boolean>(() => {
-        return window.matchMedia(queryString).matches;
+        return typeof window === 'undefined'
+            ? false
+            : window.matchMedia(queryString).matches;
     });
 
     useEffect(() => {

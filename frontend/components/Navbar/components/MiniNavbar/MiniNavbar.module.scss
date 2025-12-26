@@ -1,17 +1,24 @@
 @use '@/styles/_mixins.scss' as *;
 
 .mini-navbar {
+    position: fixed;
+
+    top: var(--header-height);
+
     @include flex-column;
 
     width: 100%;
 
-    max-width: 72px;
+    max-width: var(--navbar-width);
 
     height: 100%;
 
     background-color: var(--background-color);
 
     padding: 0.75rem 0.25rem;
-
     box-sizing: border-box;
+
+    z-index: 1;
+
+    --navbar-width: 72px;
 }

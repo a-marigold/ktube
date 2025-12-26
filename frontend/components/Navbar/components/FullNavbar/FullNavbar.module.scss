@@ -2,15 +2,17 @@
 @use '@/styles/_variables.scss' as *;
 
 .full-navbar {
+    position: fixed;
+    top: var(--header-height);
+
     @include flex-column;
     gap: 0.75rem;
 
     width: 100%;
-    max-width: 240px;
+    max-width: var(--navbar-width);
     height: 100%;
 
     background-color: var(--background-color);
-
     padding: 0.75rem;
 
     box-sizing: border-box;
@@ -18,6 +20,8 @@
     transition: transform var(--d-transition-dur) ease;
 
     z-index: 100;
+
+    --navbar-width: 240px;
 }
 
 .backdrop {

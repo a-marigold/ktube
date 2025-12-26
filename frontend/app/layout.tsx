@@ -32,10 +32,10 @@ export default function RootLayout({
 
                 <Header />
 
-                <div className='main-content'>
+                <div className='main-group'>
                     <Navbar />
 
-                    {children}
+                    <main className='main-content'> {children} </main>
                 </div>
             </body>
         </html>

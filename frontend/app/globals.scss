@@ -22,11 +22,16 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.main-content {
+.main-group {
     display: flex;
 
     width: 100%;
     height: 100%;
+}
+
+.main-content {
+    margin-top: var(--header-height);
+    margin-left: var(--navbar-width);
 }
 
 :root {
@@ -57,7 +62,11 @@ body {
 
     /* Sizes. Prefix "d" means "default". Prefix "m" means "medium" */
 
+    --header-height: 56px;
+
     --d-font-size: 0.95rem;
 
     --d-transition-dur: 0.16s;
+
+    --navbar-width: 72px;
 }

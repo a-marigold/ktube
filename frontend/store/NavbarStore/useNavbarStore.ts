@@ -5,7 +5,7 @@ interface NavbarStore {
     toggleNavbar: () => void;
 }
 export const useNavbarStore = create<NavbarStore>()((set) => ({
-    showNavbar: true,
+    showNavbar: false,
 
     toggleNavbar: () => set((state) => ({ showNavbar: !state.showNavbar })),
 }));

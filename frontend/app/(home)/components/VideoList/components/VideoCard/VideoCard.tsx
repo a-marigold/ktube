@@ -37,6 +37,7 @@ export default function VideoCard({
                     src={previewUrl}
                     alt=''
                     fill
+                    loading='lazy'
                     className={videoStyles['preview-image']}
                 />
             </div>
