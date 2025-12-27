@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import type { HTMLAttributes } from 'react';
 
 import { useCalculateModal } from '@/hooks/useCalculateModal';
+
 import type { Position } from '@/utils/caclculateModalPosition';
 
 import { useModalStore } from '@/store/ModalStore';
@@ -42,7 +43,7 @@ export default function SearchModal({
     useCalculateModal(modalRef, relativeElement, position, gap);
 
     return (
-        <ModalBackdrop background='empty' onClose={closeModal}>
+        <ModalBackdrop background='empty' onClick={closeModal}>
             <ul
                 ref={modalRef}
                 id={id}

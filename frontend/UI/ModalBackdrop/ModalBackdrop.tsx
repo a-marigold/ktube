@@ -6,14 +6,14 @@ interface ModalBackdropProps {
     background?: 'dark' | 'empty';
 
     onClick?: ButtonHTMLAttributes<HTMLDivElement>['onClick'];
-    onMouseEnter?: ButtonHTMLAttributes<HTMLDivElement>['onMouseEnter'];
+    onMouseOver?: ButtonHTMLAttributes<HTMLDivElement>['onMouseOver'];
 
     children: ReactNode;
 }
 export default function ModalBackdrop({
     background = 'dark',
     onClick,
-    onMouseEnter,
+    onMouseOver,
     children,
 }: ModalBackdropProps) {
     return (
@@ -22,7 +22,7 @@ export default function ModalBackdrop({
                 modalStyles[`${background}`]
             }`}
             onClick={onClick}
-            onMouseEnter={onMouseEnter}
+            onMouseOver={onMouseOver}
         >
             {children}
         </div>

@@ -29,40 +29,40 @@ export default function MenuModal({
 
     gap,
     position,
-
     linkList,
 }: MenuModalProps) {
     const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (modalRef.current) {
-            calculateModalPosition(
-                modalRef.current,
-                relativeElement,
-                position,
-                gap
-            );
+            calculateModalPosition(modalRef.current, relativeElement, position);
         }
-    }, [relativeElement, position, gap]);
+    }, [relativeElement, position]);
 
     return (
-        <ModalBackdrop background='empty' onClose={onClose}>
+        <ModalBackdrop background='empty' onMouseOver={onClose}>
             <div
                 ref={modalRef}
                 role='dialog'
                 aria-modal='true'
                 className={modalStyles['menu-modal']}
-                onClick={(event) => {
+                onMouseOver={(event) => {
                     event.stopPropagation();
                 }}
                 aria-labelledby='menu-title'
             >
+                <div
+                    className={modalStyles['interception-block']}
+                    onMouseOver={(event) => {
+                        event.stopPropagation();
+                    }}
+                />
+
                 <div className={modalStyles['head']}>
                     <h2 id='menu-title' className={modalStyles['title']}>
                         {title}
                     </h2>
                 </div>
-
                 <ul className={modalStyles['link-list']}>
                     {linkList.map((link) => (
                         <li key={link.title}>

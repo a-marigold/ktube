@@ -56,7 +56,8 @@ export default function MiniNavbar() {
                             <SubscriptionsModal
                                 relativeElement={event.currentTarget}
                                 position='right'
-                            />
+                            />,
+                            false
                         );
                     }}
                 />
