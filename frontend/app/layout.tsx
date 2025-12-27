@@ -2,7 +2,8 @@ import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
-import ModalRoot from '@/components/ModalRoot/ModalRoot';
+import ModalRoot from '@/components/ModalRoot';
+import TooltipRoot from '@/components/TooltipRoot';
 
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
@@ -27,6 +28,7 @@ export default function RootLayout({
         <html lang='en'>
             <body className={roboto.className}>
                 <ModalRoot />
+                <TooltipRoot />
                 <SvgSprites />
 
                 <Header />
