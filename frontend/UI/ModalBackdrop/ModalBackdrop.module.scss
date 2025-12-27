@@ -9,6 +9,8 @@
 
     height: 100vh;
 
+    z-index: 100;
+
     &.dark {
         background-color: var(--backdrop-bg-color);
     }

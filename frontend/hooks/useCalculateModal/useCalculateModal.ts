@@ -16,7 +16,7 @@ import { calculateModalPosition } from '@/utils/caclculateModalPosition';
  * @param {RefObject<HTMLElement | null>} modalRef react ref object with modal element
  * @param {HTMLElement} relativeElement
  * @param {Position} position `top`, `right`, `bottom` or `left` modal position relative to `relativeElement`
- * @param {number} gap  distance between modal and relative elements.
+ * @param {number} gap distance between modal and relative elements.
  *
  *
  *

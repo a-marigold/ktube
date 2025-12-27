@@ -21,13 +21,14 @@ export const calculateModalPosition = (
     relativeElement: HTMLElement,
 
     position: Position,
-    gap: number = 10
+    gap: number = 0
 ): void => {
     const modalRect = modalElement.getBoundingClientRect();
 
     const relativeRect = relativeElement.getBoundingClientRect();
 
     let modalLeft = 0;
+
     let modalTop = 0;
 
     const centerX =
