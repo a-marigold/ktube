@@ -4,7 +4,7 @@ import MenuModal, { type MenuModalProps } from '@/UI/MenuModal';
 
 type SubscriptionsModalProps = Pick<
     MenuModalProps,
-    'relativeElement' | 'position'
+    'relativeElement' | 'position' | 'ref'
 >;
 
 export default function SubscriptionsModal({

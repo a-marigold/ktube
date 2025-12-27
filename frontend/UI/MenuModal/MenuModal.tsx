@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+import type { RefObject } from 'react';
+
 import { calculateModalPosition } from '@/utils/caclculateModalPosition';
 
 import type { Position } from '@/utils/caclculateModalPosition';
@@ -11,6 +13,8 @@ import modalStyles from './MenuModal.module.scss';
 export interface MenuModalProps {
     title: string;
 
+    ref?: RefObject<HTMLElement | null>;
+
     onClose: () => void;
 
     relativeElement: HTMLElement;
@@ -21,28 +25,39 @@ export interface MenuModalProps {
     linkList: MenuLinkProps[];
 }
 export default function MenuModal({
+    ref,
     title,
+
     onClose,
 
     relativeElement,
 
     gap,
+
     position,
     linkList,
 }: MenuModalProps) {
-    const modalRef = useRef<HTMLDivElement>(null);
+    const wrapperRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (modalRef.current) {
-            calculateModalPosition(modalRef.current, relativeElement, position);
+        if (wrapperRef.current) {
+            calculateModalPosition(
+                wrapperRef.current,
+                relativeElement,
+                position
+            );
+        }
+
+        if (ref) {
+            ref.current = wrapperRef.current;
         }
     }, [relativeElement, position]);
 
     return (
         <div
-            ref={modalRef}
+            ref={wrapperRef}
             className={modalStyles['modal-wrapper']}
-            onMouseLeave={(event) => {
+            onPointerLeave={(event) => {
                 if (relativeElement === event.relatedTarget) return;
 
                 onClose();

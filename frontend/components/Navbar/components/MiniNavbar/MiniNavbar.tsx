@@ -1,5 +1,7 @@
 'use client';
 
+import { useRef } from 'react';
+
 import { usePathname } from 'next/navigation';
 
 import { useModalStore } from '@/store/ModalStore';
@@ -26,6 +28,7 @@ const linkList: (MiniNavLinkProps & { tooltipTitle?: string })[] = [
 
         tooltipTitle: 'Home',
     },
+
     {
         href: '/subscriptions',
         isActive: false,
@@ -49,6 +52,9 @@ export default function MiniNavbar() {
     const pathname = usePathname();
 
     const openModal = useModalStore((state) => state.openModal);
+    const closeModal = useModalStore((state) => state.closeModal);
+
+    const modalRef = useRef<HTMLElement>(null);
 
     return (
         <nav className={navStyles['mini-navbar']} data-testid='mini-navbar'>
@@ -60,6 +66,7 @@ export default function MiniNavbar() {
                     onMouseEnter={(event) => {
                         openModal(
                             <SubscriptionsModal
+                                ref={modalRef}
                                 relativeElement={event.currentTarget}
                                 position='right'
                             />,
@@ -70,11 +77,17 @@ export default function MiniNavbar() {
                                 title: link.tooltipTitle,
                                 relativeElement: event.currentTarget,
                                 position: 'right',
+
                                 gap: 10,
                             });
                         }
                     }}
-                    onMouseLeave={hideTooltip}
+                    onMouseLeave={(event) => {
+                        hideTooltip();
+
+                        if (event.relatedTarget === modalRef.current) return;
+                        closeModal();
+                    }}
                 />
             ))}
         </nav>
