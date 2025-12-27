@@ -3,8 +3,8 @@
 import { useRef } from 'react';
 
 import { useNavbarStore } from '@/store/NavbarStore';
-
 import { useModalStore } from '@/store/ModalStore';
+import { useTooltipStore } from '@/store/TooltipStore';
 
 import SearchModal from '../ModalRoot/modals/SearchModal';
 
@@ -17,10 +17,12 @@ export default function Header() {
     const toggleNavbar = useNavbarStore((state) => state.toggleNavbar);
 
     const openModal = useModalStore((state) => state.openModal);
-
     const closeModal = useModalStore((state) => state.closeModal);
 
     const modalClickedRef = useRef<boolean>(false);
+
+    const showTooltip = useTooltipStore((state) => state.show);
+    const hideTooltip = useTooltipStore((state) => state.hide);
 
     return (
         <header className={headerStyles['header']}>
@@ -58,10 +60,8 @@ export default function Header() {
                     );
                 }}
                 onBlur={() => {
-                    if (modalClickedRef.current) {
-                        modalClickedRef.current = false;
-                        return;
-                    }
+                    if (modalClickedRef.current) return;
+
                     closeModal();
                 }}
             />
@@ -73,6 +73,14 @@ export default function Header() {
                     iconWidth={24}
                     iconHeight={24}
                     aria-label='Open the notifications window'
+                    onPointerEnter={(event) => {
+                        showTooltip({
+                            title: 'Notifications',
+                            relativeElement: event.currentTarget,
+                            position: 'bottom',
+                        });
+                    }}
+                    onPointerLeave={hideTooltip}
                 />
             </div>
         </header>
