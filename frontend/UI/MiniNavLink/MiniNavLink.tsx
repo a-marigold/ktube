@@ -1,3 +1,4 @@
+import type { ButtonHTMLAttributes } from 'react';
 import Link, { type LinkProps } from 'next/link';
 
 import type { SvgIconProps } from '@/types/SvgIconProps';
@@ -12,8 +13,9 @@ export interface MiniNavLinkProps extends LinkProps {
     isActive: boolean;
 
     className?: string;
-
     icon: SvgIconProps & { activeHref?: `#${string}` };
+
+    onMouseLeave?: ButtonHTMLAttributes<HTMLAnchorElement>['onMouseLeave'];
 }
 export default function MiniNavLink({
     isActive,

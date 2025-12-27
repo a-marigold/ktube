@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 
 import { useNavbarStore } from '@/store/NavbarStore';
+
 import { useModalStore } from '@/store/ModalStore';
 
 import SearchModal from '../ModalRoot/modals/SearchModal';
@@ -41,7 +42,7 @@ export default function Header() {
             <SearchInput
                 placeholder='Search'
                 aria-label='Search for content'
-                aria-controls='#search-modal'
+                aria-controls='search-modal'
                 onFocus={(event) => {
                     openModal(
                         <SearchModal
@@ -51,6 +52,7 @@ export default function Header() {
                             onMouseDown={() => {
                                 modalClickedRef.current = true;
                             }}
+                            gap={12}
                         />,
                         false
                     );

@@ -1,6 +1,10 @@
 @use '@/styles/_mixins.scss' as *;
 
 .tooltip {
+    position: absolute;
+    top: 0;
+    left: 0;
+
     @include flex-center;
 
     width: max-content;

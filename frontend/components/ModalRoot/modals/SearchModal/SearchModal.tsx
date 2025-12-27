@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import type { HTMLAttributes } from 'react';
 
-import { useCalculateModal } from '@/hooks/useCalculateModal';
+import { useCalculateModalLayout } from '@/hooks/useCalculateModalLayout';
 
 import type { Position } from '@/utils/caclculateModalPosition';
 
@@ -40,7 +40,7 @@ export default function SearchModal({
 
     const closeModal = useModalStore((state) => state.closeModal);
 
-    useCalculateModal(modalRef, relativeElement, position, gap);
+    useCalculateModalLayout(modalRef, relativeElement, position, gap);
 
     return (
         <ModalBackdrop background='empty' onClick={closeModal}>

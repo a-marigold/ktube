@@ -7,34 +7,37 @@ import type { Position } from '@/utils/caclculateModalPosition';
 
 import tooltipStyles from './Tooltip.module.scss';
 
-interface TooltipProps {
-    id: string;
+function some(hello: number = 10, some: 16) {}
+export interface TooltipProps {
+    id?: string;
     title: string;
 
     relativeElement: HTMLElement;
     position: Position;
+
     gap?: number;
 }
 export default function Tooltip({
     id,
     title,
+
     relativeElement,
     position,
     gap,
 }: TooltipProps) {
     const tooltipRef = useRef<HTMLDivElement>(null);
 
-    // useEffect(() => {
-    //     if (tooltipRef.current) {
-    //         calculateModalPosition(
-    //             tooltipRef.current,
-    //             relativeElement,
-    //             position,
+    useEffect(() => {
+        if (tooltipRef.current) {
+            calculateModalPosition(
+                tooltipRef.current,
+                relativeElement,
+                position,
 
-    //             gap
-    //         );
-    //     }
-    // });
+                gap
+            );
+        }
+    });
     return (
         <div
             ref={tooltipRef}

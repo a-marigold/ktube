@@ -35,7 +35,7 @@ import { calculateModalPosition } from '@/utils/caclculateModalPosition';
  * )
  * ```
  */
-export const useCalculateModal = (
+export const useCalculateModalLayout = (
     modalRef: RefObject<HTMLElement | null>,
 
     relativeElement: HTMLElement,

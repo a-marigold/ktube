@@ -14,6 +14,7 @@ export type Position = 'top' | 'right' | 'bottom' | 'left';
  * @param {HTMLElement} modalElement modal html element
  * @param {HTMLElement} relativeElement element, relative to which the `modalElement` will be positioned
  * @param {Position} position `top`, `right`, `bottom`, `left` relative to the `relativeElement`
+ *
  * @param {number} gap distance between the `relativeElement` and `modalElement`
  */
 export const calculateModalPosition = (

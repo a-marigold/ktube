@@ -1,1 +1,0 @@
-export { useCalculateModal } from './useCalculateModal';

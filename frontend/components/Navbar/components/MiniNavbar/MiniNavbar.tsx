@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 
 import { useModalStore } from '@/store/ModalStore';
+import { useTooltipStore } from '@/store/TooltipStore';
 
 import SubscriptionsModal from '@modals/SubscriptionsModal';
 
@@ -10,11 +11,10 @@ import MiniNavLink, { type MiniNavLinkProps } from '@/UI/MiniNavLink';
 
 import navStyles from './MiniNavbar.module.scss';
 
-const linkList: MiniNavLinkProps[] = [
+const linkList: (MiniNavLinkProps & { tooltipTitle?: string })[] = [
     {
         href: '/',
         isActive: false,
-
         'aria-label': 'Go to the home page',
         icon: {
             href: '#home-icon',
@@ -23,6 +23,8 @@ const linkList: MiniNavLinkProps[] = [
             width: 24,
             height: 24,
         },
+
+        tooltipTitle: 'Home',
     },
     {
         href: '/subscriptions',
@@ -40,6 +42,10 @@ const linkList: MiniNavLinkProps[] = [
 ];
 
 export default function MiniNavbar() {
+    const showTooltip = useTooltipStore((state) => state.show);
+
+    const hideTooltip = useTooltipStore((state) => state.hide);
+
     const pathname = usePathname();
 
     const openModal = useModalStore((state) => state.openModal);
@@ -59,7 +65,16 @@ export default function MiniNavbar() {
                             />,
                             false
                         );
+                        if (link.tooltipTitle) {
+                            showTooltip({
+                                title: link.tooltipTitle,
+                                relativeElement: event.currentTarget,
+                                position: 'right',
+                                gap: 10,
+                            });
+                        }
                     }}
+                    onMouseLeave={hideTooltip}
                 />
             ))}
         </nav>
