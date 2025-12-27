@@ -14,6 +14,7 @@ export default function ModalBackdrop({
     background = 'dark',
     onClick,
     onMouseOver,
+
     children,
 }: ModalBackdropProps) {
     return (

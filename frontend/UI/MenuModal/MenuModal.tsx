@@ -4,8 +4,6 @@ import { calculateModalPosition } from '@/utils/caclculateModalPosition';
 
 import type { Position } from '@/utils/caclculateModalPosition';
 
-import ModalBackdrop from '@/UI/ModalBackdrop';
-
 import MenuLink, { type MenuLinkProps } from '@/UI/MenuLink';
 
 import modalStyles from './MenuModal.module.scss';
@@ -17,6 +15,7 @@ export interface MenuModalProps {
 
     relativeElement: HTMLElement;
     position: Position;
+
     gap?: number;
 
     linkList: MenuLinkProps[];
@@ -40,29 +39,28 @@ export default function MenuModal({
     }, [relativeElement, position]);
 
     return (
-        <ModalBackdrop background='empty' onMouseOver={onClose}>
+        <div
+            ref={modalRef}
+            className={modalStyles['modal-wrapper']}
+            onMouseLeave={(event) => {
+                if (relativeElement === event.relatedTarget) return;
+
+                onClose();
+            }}
+            style={{ padding: `${gap}px` }}
+        >
             <div
-                ref={modalRef}
                 role='dialog'
                 aria-modal='true'
                 className={modalStyles['menu-modal']}
-                onMouseOver={(event) => {
-                    event.stopPropagation();
-                }}
                 aria-labelledby='menu-title'
             >
-                <div
-                    className={modalStyles['interception-block']}
-                    onMouseOver={(event) => {
-                        event.stopPropagation();
-                    }}
-                />
-
                 <div className={modalStyles['head']}>
                     <h2 id='menu-title' className={modalStyles['title']}>
                         {title}
                     </h2>
                 </div>
+
                 <ul className={modalStyles['link-list']}>
                     {linkList.map((link) => (
                         <li key={link.title}>
@@ -71,6 +69,6 @@ export default function MenuModal({
                     ))}
                 </ul>
             </div>
-        </ModalBackdrop>
+        </div>
     );
 }
