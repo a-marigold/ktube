@@ -15,6 +15,7 @@ export default function HotkeyRoot() {
 
     useHotkeys();
 
+    // biome-ignore lint: lint / correctness / useExhaustiveDependencies;
     useEffect(() => {
         initializeHotkeys(hotkeyConfig.config);
 

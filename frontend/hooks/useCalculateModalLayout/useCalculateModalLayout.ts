@@ -25,7 +25,7 @@ import { calculateModalPosition } from '@/utils/caclculateModalPosition';
  * const modalRef = useRef<HTMLDivElement>(null)
  * const containerRef = useRef<HTMLDivElement>(null)
  *
- * useCalculateModal(modalRef.current, containerRef.current!, 'bottom', 16);
+ * useCalculateModalLayout(modalRef.current, containerRef.current!, 'bottom', 16);
  *
  * return (
  *     <div ref={modalRef}> Modal </div>
