@@ -26,6 +26,7 @@ export interface MenuModalProps {
 }
 export default function MenuModal({
     ref,
+
     title,
 
     onClose,
@@ -33,7 +34,6 @@ export default function MenuModal({
     relativeElement,
 
     gap,
-
     position,
     linkList,
 }: MenuModalProps) {

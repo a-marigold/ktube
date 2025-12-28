@@ -4,7 +4,7 @@ import MenuModal, { type MenuModalProps } from '@/UI/MenuModal';
 
 type SubscriptionsModalProps = Pick<
     MenuModalProps,
-    'relativeElement' | 'position' | 'ref'
+    'relativeElement' | 'position' | 'gap' | 'ref'
 >;
 
 export default function SubscriptionsModal({
@@ -15,7 +15,6 @@ export default function SubscriptionsModal({
     return (
         <MenuModal
             {...props}
-            gap={10}
             title='Subscriptions'
             onClose={closeModal}
             linkList={[

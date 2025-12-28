@@ -6,6 +6,8 @@ import { useNavbarStore } from '@/store/NavbarStore';
 import { useModalStore } from '@/store/ModalStore';
 import { useTooltipStore } from '@/store/TooltipStore';
 
+import { MODAL_GAP } from '@/constants/modalGap';
+
 import SearchModal from '../ModalRoot/modals/SearchModal';
 
 import SearchInput from '@/UI/SearchInput/SearchInput';
@@ -78,6 +80,7 @@ export default function Header() {
                             title: 'Notifications',
                             relativeElement: event.currentTarget,
                             position: 'bottom',
+                            gap: MODAL_GAP,
                         });
                     }}
                     onPointerLeave={hideTooltip}

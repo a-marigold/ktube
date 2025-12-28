@@ -7,6 +7,8 @@ import { usePathname } from 'next/navigation';
 import { useModalStore } from '@/store/ModalStore';
 import { useTooltipStore } from '@/store/TooltipStore';
 
+import { MODAL_GAP } from '@/constants/modalGap';
+
 import SubscriptionsModal from '@modals/SubscriptionsModal';
 
 import MiniNavLink, { type MiniNavLinkProps } from '@/UI/MiniNavLink';
@@ -69,6 +71,7 @@ export default function MiniNavbar() {
                                 ref={modalRef}
                                 relativeElement={event.currentTarget}
                                 position='right'
+                                gap={MODAL_GAP}
                             />,
                             false
                         );
@@ -77,8 +80,7 @@ export default function MiniNavbar() {
                                 title: link.tooltipTitle,
                                 relativeElement: event.currentTarget,
                                 position: 'right',
-
-                                gap: 10,
+                                gap: MODAL_GAP,
                             });
                         }
                     }}
