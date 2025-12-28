@@ -66,5 +66,5 @@ export const useHotkeys = () => {
                 }
             });
         });
-    }, []);
+    }, [hotkeys]);
 };

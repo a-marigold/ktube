@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
+import HotkeyRoot from '@/components/HotkeyRoot/HotkeyRoot';
 import ModalRoot from '@/components/ModalRoot';
 import TooltipRoot from '@/components/TooltipRoot';
 
@@ -27,6 +28,7 @@ export default function RootLayout({
     return (
         <html lang='en'>
             <body className={roboto.className}>
+                <HotkeyRoot />
                 <ModalRoot />
                 <TooltipRoot />
                 <SvgSprites />

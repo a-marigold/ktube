@@ -161,8 +161,8 @@ export default function VideoList() {
 
     return (
         <div className={videoStyles['video-list']}>
-            {__test_list__.map((videoProps, __INDEX__) => (
-                <VideoCard key={__INDEX__} {...videoProps} />
+            {__test_list__.map((videoProps) => (
+                <VideoCard key={videoProps.videoUrl} {...videoProps} />
             ))}
         </div>
     );
