@@ -63,7 +63,9 @@ export default function MiniNavbar() {
             {linkList.map((link) => (
                 <MiniNavLink
                     key={link.href}
-                    {...link}
+                    href={link.href}
+                    icon={link.icon}
+                    aria-label={link['aria-label']}
                     isActive={link.href === pathname}
                     onMouseEnter={(event) => {
                         openModal(

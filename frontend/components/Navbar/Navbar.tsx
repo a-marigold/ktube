@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
-import { MediaBreakpoints } from '@/constants/mediaBreakpoints';
+import { mediaBreakpoints } from '@/constants/mediaBreakpoints';
 
 import { useNavbarStore } from '@/store/NavbarStore';
 
@@ -15,7 +15,7 @@ export default function Navbar() {
     const showNavbar = useNavbarStore((state) => state.showNavbar);
 
     const maxWidthMatches = useMediaQuery(
-        `(max-width: ${MediaBreakpoints.extraLarge}px)`
+        `(max-width: ${mediaBreakpoints.extraLarge}px)`
     );
 
     useEffect(() => {
