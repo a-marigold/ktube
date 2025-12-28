@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useHotkeyStore } from '@/store/HotkeyStore';
 
@@ -8,6 +8,13 @@ import type { Hotkey } from '@/types/Hotkey';
 
 type SpecialKey = 'ctrl' | 'shift' | 'alt';
 
+/**
+ *
+ * @param event
+ * @param keyString
+ *
+ * @returns {boolean} value that shows
+ */
 const hotkeyMatches = (
     event: KeyboardEvent,
 
@@ -17,7 +24,9 @@ const hotkeyMatches = (
 
     const specialKeys: Record<SpecialKey, boolean> = {
         ctrl: false,
+
         shift: false,
+
         alt: false,
     };
 
@@ -55,16 +64,32 @@ const hotkeyMatches = (
     return plainMatches && specialMatches;
 };
 
+/**
+ * Activates `hotkeys` listener
+ */
 export const useHotkeys = () => {
     const hotkeys = useHotkeyStore((state) => state.hotkeys);
 
+    const hotkeysRef = useRef<typeof hotkeys>(hotkeys);
+
     useEffect(() => {
-        document.addEventListener('keydown', (event) => {
-            hotkeys.forEach((hotkey) => {
+        hotkeysRef.current = hotkeys;
+    }, [hotkeys]);
+
+    useEffect(() => {
+        const handleKeydown = (event: KeyboardEvent) => {
+            hotkeysRef.current.forEach((hotkey) => {
+                console.log(hotkeyMatches(event, hotkey.key));
                 if (hotkeyMatches(event, hotkey.key)) {
                     hotkey.callback(event);
                 }
             });
-        });
-    }, [hotkeys]);
+        };
+
+        document.addEventListener('keydown', handleKeydown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeydown);
+        };
+    }, []);
 };

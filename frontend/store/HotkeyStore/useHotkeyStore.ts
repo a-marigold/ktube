@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 import type { Hotkey } from '@/types/Hotkey';
 
-type HotkeysInit = [Hotkey['name'], Hotkey][];
+export type HotkeysInit = [Hotkey['name'], Hotkey][];
 
 interface HotkeyStore {
     hotkeys: Map<Hotkey['name'], Hotkey>;
