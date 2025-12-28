@@ -25,11 +25,10 @@ export const calculateModalPosition = (
     gap: number = 0
 ): void => {
     const modalRect = modalElement.getBoundingClientRect();
-
     const relativeRect = relativeElement.getBoundingClientRect();
+    const viewportWidth = window.visualViewport?.width ?? window.innerWidth;
 
     let modalLeft = 0;
-
     let modalTop = 0;
 
     const centerX =
@@ -59,6 +58,12 @@ export const calculateModalPosition = (
     };
 
     positionHandlersMap[position]();
+
+    if (modalLeft + modalRect.width >= viewportWidth) {
+        modalLeft = viewportWidth - modalRect.width - gap;
+    } else if (modalLeft <= 0) {
+        modalLeft = gap;
+    }
 
     modalElement.style.transform = `translate(${modalLeft}px, ${modalTop}px)`;
 };
