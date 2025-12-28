@@ -1,3 +1,5 @@
+// biome-ignore-all lint: lint/a11y/useKeyWithMouseEvents
+
 import type { ReactNode, ButtonHTMLAttributes } from 'react';
 
 import modalStyles from './ModalBackdrop.module.scss';

@@ -51,7 +51,7 @@ export default function MenuModal({
         if (ref) {
             ref.current = wrapperRef.current;
         }
-    }, [relativeElement, position]);
+    }, [relativeElement, position, ref]);
 
     return (
         <div

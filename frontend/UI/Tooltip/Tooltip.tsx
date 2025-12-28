@@ -7,7 +7,6 @@ import type { Position } from '@/utils/caclculateModalPosition';
 
 import tooltipStyles from './Tooltip.module.scss';
 
-function some(hello: number = 10, some: 16) {}
 export interface TooltipProps {
     id?: string;
     title: string;
