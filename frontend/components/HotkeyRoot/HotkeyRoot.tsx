@@ -13,14 +13,12 @@ export default function HotkeyRoot() {
 
     const hotkeyConfig = useHotkeyConfig();
 
-    useHotkeys();
-
     // biome-ignore lint: lint / correctness / useExhaustiveDependencies;
     useEffect(() => {
-        initializeHotkeys(hotkeyConfig.config);
-
-        hotkeyConfig.clear();
+        initializeHotkeys(hotkeyConfig);
     }, []);
+
+    useHotkeys();
 
     return null;
 }

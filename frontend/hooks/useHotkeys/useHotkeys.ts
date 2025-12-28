@@ -34,8 +34,8 @@ const hotkeyMatches = (
 
     for (let pos = 0; pos < keyString.length; pos++) {
         if (keyString[pos] === ' ') continue;
-
-        if (keyString[pos] === '+') {
+        console.log(lastKey);
+        if (keyString[pos] === '+' || pos + 1 === keyString.length) {
             lastKey = lastKey.toLowerCase();
 
             if (
@@ -51,7 +51,9 @@ const hotkeyMatches = (
 
         lastKey += keyString[pos];
     }
+    console.log(plainKeys);
 
+    console.log(specialKeys);
     const plainMatches = plainKeys.some(
         (key) => key === event.key.toLowerCase()
     );
@@ -79,7 +81,6 @@ export const useHotkeys = () => {
     useEffect(() => {
         const handleKeydown = (event: KeyboardEvent) => {
             hotkeysRef.current.forEach((hotkey) => {
-                console.log(hotkeyMatches(event, hotkey.key));
                 if (hotkeyMatches(event, hotkey.key)) {
                     hotkey.callback(event);
                 }
