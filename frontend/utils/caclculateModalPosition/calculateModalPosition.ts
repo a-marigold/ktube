@@ -52,7 +52,7 @@ export const calculateModalPosition = (
             modalTop = relativeRect.bottom + gap;
         },
         left: () => {
-            modalLeft = relativeRect.left - gap;
+            modalLeft = relativeRect.left - modalRect.width - gap;
             modalTop = centerY;
         },
     };

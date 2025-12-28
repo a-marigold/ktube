@@ -44,6 +44,7 @@ describe('calculateModalPosition', () => {
     it('should fix `modalLeft` when it is more than viewport width', () => {
         const modalElement = {
             getBoundingClientRect: () => ({ width: 100, height: 160 }),
+
             style: {
                 transform: '',
             },
@@ -81,6 +82,43 @@ describe('calculateModalPosition', () => {
                 modalRect.width -
                 gap
             }px, ${
+                relativeRect.top +
+                relativeRect.height / 2 -
+                modalRect.height / 2
+            }px)`
+        );
+    });
+
+    it('should fix `modalLeft` when it is less than 0', () => {
+        const modalElement = {
+            getBoundingClientRect: () => ({ width: 100, height: 160 }),
+            style: { transform: '' },
+        } as HTMLElement;
+
+        const relativeElement = {
+            getBoundingClientRect: () => ({
+                width: 60,
+
+                height: 60,
+
+                top: 20,
+
+                left: 20,
+
+                right: 80,
+            }),
+        } as HTMLElement;
+
+        const gap = 0;
+
+        const modalRect = modalElement.getBoundingClientRect();
+
+        const relativeRect = relativeElement.getBoundingClientRect();
+
+        calculateModalPosition(modalElement, relativeElement, 'left', gap);
+
+        expect(modalElement.style.transform).toBe(
+            `translate(${gap}px, ${
                 relativeRect.top +
                 relativeRect.height / 2 -
                 modalRect.height / 2
