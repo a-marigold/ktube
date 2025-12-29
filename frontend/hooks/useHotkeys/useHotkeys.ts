@@ -19,7 +19,7 @@ type SpecialKey = 'ctrl' | 'shift' | 'alt';
  *
  * @returns {boolean} value that shows does the `keyString` matches pressed keys.
  */
-export const hotkeyMatches = (
+export const matchHotkey = (
     event: KeyboardEvent,
 
     keyString: Hotkey['key']
@@ -50,15 +50,17 @@ export const hotkeyMatches = (
                 lastKey === 'alt'
             ) {
                 specialKeys[lastKey] = true;
-            } else {
+            } else if (lastKey === 'escape' || lastKey === 'enter') {
                 plainKeys.push(lastKey as Lowercase<string>);
+            } else {
+                plainKeys.push(('key' + lastKey) as Lowercase<string>);
             }
         }
     }
 
     const plainMatches =
         plainKeys.length === 0 ||
-        plainKeys.some((key) => key === event.key.toLowerCase());
+        plainKeys.some((key) => key === event.code.toLowerCase());
 
     const specialMatches =
         (specialKeys.ctrl || event.ctrlKey) &&
@@ -79,11 +81,10 @@ export const useHotkeys = () => {
     useEffect(() => {
         hotkeysRef.current = hotkeys;
     }, [hotkeys]);
-
     useEffect(() => {
         const handleKeydown = (event: KeyboardEvent) => {
             hotkeysRef.current.forEach((hotkey) => {
-                if (hotkeyMatches(event, hotkey.key)) {
+                if (matchHotkey(event, hotkey.key)) {
                     hotkey.callback(event);
                 }
             });
