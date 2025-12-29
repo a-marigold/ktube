@@ -10,12 +10,16 @@ type SpecialKey = 'ctrl' | 'shift' | 'alt';
 
 /**
  *
- * @param event
- * @param keyString
  *
- * @returns {boolean} value that shows
+ *
+ *
+ * @param event
+ *
+ * @param keyString string with keys. For example, "Ctrl + K" or "ctrl + shift + k" or "shift+S".
+ *
+ * @returns {boolean} value that shows does the `keyString` matches pressed keys.
  */
-const hotkeyMatches = (
+export const hotkeyMatches = (
     event: KeyboardEvent,
 
     keyString: Hotkey['key']
@@ -34,8 +38,10 @@ const hotkeyMatches = (
 
     for (let pos = 0; pos < keyString.length; pos++) {
         if (keyString[pos] === ' ') continue;
-        console.log(lastKey);
-        if (keyString[pos] === '+' || pos + 1 === keyString.length) {
+
+        lastKey += keyString[pos];
+
+        if (keyString[pos] === '+' || pos === keyString.length - 1) {
             lastKey = lastKey.toLowerCase();
 
             if (
@@ -48,15 +54,11 @@ const hotkeyMatches = (
                 plainKeys.push(lastKey as Lowercase<string>);
             }
         }
-
-        lastKey += keyString[pos];
     }
-    console.log(plainKeys);
 
-    console.log(specialKeys);
-    const plainMatches = plainKeys.some(
-        (key) => key === event.key.toLowerCase()
-    );
+    const plainMatches =
+        plainKeys.length === 0 ||
+        plainKeys.some((key) => key === event.key.toLowerCase());
 
     const specialMatches =
         (specialKeys.ctrl || event.ctrlKey) &&
