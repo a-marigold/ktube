@@ -17,6 +17,12 @@ type SpecialKey = 'ctrl' | 'shift' | 'alt';
  *
  * @param keyString string with keys. For example, "Ctrl + K" or "ctrl + shift + k" or "shift+S".
  *
+ *
+ *
+ *
+ *
+ *
+ *
  * @returns {boolean} value that shows does the `keyString` matches pressed keys.
  */
 export const matchHotkey = (
@@ -24,6 +30,8 @@ export const matchHotkey = (
 
     keyString: Hotkey['key']
 ): boolean => {
+    const trimKeyString = keyString.trim();
+
     const plainKeys: Lowercase<string>[] = [];
 
     const specialKeys: Record<SpecialKey, boolean> = {
@@ -36,12 +44,15 @@ export const matchHotkey = (
 
     let lastKey = '';
 
-    for (let pos = 0; pos < keyString.length; pos++) {
-        if (keyString[pos] === ' ') continue;
+    for (let pos = 0; pos < trimKeyString.length; pos++) {
+        if (trimKeyString[pos] === ' ') continue;
 
-        lastKey += keyString[pos];
+        lastKey += trimKeyString[pos];
 
-        if (keyString[pos] === '+' || pos === keyString.length - 1) {
+        if (trimKeyString[pos] === '+' || pos === trimKeyString.length - 1) {
+            if (lastKey[lastKey.length - 1] === '+') {
+                lastKey = lastKey.slice(0, -1);
+            }
             lastKey = lastKey.toLowerCase();
 
             if (
@@ -55,6 +66,8 @@ export const matchHotkey = (
             } else {
                 plainKeys.push(('key' + lastKey) as Lowercase<string>);
             }
+
+            lastKey = '';
         }
     }
 
@@ -63,9 +76,9 @@ export const matchHotkey = (
         plainKeys.some((key) => key === event.code.toLowerCase());
 
     const specialMatches =
-        (specialKeys.ctrl || event.ctrlKey) &&
-        (specialKeys.shift || event.shiftKey) &&
-        (specialKeys.alt || event.altKey);
+        (!specialKeys.ctrl || event.ctrlKey) &&
+        (!specialKeys.shift || event.shiftKey) &&
+        (!specialKeys.alt || event.altKey);
 
     return plainMatches && specialMatches;
 };
