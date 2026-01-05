@@ -4,7 +4,11 @@ import { useEffect } from 'react';
 
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
-import { mediaBreakpoints } from '@/constants/mediaBreakpoints';
+import {
+    mediaBreakpoints,
+    miniNavbarWidth,
+    fullNavbarWidth,
+} from '@/constants/styles';
 
 import { useNavbarStore } from '@/store/NavbarStore';
 
@@ -19,16 +23,13 @@ export default function Navbar() {
     );
 
     useEffect(() => {
-        const miniNavbarWidth = getComputedStyle(
-            document.documentElement
-        ).getPropertyValue('--mini-navbar-width');
-        const fullNavbarWidth = getComputedStyle(
-            document.documentElement
-        ).getPropertyValue('--full-navbar-width');
-
         document.documentElement.style.setProperty(
             '--navbar-width',
-            showNavbar ? fullNavbarWidth : miniNavbarWidth
+            maxWidthMatches
+                ? miniNavbarWidth + 'px'
+                : showNavbar
+                ? fullNavbarWidth + 'px'
+                : miniNavbarWidth + 'px'
         );
     }, [showNavbar]);
 

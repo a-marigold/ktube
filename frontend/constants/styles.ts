@@ -4,3 +4,6 @@ export const mediaBreakpoints = {
     large: 992,
     extraLarge: 1200,
 } as const;
+
+export const miniNavbarWidth = 72;
+export const fullNavbarWidth = 240;
