@@ -1,0 +1,26 @@
+@use '@/styles/_mixins.scss' as *;
+
+.video-item {
+    display: flex;
+    gap: 0.5rem;
+
+    width: 100%;
+    max-width: 96px;
+}
+
+.preview-block {
+    position: relative;
+
+    width: 170px;
+    height: 100%;
+}
+
+.preview {
+    border-radius: 8px;
+}
+
+.text-block {
+    @include flex-column;
+
+    width: 100%;
+}

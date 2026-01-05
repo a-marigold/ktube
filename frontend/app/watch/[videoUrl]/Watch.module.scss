@@ -1,0 +1,12 @@
+@use '@/styles/_mixins.scss' as *;
+
+.watch-page {
+    margin-top: var(--header-height);
+    margin-right: auto;
+    margin-left: auto;
+
+    @include flex-x-center;
+
+    width: 100%;
+    max-width: 1200px;
+}
