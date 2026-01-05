@@ -18,6 +18,7 @@ import headerStyles from './Header.module.scss';
 export default function Header() {
     const toggleNavbar = useNavbarStore((state) => state.toggleNavbar);
 
+    const currentModal = useModalStore((state) => state.currentModal);
     const openModal = useModalStore((state) => state.openModal);
     const closeModal = useModalStore((state) => state.closeModal);
 
@@ -25,6 +26,21 @@ export default function Header() {
 
     const showTooltip = useTooltipStore((state) => state.show);
     const hideTooltip = useTooltipStore((state) => state.hide);
+
+    const openSearchModal = (relativeElement: HTMLElement) => {
+        openModal(
+            <SearchModal
+                id='search-modal'
+                relativeElement={relativeElement}
+                position='bottom'
+                onMouseDown={() => {
+                    modalClickedRef.current = true;
+                }}
+                gap={12}
+            />,
+            false
+        );
+    };
 
     return (
         <header className={headerStyles['header']}>
@@ -48,23 +64,17 @@ export default function Header() {
                 aria-label='Search for content'
                 aria-controls='search-modal'
                 onFocus={(event) => {
-                    openModal(
-                        <SearchModal
-                            id='search-modal'
-                            relativeElement={event.currentTarget}
-                            position='bottom'
-                            onMouseDown={() => {
-                                modalClickedRef.current = true;
-                            }}
-                            gap={12}
-                        />,
-                        false
-                    );
+                    openSearchModal(event.currentTarget);
                 }}
                 onBlur={() => {
                     if (modalClickedRef.current) return;
 
                     closeModal();
+                }}
+                onChange={(event) => {
+                    if (!currentModal) {
+                        openSearchModal(event.currentTarget);
+                    }
                 }}
             />
 
