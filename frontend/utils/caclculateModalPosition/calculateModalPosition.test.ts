@@ -8,6 +8,7 @@ describe('calculateModalPosition', () => {
             getBoundingClientRect: () => ({
                 width: 64,
                 height: 64,
+
                 top: 200,
                 left: 16,
                 right: 80,
@@ -30,6 +31,7 @@ describe('calculateModalPosition', () => {
         );
 
         const testRelativeRect = testRelativeElement.getBoundingClientRect();
+
         const testModalRect = testModalElement.getBoundingClientRect();
 
         expect(testModalElement.style.transform).toBe(
