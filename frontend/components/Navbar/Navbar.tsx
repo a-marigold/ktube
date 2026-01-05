@@ -19,7 +19,17 @@ export default function Navbar() {
     );
 
     useEffect(() => {
-        document.documentElement.classList.toggle('navbar-shown', showNavbar);
+        const miniNavbarWidth = getComputedStyle(
+            document.documentElement
+        ).getPropertyValue('--mini-navbar-width');
+        const fullNavbarWidth = getComputedStyle(
+            document.documentElement
+        ).getPropertyValue('--full-navbar-width');
+
+        document.documentElement.style.setProperty(
+            '--navbar-width',
+            showNavbar ? fullNavbarWidth : miniNavbarWidth
+        );
     }, [showNavbar]);
 
     return maxWidthMatches ? (

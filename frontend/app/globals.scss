@@ -32,6 +32,7 @@ body {
 
 .main-content {
     margin-top: var(--header-height);
+
     margin-left: var(--mini-navbar-width);
 }
 
@@ -77,6 +78,7 @@ body {
 
     --mini-navbar-width: 72px;
     --full-navbar-width: 240px;
+    --navbar-width: var(--mini-navbar-width);
 }
 
 /* global utility classes */

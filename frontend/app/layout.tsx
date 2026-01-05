@@ -38,7 +38,7 @@ export default function RootLayout({
                 <div className='main-group'>
                     <Navbar />
 
-                    <main className='main-content'> {children} </main>
+                    {children}
                 </div>
             </body>
         </html>
