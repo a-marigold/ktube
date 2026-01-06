@@ -1,17 +1,29 @@
-import VideoItem from './components/VideoItem';
+import VideoItem, { type VideoItemProps } from './components/VideoItem';
 
 import listStyles from './VideoList.module.scss';
 
 export default function VideoList() {
-    const __testViedos: unknown[] = [];
+    const __testViedos: VideoItemProps[] = [
+        {
+            videoUrl: 'abcded',
+
+            title: 'Video example',
+
+            channel: 'Channel',
+
+            views: 1600000,
+
+            publishDate: 100000000,
+
+            previewUrl: '/__test-preview.png',
+        },
+    ];
 
     return (
-        <li className={listStyles['video-list']}>
-            {__testViedos.map(() => (
-                <li key={'__key'}>
-                    <VideoItem />
-                </li>
+        <ul className={listStyles['video-list']}>
+            {__testViedos.map((props) => (
+                <VideoItem key={props.videoUrl} {...props} />
             ))}
-        </li>
+        </ul>
     );
 }

@@ -31,7 +31,7 @@ export default function Navbar() {
                 ? fullNavbarWidth + 'px'
                 : miniNavbarWidth + 'px'
         );
-    }, [showNavbar]);
+    }, [showNavbar, maxWidthMatches]);
 
     return maxWidthMatches ? (
         <>

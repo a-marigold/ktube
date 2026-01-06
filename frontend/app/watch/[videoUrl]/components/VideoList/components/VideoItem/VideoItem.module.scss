@@ -1,11 +1,20 @@
 @use '@/styles/_mixins.scss' as *;
 
 .video-item {
+    height: 100%;
+    max-height: 100px;
+}
+
+.video-link {
     display: flex;
     gap: 0.5rem;
 
     width: 100%;
-    max-width: 96px;
+    max-width: 400px;
+    height: 100%;
+
+    color: var(--font-color);
+    text-decoration: none;
 }
 
 .preview-block {
@@ -21,6 +30,15 @@
 
 .text-block {
     @include flex-column;
+    // gap: 0.125em;
+}
 
-    width: 100%;
+.title {
+    font-size: var(--d-font-size);
+    font-weight: 500;
+}
+
+.info-text {
+    font-size: 0.75rem;
+    color: var(--tretiary-font-color);
 }

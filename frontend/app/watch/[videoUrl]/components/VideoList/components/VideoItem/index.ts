@@ -1,1 +1,1 @@
-export { default } from './VideoItem';
+export { default, type VideoItemProps } from './VideoItem';
