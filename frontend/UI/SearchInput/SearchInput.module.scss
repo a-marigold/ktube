@@ -61,13 +61,23 @@
     padding-left: 1rem;
 }
 
-.icon-block {
+.search-button {
     @include flex-center;
 
     width: 64px;
 
     background-color: var(--foreground-color);
 
+    outline: 0;
+
+    border: 0;
+
     border-top-right-radius: var(--input-radius);
     border-bottom-right-radius: var(--input-radius);
+
+    cursor: pointer;
+
+    &:focus-visible {
+        border: 1px var(--focus-color) solid;
+    }
 }

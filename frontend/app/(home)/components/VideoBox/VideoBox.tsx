@@ -3,9 +3,9 @@ import VideoCard from './components/VideoCard';
 //  TODO: temporarily
 import type { VideoCardProps } from './components/VideoCard/VideoCard';
 
-import videoStyles from './VideoList.module.scss';
+import videoStyles from './VideoBox.module.scss';
 
-export default function VideoList() {
+export default function VideoBox() {
     const __test_list__: VideoCardProps[] = [
         {
             videoUrl: '1',

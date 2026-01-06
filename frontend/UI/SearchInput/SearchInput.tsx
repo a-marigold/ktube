@@ -33,7 +33,7 @@ export default function SearchInput({
                 />
             </div>
 
-            <div className={inputStyles['icon-block']}>
+            <button className={inputStyles['search-button']}>
                 <svg
                     width={24}
                     height={24}
@@ -42,7 +42,7 @@ export default function SearchInput({
                 >
                     <use href='#search-icon' />
                 </svg>
-            </div>
+            </button>
         </div>
     );
 }

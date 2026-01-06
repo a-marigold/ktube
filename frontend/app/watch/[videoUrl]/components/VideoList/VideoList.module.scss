@@ -1,12 +1,16 @@
 @use '@/styles/_mixins.scss' as *;
 
 .video-list {
+    margin: 0;
+
     @include flex-column;
     gap: 0.5rem;
 
     width: 100%;
     max-width: 400px;
     height: 100%;
+
+    padding: 0;
 
     list-style: none;
 }

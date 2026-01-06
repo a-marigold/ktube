@@ -2,12 +2,16 @@
 
 .watch-page {
     margin-top: var(--header-height);
+
     margin-right: auto;
     margin-left: auto;
 
     @include flex-x-center;
+    gap: 1.5rem;
 
     width: 100%;
+
     max-width: 1200px;
+
     height: 100%;
 }
