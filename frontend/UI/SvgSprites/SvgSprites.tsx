@@ -3,7 +3,11 @@
 // Sprite groups
 import NavSprites from './NavSprites';
 import HeaderSprites from './HeaderSprites';
+import VideoSprites from './VideoSprites';
 
+/**
+ * Component for initializing SVG sprites
+ */
 export default function SvgSprites() {
     return (
         <svg
@@ -14,6 +18,8 @@ export default function SvgSprites() {
             <NavSprites />
 
             <HeaderSprites />
+
+            <VideoSprites />
         </svg>
     );
 }

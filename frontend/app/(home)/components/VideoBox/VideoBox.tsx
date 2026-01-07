@@ -165,7 +165,11 @@ export default function VideoBox() {
     return (
         <div className={videoStyles['video-list']}>
             {__test_list__.map((videoProps) => (
-                <VideoCard key={videoProps.videoUrl} {...videoProps} />
+                <VideoCard
+                    key={videoProps.videoUrl}
+                    {...videoProps}
+                    videoUrl={'/watch/' + videoProps.videoUrl}
+                />
             ))}
         </div>
     );

@@ -7,11 +7,13 @@ describe('calculateModalPosition', () => {
         const testRelativeElement = {
             getBoundingClientRect: () => ({
                 width: 64,
+
                 height: 64,
 
                 top: 200,
+
                 left: 16,
-                right: 80,
+                right: 82,
             }),
         } as HTMLElement;
         const testModalElement = {

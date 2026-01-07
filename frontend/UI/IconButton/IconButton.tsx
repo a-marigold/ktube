@@ -1,15 +1,13 @@
 import type { ButtonHTMLAttributes } from 'react';
 
+import type { IconProps } from '@/types/IconProps';
+
 import buttonStyles from './IconButton.module.scss';
 
-interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface IconButtonProps
+    extends ButtonHTMLAttributes<HTMLButtonElement>,
+        IconProps {
     variant?: 'filled' | 'empty';
-
-    iconHref: `#${string}`;
-    iconWidth: number;
-
-    iconHeight: number;
-    color?: string;
 
     'aria-label': string;
 
@@ -22,7 +20,7 @@ export default function IconButton({
 
     iconWidth,
     iconHeight,
-    color = 'var(--font-color)',
+    iconColor = 'var(--font-color)',
 
     hintTitle,
 
@@ -38,7 +36,7 @@ export default function IconButton({
             <svg
                 width={iconWidth}
                 height={iconHeight}
-                color={color}
+                color={iconColor}
                 aria-hidden='true'
             >
                 <use href={iconHref} />

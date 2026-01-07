@@ -12,10 +12,10 @@
     padding: 0;
 
     &:hover {
-        background-color: var(--dim-hover-btn-bg);
+        background-color: var(--hover-overlay-color);
     }
     &:active {
-        background-color: var(--dim-active-btn-bg);
+        background-color: var(--active-overlay-color);
     }
     &.circle {
         width: 40px;

@@ -22,7 +22,11 @@ export default function SubscriptionsModal({
                     href: '/',
 
                     title: 'hello',
-                    icon: { href: '#home-icon', width: 24, height: 24 },
+                    icon: {
+                        iconHref: '#home-icon',
+                        iconWidth: 24,
+                        iconHeight: 24,
+                    },
                 },
             ]}
         />

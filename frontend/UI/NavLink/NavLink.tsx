@@ -1,6 +1,6 @@
 import Link, { type LinkProps } from 'next/link';
 
-import type { SvgIconProps } from '@/types/SvgIconProps';
+import type { IconProps } from '@/types/IconProps';
 
 import linkStyles from './NavLink.module.scss';
 
@@ -13,7 +13,7 @@ export interface NavLinkProps extends LinkProps {
 
     'aria-label': string;
 
-    icon: SvgIconProps & { activeHref?: `#${string}` };
+    icon: IconProps & { activeHref?: `#${string}` };
 }
 export default function NavLink({
     title,
@@ -34,16 +34,16 @@ export default function NavLink({
             } ${className ?? ''}`}
         >
             <svg
-                width={icon.width}
-                height={icon.height}
-                color={icon.color || 'var(--font-color)'}
+                width={icon.iconWidth}
+                height={icon.iconHeight}
+                color={icon.iconColor || 'var(--font-color)'}
                 aria-hidden='true'
             >
                 <use
                     href={
                         isActive && icon.activeHref
                             ? icon.activeHref
-                            : icon.href
+                            : icon.iconHref
                     }
                 />
             </svg>

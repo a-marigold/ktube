@@ -6,8 +6,10 @@ import watchStyles from './Watch.module.scss';
 export default function WatchPage() {
     return (
         <div className={watchStyles['watch-page']}>
-            <VideoMain />
-            <VideoList />
+            <div className={watchStyles['main-content']}>
+                <VideoMain />
+                <VideoList />
+            </div>
         </div>
     );
 }

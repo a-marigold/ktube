@@ -10,13 +10,13 @@ export const pageLinkList: NavLinkProps[] = [
         'aria-label': 'Go to the homepage',
 
         icon: {
-            href: '#home-icon',
+            iconHref: '#home-icon',
 
             activeHref: '#fill-home-icon',
 
-            width: 24,
-            height: 24,
-            color: 'var(--font-color)',
+            iconWidth: 24,
+            iconHeight: 24,
+            iconColor: 'var(--font-color)',
         },
     },
 
@@ -29,12 +29,12 @@ export const pageLinkList: NavLinkProps[] = [
         'aria-label': 'Go to the subscriptions page',
 
         icon: {
-            href: '#subscriptions-icon',
+            iconHref: '#subscriptions-icon',
             activeHref: '#fill-subscriptions-icon',
 
-            width: 24,
-            height: 24,
-            color: 'var(--font-color)',
+            iconWidth: 24,
+            iconHeight: 24,
+            iconColor: 'var(--font-color)',
         },
     },
 ];
@@ -49,13 +49,13 @@ export const settingsLinkList: NavLinkProps[] = [
         'aria-label': 'Go to the settings page',
 
         icon: {
-            href: '#gear-icon',
+            iconHref: '#gear-icon',
 
             activeHref: '#fill-gear-icon',
 
-            width: 24,
-            height: 24,
-            color: 'var(--font-color)',
+            iconWidth: 24,
+            iconHeight: 24,
+            iconColor: 'var(--font-color)',
         },
     },
 ];

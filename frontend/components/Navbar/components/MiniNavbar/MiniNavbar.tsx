@@ -21,11 +21,11 @@ const linkList: (MiniNavLinkProps & { tooltipTitle?: string })[] = [
         isActive: false,
         'aria-label': 'Go to the home page',
         icon: {
-            href: '#home-icon',
+            iconHref: '#home-icon',
             activeHref: '#fill-home-icon',
 
-            width: 24,
-            height: 24,
+            iconWidth: 24,
+            iconHeight: 24,
         },
 
         tooltipTitle: 'Home',
@@ -37,11 +37,11 @@ const linkList: (MiniNavLinkProps & { tooltipTitle?: string })[] = [
 
         'aria-label': 'Go to the home page',
         icon: {
-            href: '#subscriptions-icon',
+            iconHref: '#subscriptions-icon',
             activeHref: '#fill-subscriptions-icon',
 
-            width: 24,
-            height: 24,
+            iconWidth: 24,
+            iconHeight: 24,
         },
     },
 ];
