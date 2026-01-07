@@ -1,6 +1,8 @@
 @use '@/styles/_mixins.scss' as *;
 
 .overlay-button {
+    position: relative;
+
     @include flex-center;
 
     height: 40px;
@@ -9,22 +11,50 @@
 
     border: 0;
 
-    padding: 0;
+    padding-top: 0;
+    padding-left: 0;
 
-    &:hover {
+    padding-bottom: 0;
+    padding-right: 0;
+
+    cursor: pointer;
+
+    &:hover::before {
+        opacity: 1;
+
         background-color: var(--hover-overlay-color);
     }
-    &:active {
+    &:active::before {
         background-color: var(--active-overlay-color);
     }
     &.circle {
         width: 40px;
         border-radius: 50%;
+
+        &::before {
+            border-radius: 50%;
+        }
     }
     &.ellipse {
         width: 48px;
         border-radius: 28px;
-    }
 
-    cursor: pointer;
+        &::before {
+            border-radius: 28px;
+        }
+    }
+}
+
+.overlay-button::before {
+    content: '';
+
+    position: absolute;
+
+    width: 84%;
+    height: 84%;
+
+    opacity: 0;
+
+    transition: opacity var(--d-transition-dur) ease,
+        background-color var(--d-transition-dur) ease;
 }

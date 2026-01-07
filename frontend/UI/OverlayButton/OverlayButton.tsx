@@ -30,7 +30,12 @@ export default function OverlayButton({
                 buttonStyles[shape]
             } ${className ?? ''}`}
         >
-            <svg width={iconWidth} height={iconHeight} color={iconColor}>
+            <svg
+                width={iconWidth}
+                height={iconHeight}
+                color={iconColor}
+                aria-hidden='true'
+            >
                 <use href={iconHref} />
             </svg>
         </button>
