@@ -18,10 +18,25 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
 
     const [paused, setPaused] = useState<boolean>(true);
 
-    useEffect(() => {}, [paused]);
-
     const showTooltip = useTooltipStore((state) => state.show);
+
     const hideTooltip = useTooltipStore((state) => state.hide);
+
+    const pauseHintRef = useRef<HTMLDivElement>(null);
+    // biome-ignore lint: lint/correctness/useExhaustiveDependencies
+    useEffect(() => {
+        if (!pauseHintRef.current) return;
+
+        pauseHintRef.current.classList.add(videoStyles['faded']);
+
+        const hintTimeout = setTimeout(() => {
+            pauseHintRef.current?.classList.remove(videoStyles['faded']);
+        }, 300);
+
+        return () => {
+            clearTimeout(hintTimeout);
+        };
+    }, [paused]);
 
     return (
         <div
@@ -32,6 +47,7 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
                 videoRef.current.paused
                     ? videoRef.current.play()
                     : videoRef.current.pause();
+
                 setPaused(videoRef.current.paused);
             }}
         >
@@ -56,23 +72,33 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
                     event.stopPropagation();
                 }}
             >
-                <div className={videoStyles['track']}></div>
+                <div className={videoStyles['progress-bar']}></div>
 
                 <div className={videoStyles['controls']}>
                     <div className={videoStyles['left-controls-block']}>
                         <OverlayButton
                             aria-label='Play video'
                             shape='circle'
-                            iconHref='#play-icon'
+                            iconHref={paused ? '#play-icon' : '#pause-icon'}
                             iconWidth={26}
                             iconHeight={26}
                             iconColor='var(--font-color)'
+                            onMouseEnter={(event) => {
+                                showTooltip({
+                                    relativeElement: event.currentTarget,
+                                    title: 'Play video',
+                                    position: 'top',
+                                    gap: MODAL_GAP,
+                                });
+                            }}
+                            onMouseLeave={hideTooltip}
                             onClick={() => {
                                 if (!videoRef.current) return;
 
                                 videoRef.current.paused
                                     ? videoRef.current.play()
                                     : videoRef.current.pause();
+                                setPaused(videoRef.current.paused);
                             }}
                         />
                     </div>
@@ -118,6 +144,17 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
                         />
                     </div>
                 </div>
+            </div>
+
+            <div ref={pauseHintRef} className={videoStyles['pause-hint']}>
+                <svg
+                    width={54}
+                    height={54}
+                    color='var(--font-color)'
+                    aria-hidden='true'
+                >
+                    <use href={paused ? '#play-icon' : '#pause-icon'} />
+                </svg>
             </div>
         </div>
     );
