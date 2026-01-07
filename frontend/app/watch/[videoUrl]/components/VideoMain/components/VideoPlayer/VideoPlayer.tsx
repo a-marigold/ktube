@@ -14,6 +14,8 @@ interface VideoPlayerProps {
     videoUrl: string;
 }
 export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
+    const playerRef = useRef<HTMLDivElement>(null);
+
     const videoRef = useRef<HTMLVideoElement>(null);
 
     const [paused, setPaused] = useState<boolean>(true);
@@ -23,6 +25,7 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
     const hideTooltip = useTooltipStore((state) => state.hide);
 
     const pauseHintRef = useRef<HTMLDivElement>(null);
+
     // biome-ignore lint: lint/correctness/useExhaustiveDependencies
     useEffect(() => {
         if (!pauseHintRef.current) return;
@@ -40,6 +43,7 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
 
     return (
         <div
+            ref={playerRef}
             className={videoStyles['video-player']}
             onClick={() => {
                 if (!videoRef.current) return;
@@ -130,7 +134,9 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
                             iconHeight={24}
                             iconColor='var(--font-color)'
                             onClick={() => {
-                                videoRef.current?.requestFullscreen();
+                                document.fullscreenElement
+                                    ? document.exitFullscreen()
+                                    : playerRef.current?.requestFullscreen();
                             }}
                             onMouseEnter={(event) => {
                                 showTooltip({
