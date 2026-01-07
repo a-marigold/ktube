@@ -1,0 +1,52 @@
+.slider {
+    position: relative;
+
+    width: 56px;
+
+    height: 2px;
+
+    background-color: var(--font-color);
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    &:hover .value {
+        visibility: visible;
+    }
+}
+
+.thumb {
+    position: absolute;
+    top: -3px;
+
+    width: 9px;
+
+    height: 9px;
+
+    background-color: var(--font-color);
+
+    border-radius: 50%;
+
+    z-index: 100;
+
+    &:active .value {
+        visibility: visible;
+    }
+}
+
+.value {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: var(--d-font-size);
+
+    visibility: hidden;
+
+    user-select: none;
+    -moz-user-select: none;
+    pointer-events: none;
+}
