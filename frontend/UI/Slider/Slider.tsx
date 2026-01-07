@@ -37,7 +37,7 @@ export default function Slider({
 
         const sliderWidth = sliderRef.current.offsetWidth;
 
-        let startLeft = 0;
+        let startLeft = value;
         let lastLeft = 0;
 
         let startClientX = 0;

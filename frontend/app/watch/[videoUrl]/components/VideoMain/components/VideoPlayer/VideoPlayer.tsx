@@ -13,7 +13,6 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
     const playerRef = useRef<HTMLDivElement>(null);
 
     const videoRef = useRef<HTMLVideoElement>(null);
-
     const [paused, setPaused] = useState<boolean>(true);
 
     const pauseHintRef = useRef<HTMLDivElement>(null);

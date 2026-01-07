@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useRef } from 'react';
 import type { RefObject, Dispatch } from 'react';
 
 import { useTooltipStore } from '@/store/TooltipStore';
@@ -7,6 +8,7 @@ import { useTooltipStore } from '@/store/TooltipStore';
 import { MODAL_GAP } from '@/constants/modalGap';
 
 import OverlayButton from '@/UI/OverlayButton';
+import Slider from '@/UI/Slider';
 
 import videoStyles from './VideoPlayer.module.scss';
 
@@ -24,6 +26,9 @@ export default function Overlay({
     videoRef,
     playerRef,
 }: OverlayProps) {
+    const [volume, setVolume] = useState<number>(60);
+    const prevVolume = useRef<number>(volume);
+
     const showTooltip = useTooltipStore((state) => state.show);
     const hideTooltip = useTooltipStore((state) => state.hide);
 
@@ -60,9 +65,63 @@ export default function Overlay({
                             videoRef.current.paused
                                 ? videoRef.current.play()
                                 : videoRef.current.pause();
+
                             setPaused(videoRef.current.paused);
                         }}
                     />
+
+                    <div className={videoStyles['volume-block']}>
+                        <button
+                            aria-label={
+                                volume ? 'Mute the video' : 'Unmute the video'
+                            }
+                            className={videoStyles['mute-button']}
+                            onMouseEnter={(event) => {
+                                showTooltip({
+                                    relativeElement: event.currentTarget,
+                                    title: volume
+                                        ? 'Mute the video'
+                                        : 'Unmute the video',
+                                    position: 'top',
+                                    gap: MODAL_GAP,
+                                });
+                            }}
+                            onMouseLeave={hideTooltip}
+                            onClick={() => {
+                                if (!videoRef.current) return;
+
+                                if (volume) {
+                                    prevVolume.current = volume;
+                                    setVolume((videoRef.current.volume = 0));
+                                } else {
+                                    setVolume(prevVolume.current);
+                                }
+                            }}
+                        >
+                            <svg
+                                width={24}
+                                height={24}
+                                color='var(--font-color)'
+                                aria-hidden='true'
+                            >
+                                <use
+                                    href={
+                                        volume === 0
+                                            ? '#mute-icon'
+                                            : '#volume-icon'
+                                    }
+                                />
+                            </svg>
+                        </button>
+
+                        <Slider
+                            ariaLabel='Change volume'
+                            value={volume}
+                            minValue={0}
+                            maxValue={100}
+                            setValue={setVolume}
+                        />
+                    </div>
                 </div>
 
                 <div className={videoStyles['right-controls-block']}>

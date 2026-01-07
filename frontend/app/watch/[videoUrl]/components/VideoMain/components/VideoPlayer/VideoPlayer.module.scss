@@ -59,10 +59,39 @@
     justify-content: space-between;
 }
 
-.left-controls {
+.left-controls-block {
     @include flex-y-center;
 
     gap: 0.75rem;
+}
+
+.volume-block {
+    @include flex-y-center;
+
+    height: 40px;
+
+    padding-right: 1rem;
+    box-sizing: border-box;
+
+    background-color: var(--overlay-bg-color);
+
+    border-radius: 28px;
+
+    transition: width var(--d-transition-dur) ease;
+
+    &:hover {
+        background-color: var(--hover-overlay-color);
+    }
+}
+.mute-button {
+    all: unset;
+
+    @include flex-center;
+
+    width: 40px;
+    height: 40px;
+
+    cursor: pointer;
 }
 
 .right-controls-block {
