@@ -79,8 +79,8 @@ export default function MiniNavbar() {
                         );
                         if (link.tooltipTitle) {
                             showTooltip({
-                                title: link.tooltipTitle,
                                 relativeElement: event.currentTarget,
+                                title: link.tooltipTitle,
                                 position: 'right',
                                 gap: MODAL_GAP,
                             });

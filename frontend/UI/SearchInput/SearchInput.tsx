@@ -33,7 +33,10 @@ export default function SearchInput({
                 />
             </div>
 
-            <button className={inputStyles['search-button']}>
+            <button
+                aria-label='Search'
+                className={inputStyles['search-button']}
+            >
                 <svg
                     width={24}
                     height={24}

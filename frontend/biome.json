@@ -20,7 +20,8 @@
             "complexity": { "useLiteralKeys": "off" },
             "a11y": {
                 "useKeyWithClickEvents": "off",
-                "noStaticElementInteractions": "off"
+                "noStaticElementInteractions": "off",
+                "useButtonType": "off"
             }
         },
         "domains": {

@@ -87,8 +87,8 @@ export default function Header() {
                     aria-label='Open the notifications window'
                     onPointerEnter={(event) => {
                         showTooltip({
-                            title: 'Notifications',
                             relativeElement: event.currentTarget,
+                            title: 'Notifications',
                             position: 'bottom',
                             gap: MODAL_GAP,
                         });
