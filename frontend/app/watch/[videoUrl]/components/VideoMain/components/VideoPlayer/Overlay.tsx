@@ -26,8 +26,8 @@ export default function Overlay({
     videoRef,
     playerRef,
 }: OverlayProps) {
-    const [volume, setVolume] = useState<number>(60);
-    const prevVolume = useRef<number>(volume);
+    const [volume, setVolume] = useState<number>(0.6);
+    const prevVolumeRef = useRef<number>(volume);
 
     const showTooltip = useTooltipStore((state) => state.show);
     const hideTooltip = useTooltipStore((state) => state.hide);
@@ -91,10 +91,10 @@ export default function Overlay({
                                 if (!videoRef.current) return;
 
                                 if (volume) {
-                                    prevVolume.current = volume;
+                                    prevVolumeRef.current = volume;
                                     setVolume((videoRef.current.volume = 0));
                                 } else {
-                                    setVolume(prevVolume.current);
+                                    setVolume(prevVolumeRef.current);
                                 }
                             }}
                         >
@@ -118,7 +118,8 @@ export default function Overlay({
                             ariaLabel='Change volume'
                             value={volume}
                             minValue={0}
-                            maxValue={100}
+                            maxValue={1}
+                            step={0.1}
                             setValue={setVolume}
                         />
                     </div>
