@@ -27,7 +27,7 @@
     border-bottom-left-radius: var(--input-radius);
 
     &:focus-within {
-        border: 1px var(--focus-color) solid;
+        border: 2px var(--focus-color) solid;
 
         & .search-icon {
             display: block;
@@ -78,6 +78,6 @@
     cursor: pointer;
 
     &:focus-visible {
-        border: 1px var(--focus-color) solid;
+        outline: 2px var(--focus-color) solid;
     }
 }

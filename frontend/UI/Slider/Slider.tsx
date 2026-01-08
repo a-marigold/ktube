@@ -1,16 +1,23 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import type { Dispatch } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 
 import sliderStyles from './Slider.module.scss';
+
+/**
+ * Fixed width of thumb
+ */
+const THUMB_WIDTH = 9;
 
 interface SliderProps {
     value: number;
     minValue: number;
     maxValue: number;
 
-    setValue: Dispatch<number>;
+    step?: number;
+
+    setValue: Dispatch<SetStateAction<number>>;
 
     ariaLabel: string;
 
@@ -21,6 +28,8 @@ export default function Slider({
     minValue,
     maxValue,
 
+    step = 1,
+
     setValue,
 
     ariaLabel,
@@ -29,13 +38,16 @@ export default function Slider({
     const sliderRef = useRef<HTMLDivElement>(null);
 
     const thumbRef = useRef<HTMLDivElement>(null);
+    const progressRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const thumb = thumbRef.current;
+        const progress = progressRef.current;
+        const slider = sliderRef.current;
 
-        if (!thumb || !sliderRef.current) return;
+        if (!thumb || !slider || !progress) return;
 
-        const sliderWidth = sliderRef.current.offsetWidth;
+        const sliderWidth = slider.offsetWidth;
 
         let startLeft = value;
         let lastLeft = 0;
@@ -52,11 +64,19 @@ export default function Slider({
 
                 if (lastLeft < 0) {
                     lastLeft = 0;
-                } else if (lastLeft > sliderWidth) {
-                    lastLeft = sliderWidth;
+
+                    setValue(minValue);
+                } else if (lastLeft > sliderWidth - THUMB_WIDTH) {
+                    lastLeft = sliderWidth - THUMB_WIDTH;
+
+                    setValue(
+                        Math.floor((lastLeft + THUMB_WIDTH) / sliderWidth) * 100
+                    );
+                } else {
+                    setValue(Math.floor((lastLeft / sliderWidth) * 100));
                 }
 
-                setValue(Math.floor((lastLeft / sliderWidth) * 100));
+                progress.style.width = lastLeft + 'px';
                 thumb.style.left = lastLeft + 'px';
             });
         };
@@ -76,10 +96,40 @@ export default function Slider({
             window.addEventListener('pointerup', handlePointerUp);
         };
 
+        const handleKeyDown = (event: KeyboardEvent) => {
+            const stepDistance = (step * sliderWidth) / 100;
+
+            if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+
+                lastLeft -= stepDistance;
+                setValue((prev) => Math.max(minValue, prev - step));
+            } else if (event.key === 'ArrowRight') {
+                event.preventDefault();
+
+                lastLeft += stepDistance;
+
+                setValue((prev) => Math.min(maxValue, prev + step));
+            }
+
+            if (lastLeft < 0) {
+                lastLeft = 0;
+            } else if (lastLeft > sliderWidth - THUMB_WIDTH) {
+                lastLeft = sliderWidth - THUMB_WIDTH;
+            }
+
+            progress.style.width = lastLeft + 'px';
+
+            thumb.style.left = lastLeft + 'px';
+        };
+
         thumb.addEventListener('pointerdown', handlePointerDown);
+        slider.addEventListener('keydown', handleKeyDown);
 
         return () => {
             thumb.removeEventListener('pointerdown', handlePointerDown);
+
+            slider.removeEventListener('keydown', handleKeyDown);
         };
     }, []);
 
@@ -92,7 +142,10 @@ export default function Slider({
             aria-valuemin={minValue}
             aria-valuemax={maxValue}
             className={`${sliderStyles['slider']} ${className ?? ''}`}
+            tabIndex={0}
         >
+            <div ref={progressRef} className={sliderStyles['progress']} />
+
             <div ref={thumbRef} className={sliderStyles['thumb']}>
                 <span className={sliderStyles['value']}> {value} </span>
             </div>

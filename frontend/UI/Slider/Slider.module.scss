@@ -1,3 +1,5 @@
+//
+
 .slider {
     position: relative;
 
@@ -5,15 +7,33 @@
 
     height: 2px;
 
-    background-color: var(--font-color);
+    background-color: var(--hover-overlay-color);
 
     border-radius: 12px;
+    outline: 0;
 
     cursor: pointer;
 
     &:hover .value {
         visibility: visible;
     }
+
+    &:focus-visible > .progress,
+    &:focus-visible > .thumb {
+        background-color: var(--focus-color);
+    }
+    &:focus-visible .value {
+        color: var(--focus-color2);
+    }
+}
+
+.progress {
+    position: absolute;
+    top: 0;
+
+    height: 100%;
+
+    background-color: var(--font-color);
 }
 
 .thumb {
@@ -37,7 +57,7 @@
 
 .value {
     position: absolute;
-    top: -20px;
+    top: -23px;
     left: 50%;
 
     transform: translateX(-50%);

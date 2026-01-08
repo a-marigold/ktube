@@ -67,6 +67,7 @@
 
 .volume-block {
     @include flex-y-center;
+    gap: 0.5rem;
 
     height: 40px;
 
@@ -90,6 +91,8 @@
 
     width: 40px;
     height: 40px;
+
+    border-radius: 50%;
 
     cursor: pointer;
 }

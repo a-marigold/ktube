@@ -87,6 +87,11 @@ body {
 
 /* global utility classes */
 
+a:focus-visible,
+button:focus-visible {
+    outline: 2px var(--focus-color) solid;
+}
+
 html.navbar-shown .main-content {
     margin-left: var(--full-navbar-width);
 }
