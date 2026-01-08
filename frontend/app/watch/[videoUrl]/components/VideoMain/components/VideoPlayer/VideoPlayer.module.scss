@@ -17,6 +17,8 @@
 
     overflow: hidden;
 
+    cursor: pointer;
+
     &:hover {
         & .overlay {
             opacity: 1;
@@ -57,6 +59,8 @@
 .controls {
     @include flex-y-center;
     justify-content: space-between;
+
+    cursor: default;
 }
 
 .left-controls-block {

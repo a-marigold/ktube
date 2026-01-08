@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import type { RefObject, Dispatch } from 'react';
+import { useRef } from 'react';
+import type { RefObject, Dispatch, SetStateAction } from 'react';
 
 import { useTooltipStore } from '@/store/TooltipStore';
 
@@ -14,8 +14,10 @@ import videoStyles from './VideoPlayer.module.scss';
 
 interface OverlayProps {
     paused: boolean;
-
     setPaused: Dispatch<boolean>;
+
+    volume: number;
+    setVolume: Dispatch<SetStateAction<number>>;
 
     videoRef: RefObject<HTMLVideoElement | null>;
     playerRef: RefObject<HTMLDivElement | null>;
@@ -23,10 +25,13 @@ interface OverlayProps {
 export default function Overlay({
     paused,
     setPaused,
+
+    volume,
+    setVolume,
+
     videoRef,
     playerRef,
 }: OverlayProps) {
-    const [volume, setVolume] = useState<number>(0.6);
     const prevVolumeRef = useRef<number>(volume);
 
     const showTooltip = useTooltipStore((state) => state.show);
@@ -137,7 +142,9 @@ export default function Overlay({
                         onMouseEnter={(event) => {
                             showTooltip({
                                 relativeElement: event.currentTarget,
+
                                 title: 'Video settings',
+
                                 position: 'top',
                                 gap: MODAL_GAP,
                             });
@@ -161,7 +168,9 @@ export default function Overlay({
                         onMouseEnter={(event) => {
                             showTooltip({
                                 relativeElement: event.currentTarget,
+
                                 title: 'Full screen',
+
                                 position: 'top',
                                 gap: MODAL_GAP,
                             });

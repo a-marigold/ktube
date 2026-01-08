@@ -1,0 +1,10 @@
+@use '@/styles/_mixins.scss' as *;
+
+.video-info {
+    @include flex-column;
+    gap: 0.625rem;
+}
+
+.title {
+    @include text-wo-margin(1.25rem, 700);
+}

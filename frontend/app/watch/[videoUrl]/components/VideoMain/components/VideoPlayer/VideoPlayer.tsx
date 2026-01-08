@@ -15,7 +15,9 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
     const playerRef = useRef<HTMLDivElement>(null);
 
     const videoRef = useRef<HTMLVideoElement>(null);
+
     const [paused, setPaused] = useState<boolean>(true);
+    const [volume, setVolume] = useState<number>(0.6);
 
     const pauseHintRef = useRef<HTMLDivElement>(null);
 
@@ -38,20 +40,21 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
 
     const unregisterHotkey = useHotkeyStore((state) => state.unregister);
 
+    // biome-ignore lint: lint/correctness/useExhaustiveDependencies
     useEffect(() => {
-        const video = videoRef.current;
-
-        if (!video) return;
-
         const toggleVideoPlaying = (event: KeyboardEvent): void => {
             event.preventDefault();
-            console.log(event.key);
-            if (video.paused) {
-                video.play();
-                setPaused(false);
-            } else {
-                video.pause();
-                setPaused(true);
+
+            const video = videoRef.current;
+
+            if (video) {
+                if (video.paused) {
+                    video.play();
+                    setPaused(false);
+                } else {
+                    video.pause();
+                    setPaused(true);
+                }
             }
         };
 
@@ -68,10 +71,49 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
             callback: toggleVideoPlaying,
         });
 
+        registerHotkey({
+            name: 'Open video in full screen',
+            key: 'F',
+            callback: (event) => {
+                event.preventDefault();
+
+                document.fullscreenElement
+                    ? document.exitFullscreen()
+                    : playerRef.current?.requestFullscreen();
+            },
+        });
+
+        registerHotkey({
+            name: 'Increase video volume',
+            key: 'ArrowUp',
+            callback: () => {
+                console.log('b');
+                if (playerRef.current?.contains(document.activeElement)) {
+                    setVolume((prev) => prev + 0.01);
+                }
+            },
+        });
+
+        registerHotkey({
+            name: 'Decrease video volume',
+            key: 'ArrowDown',
+            callback: (event) => {
+                if (playerRef.current?.contains(document.activeElement)) {
+                    event.preventDefault();
+
+                    setVolume((prev) => prev - 0.01);
+                }
+            },
+        });
+
         return () => {
             unregisterHotkey('Toggle video playing');
 
             unregisterHotkey('Second way to toggle video playing');
+
+            unregisterHotkey('Increase video volume');
+
+            unregisterHotkey('Decrease video volume');
         };
     }, []);
 
@@ -107,6 +149,8 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
             <Overlay
                 paused={paused}
                 setPaused={setPaused}
+                volume={volume}
+                setVolume={setVolume}
                 videoRef={videoRef}
                 playerRef={playerRef}
             />

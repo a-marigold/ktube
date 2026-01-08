@@ -64,7 +64,11 @@ export const matchHotkey = (
             } else if (
                 lastKey === 'escape' ||
                 lastKey === 'enter' ||
-                lastKey === 'space'
+                lastKey === 'space' ||
+                lastKey === 'arrowup' ||
+                lastKey === 'arrowdown' ||
+                lastKey === 'arrowright' ||
+                lastKey === 'arrowleft'
             ) {
                 plainKeys.push(lastKey as Lowercase<string>);
             } else {
