@@ -1,5 +1,5 @@
 'use client';
-
+// TODO: handler and effect order
 import { useEffect, useRef } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -20,7 +20,6 @@ interface SliderProps {
     setValue: Dispatch<SetStateAction<number>>;
 
     ariaLabel: string;
-
     className?: string;
 }
 export default function Slider({
@@ -73,13 +72,14 @@ export default function Slider({
 
     useEffect(() => {
         const thumb = thumbRef.current;
+
         const progress = progressRef.current;
         const slider = sliderRef.current;
 
         if (!thumb || !slider || !progress) return;
 
         const sliderWidth = slider.offsetWidth;
-
+        const usableWidth = sliderWidth - THUMB_WIDTH;
         let lastLeft = startLeftRef.current;
 
         let startClientX = 0;
@@ -95,15 +95,15 @@ export default function Slider({
                     lastLeft = 0;
 
                     setValue(minValue);
-                } else if (lastLeft > sliderWidth - THUMB_WIDTH) {
-                    lastLeft = sliderWidth - THUMB_WIDTH;
+                } else if (lastLeft > usableWidth) {
+                    lastLeft = usableWidth;
 
-                    setValue(
-                        Math.floor((lastLeft + THUMB_WIDTH) / sliderWidth) *
-                            maxValue
-                    );
+                    setValue(maxValue);
                 } else {
-                    setValue(Math.floor((lastLeft / sliderWidth) * 100));
+                    setValue(
+                        minValue +
+                            (lastLeft / usableWidth) * (maxValue - minValue)
+                    );
                 }
                 progress.style.width = lastLeft + 'px';
                 thumb.style.left = lastLeft + 'px';
@@ -134,7 +134,7 @@ export default function Slider({
         };
 
         const handleKeyDown = (event: KeyboardEvent) => {
-            const stepDistance = (step * sliderWidth) / 100;
+            const stepDistance = (step * usableWidth) / 100;
 
             if (event.key === 'ArrowLeft') {
                 event.preventDefault();
@@ -151,10 +151,9 @@ export default function Slider({
 
             if (lastLeft < 0) {
                 lastLeft = 0;
-            } else if (lastLeft > sliderWidth - THUMB_WIDTH) {
-                lastLeft = sliderWidth - THUMB_WIDTH;
+            } else if (lastLeft > usableWidth) {
+                lastLeft = usableWidth;
             }
-
             progress.style.width = lastLeft + 'px';
 
             thumb.style.left = lastLeft + 'px';

@@ -18,6 +18,7 @@
         "rules": {
             "recommended": true,
             "complexity": { "useLiteralKeys": "off" },
+            "suspicious": { "noAssignInExpressions": "off" },
             "a11y": {
                 "useKeyWithClickEvents": "off",
                 "noStaticElementInteractions": "off",
