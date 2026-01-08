@@ -20,6 +20,11 @@ export type Hotkey = {
     callback: (event: KeyboardEvent) => void;
 };
 
+/**
+ *
+ *
+ * The most used `Hotkey` names in app
+ */
 export type WellKnownHotkey =
     | 'Toggle video playing'
     | 'Second way to toggle video playing'

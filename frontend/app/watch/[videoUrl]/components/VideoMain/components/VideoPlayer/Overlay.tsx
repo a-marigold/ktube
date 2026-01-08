@@ -133,6 +133,7 @@ export default function Overlay({
                         iconWidth={24}
                         iconHeight={24}
                         iconColor='var(--font-color)'
+                        className={videoStyles['overlay-button']}
                         onMouseEnter={(event) => {
                             showTooltip({
                                 relativeElement: event.currentTarget,
@@ -151,6 +152,7 @@ export default function Overlay({
                         iconWidth={24}
                         iconHeight={24}
                         iconColor='var(--font-color)'
+                        className={videoStyles['overlay-button']}
                         onClick={() => {
                             document.fullscreenElement
                                 ? document.exitFullscreen()

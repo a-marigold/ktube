@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 
+import { useHotkeyStore } from '@/store/HotkeyStore';
+
 import Overlay from './Overlay';
 
 import videoStyles from './VideoPlayer.module.scss';
@@ -31,6 +33,47 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
             clearTimeout(hintTimeout);
         };
     }, [paused]);
+
+    const registerHotkey = useHotkeyStore((state) => state.register);
+
+    const unregisterHotkey = useHotkeyStore((state) => state.unregister);
+
+    useEffect(() => {
+        const video = videoRef.current;
+
+        if (!video) return;
+
+        const toggleVideoPlaying = (event: KeyboardEvent): void => {
+            event.preventDefault();
+            console.log(event.key);
+            if (video.paused) {
+                video.play();
+                setPaused(false);
+            } else {
+                video.pause();
+                setPaused(true);
+            }
+        };
+
+        registerHotkey({
+            name: 'Toggle video playing',
+            key: 'Space',
+
+            callback: toggleVideoPlaying,
+        });
+
+        registerHotkey({
+            name: 'Second way to toggle video playing',
+            key: 'K',
+            callback: toggleVideoPlaying,
+        });
+
+        return () => {
+            unregisterHotkey('Toggle video playing');
+
+            unregisterHotkey('Second way to toggle video playing');
+        };
+    }, []);
 
     return (
         <div

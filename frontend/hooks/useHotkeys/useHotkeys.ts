@@ -61,7 +61,11 @@ export const matchHotkey = (
                 lastKey === 'alt'
             ) {
                 specialKeys[lastKey] = true;
-            } else if (lastKey === 'escape' || lastKey === 'enter') {
+            } else if (
+                lastKey === 'escape' ||
+                lastKey === 'enter' ||
+                lastKey === 'space'
+            ) {
                 plainKeys.push(lastKey as Lowercase<string>);
             } else {
                 plainKeys.push(('key' + lastKey) as Lowercase<string>);
@@ -94,6 +98,7 @@ export const useHotkeys = () => {
     useEffect(() => {
         hotkeysRef.current = hotkeys;
     }, [hotkeys]);
+
     useEffect(() => {
         const handleKeydown = (event: KeyboardEvent) => {
             hotkeysRef.current.forEach((hotkey) => {
