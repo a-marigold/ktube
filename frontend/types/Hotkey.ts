@@ -2,7 +2,7 @@ export type Hotkey = {
     /**
      * @example "Open the search window"
      */
-    name: string;
+    name: WellKnownHotkey | (string & {});
 
     /**
      * @example "Ctrl+K" or "Ctrl + K" or "ctrl + k"
@@ -19,3 +19,9 @@ export type Hotkey = {
      */
     callback: (event: KeyboardEvent) => void;
 };
+
+export type WellKnownHotkey =
+    | 'Toggle video playing'
+    | 'Second way to toggle video playing'
+    | 'Increase video volume'
+    | 'Decrease video volume';
