@@ -1,5 +1,7 @@
 'use client';
+
 // TODO: handler and effect order
+
 import { useEffect, useRef } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -39,7 +41,8 @@ export default function Slider({
     const thumbRef = useRef<HTMLDivElement>(null);
     const progressRef = useRef<HTMLDivElement>(null);
 
-    const startLeftRef = useRef<number>(value);
+    const pointerIdRef = useRef<number | null>(null);
+    const startLeftRef = useRef<number>(0);
     const isDraggingRef = useRef<boolean>(false);
 
     useEffect(() => {
@@ -80,34 +83,35 @@ export default function Slider({
 
         const sliderWidth = slider.offsetWidth;
         const usableWidth = sliderWidth - THUMB_WIDTH;
+
         let lastLeft = startLeftRef.current;
 
         let startClientX = 0;
 
         const handlePointerMove = (event: PointerEvent) => {
-            requestAnimationFrame(() => {
-                const clientX = event.clientX;
-                const deltaClientX = clientX - startClientX;
+            const clientX = event.clientX;
 
-                lastLeft = startLeftRef.current + deltaClientX;
+            const deltaClientX = clientX - startClientX;
 
-                if (lastLeft < 0) {
-                    lastLeft = 0;
+            lastLeft = startLeftRef.current + deltaClientX;
 
-                    setValue(minValue);
-                } else if (lastLeft > usableWidth) {
-                    lastLeft = usableWidth;
+            if (lastLeft < 0) {
+                lastLeft = 0;
 
-                    setValue(maxValue);
-                } else {
-                    setValue(
-                        minValue +
-                            (lastLeft / usableWidth) * (maxValue - minValue)
-                    );
-                }
-                progress.style.width = lastLeft + 'px';
-                thumb.style.left = lastLeft + 'px';
-            });
+                setValue(minValue);
+            } else if (lastLeft > usableWidth) {
+                lastLeft = usableWidth;
+
+                setValue(maxValue);
+            } else {
+                setValue(
+                    minValue + (lastLeft / usableWidth) * (maxValue - minValue)
+                );
+            }
+
+            progress.style.width = lastLeft + 'px';
+
+            thumb.style.left = lastLeft + 'px';
         };
 
         const handlePointerUp = (event: PointerEvent) => {
@@ -122,15 +126,16 @@ export default function Slider({
 
         const handlePointerDown = (event: PointerEvent) => {
             isDraggingRef.current = true;
+            pointerIdRef.current = event.pointerId;
 
-            thumb.setPointerCapture(event.pointerId);
+            thumb.setPointerCapture(pointerIdRef.current);
 
             startClientX = event.clientX;
             startLeftRef.current = lastLeft;
 
             thumb.addEventListener('pointermove', handlePointerMove);
-
             thumb.addEventListener('pointerup', handlePointerUp);
+            thumb.addEventListener('pointercancel', handlePointerUp);
         };
 
         const handleKeyDown = (event: KeyboardEvent) => {
@@ -166,8 +171,16 @@ export default function Slider({
 
         return () => {
             thumb.removeEventListener('pointerdown', handlePointerDown);
+            thumb.removeEventListener('pointermove', handlePointerMove);
+
+            thumb.removeEventListener('pointerup', handlePointerUp);
+            thumb.removeEventListener('pointercancel', handlePointerUp);
 
             thumb.removeEventListener('keydown', handleKeyDown);
+
+            if (pointerIdRef.current) {
+                thumb.releasePointerCapture(pointerIdRef.current);
+            }
         };
     }, [minValue, maxValue, step, setValue]);
 
