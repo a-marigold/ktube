@@ -5,8 +5,14 @@ export type Hotkey = {
     name: WellKnownHotkey | (string & {});
 
     /**
+     * Combintaion of key codes.
+     *
+     * All the keys should be like the second part of `KeyboardEvent.prototype.code`, for example - `K` will be transformed to `KeyK`, `ArrowUp` will be transformed to `ArrowUp`, `Escape` will be transformed to `Escape`
+     *
+     *
      * @example "Ctrl+K" or "Ctrl + K" or "ctrl + k"
      */
+
     key: string;
     /**
      * Function that will be called when `Hotkey.key` matches
@@ -26,6 +32,7 @@ export type Hotkey = {
  * The most used `Hotkey` names in app
  */
 export type WellKnownHotkey =
+    | 'Close modal'
     | 'Toggle video playing'
     | 'Second way to toggle video playing'
     | 'Increase video volume'

@@ -2,8 +2,6 @@ import { create } from 'zustand';
 
 import type { Hotkey } from '@/types/Hotkey';
 
-export type HotkeysInit = [Hotkey['name'], Hotkey][];
-
 type Hotkeys = Map<Hotkey['name'], Hotkey>;
 
 interface HotkeyStore {
@@ -11,11 +9,8 @@ interface HotkeyStore {
 
     register: (hotkey: Hotkey) => void;
 
-    initialize: (hotkeysInit: HotkeysInit) => void;
-
     unregister: (name: Hotkey['name']) => void;
 }
-
 export const useHotkeyStore = create<HotkeyStore>()((set) => ({
     hotkeys: new Map(),
 
@@ -40,7 +35,4 @@ export const useHotkeyStore = create<HotkeyStore>()((set) => ({
                 hotkeys: newHotkeys,
             };
         }),
-
-    initialize: (hotkeysInit: HotkeysInit) =>
-        set({ hotkeys: new Map(hotkeysInit) }),
 }));

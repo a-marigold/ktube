@@ -1,21 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useHotkeys } from '@/hooks/useHotkeys';
-import { useHotkeyConfig } from './useHotkeyConfig';
+// root
 
-import { useHotkeyStore } from '@/store/HotkeyStore';
+import { useHotkeys } from '@/hooks/useHotkeys';
 
 export default function HotkeyRoot() {
-    const initializeHotkeys = useHotkeyStore((state) => state.initialize);
-
-    const hotkeyConfig = useHotkeyConfig();
-
-    // biome-ignore lint: lint / correctness / useExhaustiveDependencies;
-    useEffect(() => {
-        initializeHotkeys(hotkeyConfig);
-    }, []);
-
     useHotkeys();
 
     return null;
