@@ -13,6 +13,7 @@ export default function VideoInfo({ title }: VideoInfoProps) {
             <ReactionBlock
                 channelName='__channel__'
                 avatarUrl='/__test-avatar.png'
+                channelUrl='/@__c'
                 subsriptions={20000}
                 likes={820}
                 disLikes={320}

@@ -85,7 +85,12 @@ body {
     --navbar-width: var(--mini-navbar-width);
 }
 
-/* global utility classes */
+/* global styles and utility classes */
+
+a {
+    color: var(--font-color);
+    text-decoration: none;
+}
 
 a:focus-visible,
 button:focus-visible {

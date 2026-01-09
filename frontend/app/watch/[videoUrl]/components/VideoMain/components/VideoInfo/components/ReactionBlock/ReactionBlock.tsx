@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 
 import ReactionButton from '@/UI/ReactionButton';
@@ -5,6 +6,7 @@ import ReactionButton from '@/UI/ReactionButton';
 import reactStyles from './ReactionBlock.module.scss';
 
 interface ReactionBlockProps {
+    channelUrl: string;
     channelName: string;
     avatarUrl: string;
     subsriptions: number;
@@ -15,8 +17,10 @@ interface ReactionBlockProps {
     publishDate: number;
 }
 export default function ReactionBlock({
-    avatarUrl,
+    channelUrl,
     channelName,
+
+    avatarUrl,
     subsriptions,
     likes,
     disLikes,
@@ -26,7 +30,7 @@ export default function ReactionBlock({
 }: ReactionBlockProps) {
     return (
         <div className={reactStyles['reaction-block']}>
-            <div className={reactStyles['channel-block']}>
+            <Link href={channelUrl} className={reactStyles['channel-block']}>
                 <Image
                     src={avatarUrl}
                     alt=''
@@ -43,41 +47,51 @@ export default function ReactionBlock({
                         {subsriptions}
                     </span>
                 </div>
-            </div>
+            </Link>
 
             <ReactionButton
                 variant='accent'
                 title='Subscribe'
                 aria-label={`Subscribe on ${channelName}`}
+                isActive={false}
             />
 
             <div role='group' className={reactStyles['tools-group']}>
                 <ReactionButton
                     variant='secondary'
                     title={`${likes}`}
+                    aria-label='Like the video'
                     icon={{
                         iconHref: '#like-icon',
+                        activeIconHref: '#fill-like-icon',
                         iconWidth: 24,
                         iconHeight: 24,
                         iconColor: 'var(--font-color)',
                     }}
-                    aria-label='Like the video'
                 />
                 <ReactionButton
                     variant='secondary'
                     title={`${disLikes}`}
+                    aria-label='Dislike the video'
                     icon={{
                         iconHref: '#dislike-icon',
+                        activeIconHref: '#fill-dislike-icon',
                         iconWidth: 24,
                         iconHeight: 24,
                         iconColor: 'var(--font-color)',
                     }}
-                    aria-label='Dislike the video'
                 />
+
                 <ReactionButton
                     variant='secondary'
                     title='Save'
                     aria-label='Save the video to playlist'
+                    icon={{
+                        iconHref: '#save-icon',
+                        iconWidth: 24,
+                        iconHeight: 24,
+                        iconColor: 'var(--font-color)',
+                    }}
                 />
             </div>
         </div>

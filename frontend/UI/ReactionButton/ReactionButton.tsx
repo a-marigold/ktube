@@ -8,16 +8,23 @@ interface ReactionButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant: 'accent' | 'secondary';
 
     title?: string;
-    icon?: IconProps;
+
+    icon?: IconProps & { activeIconHref?: IconProps['iconHref'] };
 
     'aria-label': string;
+
+    isActive?: boolean;
 }
 
 export default function ReactionButton({
     variant,
+
     title,
     icon,
     className,
+
+    isActive = false,
+
     ...attributes
 }: ReactionButtonProps) {
     return (
@@ -33,7 +40,13 @@ export default function ReactionButton({
                     height={icon.iconHeight}
                     color={icon.iconColor}
                 >
-                    <use href={icon.iconHref} />
+                    <use
+                        href={
+                            isActive && icon.activeIconHref
+                                ? icon.activeIconHref
+                                : icon.iconHref
+                        }
+                    />
                 </svg>
             )}
 
