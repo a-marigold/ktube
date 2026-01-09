@@ -6,7 +6,7 @@ import type { Dispatch, SetStateAction } from 'react';
 import sliderStyles from './Slider.module.scss';
 
 /**
- * Fixed width of thumb
+ * Fixed width of thumb from CSS
  */
 const THUMB_WIDTH = 9;
 
@@ -134,12 +134,14 @@ export default function Slider({
         };
 
         const handleKeyDown = (event: KeyboardEvent) => {
-            const stepDistance = (step * usableWidth) / 100;
+            const stepDistance =
+                minValue + (step * usableWidth) / (maxValue - minValue);
 
             if (event.key === 'ArrowLeft') {
                 event.preventDefault();
 
                 lastLeft -= stepDistance;
+
                 setValue((prev) => Math.max(minValue, prev - step));
             } else if (event.key === 'ArrowRight') {
                 event.preventDefault();
@@ -186,7 +188,9 @@ export default function Slider({
                 tabIndex={0}
                 className={sliderStyles['thumb']}
             >
-                <span className={sliderStyles['value']}> {value} </span>
+                <span className={sliderStyles['value']}>
+                    {value.toFixed(2)}
+                </span>
             </div>
         </div>
     );

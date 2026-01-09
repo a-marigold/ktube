@@ -39,6 +39,7 @@ export default function ReactionButton({
                     width={icon.iconWidth}
                     height={icon.iconHeight}
                     color={icon.iconColor}
+                    aria-hidden='true'
                 >
                     <use
                         href={

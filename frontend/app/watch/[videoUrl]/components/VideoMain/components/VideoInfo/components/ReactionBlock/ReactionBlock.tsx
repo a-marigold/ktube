@@ -56,7 +56,7 @@ export default function ReactionBlock({
                 isActive={false}
             />
 
-            <div role='group' className={reactStyles['tools-group']}>
+            <div className={reactStyles['tools-group']}>
                 <ReactionButton
                     variant='secondary'
                     title={`${likes}`}
