@@ -1,0 +1,35 @@
+@use '@/styles/_mixins.scss' as *;
+
+.reaction-block {
+    @include flex-y-center;
+
+    gap: 1rem;
+}
+
+.channel-block {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+.channel-info-block {
+    @include flex-column;
+    gap: 0.25em;
+}
+.channel-title {
+    font-size: 1rem;
+    font-weight: 500;
+}
+.subscriptions {
+    font-size: 0.75rem;
+    color: var(--tretiary-font-color);
+}
+
+.tools-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+}
