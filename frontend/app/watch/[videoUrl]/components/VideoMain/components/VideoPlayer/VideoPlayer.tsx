@@ -19,7 +19,9 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     const [paused, setPaused] = useState<boolean>(true);
+
     const [volume, setVolume] = useState<number>(__INITIAL_VOLUME);
+    const prevVolumeRef = useRef<number>(volume);
 
     const pauseHintRef = useRef<HTMLDivElement>(null);
 
@@ -117,7 +119,12 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
             name: 'Mute video',
             key: 'M',
             callback: () => {
-                video.volume = 0;
+                if (video.volume) {
+                    prevVolumeRef.current = video.volume;
+                    video.volume = 0;
+                } else {
+                    video.volume = prevVolumeRef.current;
+                }
             },
         });
 
@@ -154,6 +161,8 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
                 controls={false}
                 className={videoStyles['video']}
                 onVolumeChange={(event) => {
+                    console.log(event.currentTarget.volume);
+
                     setVolume(event.currentTarget.volume);
                 }}
             >
@@ -170,7 +179,6 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
                 paused={paused}
                 setPaused={setPaused}
                 volume={volume}
-                setVolume={setVolume}
                 videoRef={videoRef}
                 playerRef={playerRef}
             />

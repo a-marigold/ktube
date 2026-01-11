@@ -18,8 +18,7 @@ interface SliderProps {
     maxValue: number;
 
     step: number;
-
-    setValue: Dispatch<SetStateAction<number>>;
+    onChange: (value: number) => void;
 
     ariaLabel: string;
     className?: string;
@@ -31,7 +30,7 @@ export default function Slider({
 
     step,
 
-    setValue,
+    onChange,
 
     ariaLabel,
     className,
@@ -98,13 +97,13 @@ export default function Slider({
             if (lastLeft < 0) {
                 lastLeft = 0;
 
-                setValue(minValue);
+                onChange(minValue);
             } else if (lastLeft > usableWidth) {
                 lastLeft = usableWidth;
 
-                setValue(maxValue);
+                onChange(maxValue);
             } else {
-                setValue(
+                onChange(
                     minValue + (lastLeft / usableWidth) * (maxValue - minValue)
                 );
             }
@@ -134,6 +133,7 @@ export default function Slider({
             startLeftRef.current = lastLeft;
 
             thumb.addEventListener('pointermove', handlePointerMove);
+
             thumb.addEventListener('pointerup', handlePointerUp);
             thumb.addEventListener('pointercancel', handlePointerUp);
         };
@@ -147,13 +147,13 @@ export default function Slider({
 
                 lastLeft -= stepDistance;
 
-                setValue((prev) => Math.max(minValue, prev - step));
+                onChange(Math.max(minValue, value - step));
             } else if (event.key === 'ArrowRight') {
                 event.preventDefault();
 
                 lastLeft += stepDistance;
 
-                setValue((prev) => Math.min(maxValue, prev + step));
+                onChange(Math.min(maxValue, value + step));
             }
 
             if (lastLeft < 0) {
@@ -182,7 +182,7 @@ export default function Slider({
                 thumb.releasePointerCapture(pointerIdRef.current);
             }
         };
-    }, [minValue, maxValue, step, setValue]);
+    }, [minValue, maxValue, step, onChange]);
 
     return (
         <div
@@ -201,9 +201,7 @@ export default function Slider({
                 tabIndex={0}
                 className={sliderStyles['thumb']}
             >
-                <span className={sliderStyles['value']}>
-                    {value.toFixed(2)}
-                </span>
+                <span className={sliderStyles['value']}>{value}</span>
             </div>
         </div>
     );

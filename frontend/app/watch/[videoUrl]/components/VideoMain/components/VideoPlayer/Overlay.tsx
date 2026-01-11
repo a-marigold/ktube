@@ -17,7 +17,6 @@ interface OverlayProps {
     setPaused: Dispatch<boolean>;
 
     volume: number;
-    setVolume: Dispatch<SetStateAction<number>>;
 
     videoRef: RefObject<HTMLVideoElement | null>;
     playerRef: RefObject<HTMLDivElement | null>;
@@ -27,7 +26,6 @@ export default function Overlay({
     setPaused,
 
     volume,
-    setVolume,
 
     videoRef,
     playerRef,
@@ -124,7 +122,11 @@ export default function Overlay({
                             minValue={0}
                             maxValue={1}
                             step={0.1}
-                            setValue={setVolume}
+                            onChange={(value) => {
+                                if (!videoRef.current) return;
+
+                                videoRef.current.volume = value;
+                            }}
                         />
                     </div>
                 </div>
