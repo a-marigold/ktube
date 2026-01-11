@@ -77,16 +77,14 @@ export default function Overlay({
 
                     <div className={videoStyles['volume-block']}>
                         <button
-                            aria-label={
-                                volume ? 'Mute the video' : 'Unmute the video'
-                            }
+                            aria-label={volume ? 'Mute video' : 'Unmute video'}
                             className={videoStyles['mute-button']}
                             onMouseEnter={(event) => {
                                 showTooltip({
                                     relativeElement: event.currentTarget,
                                     title: volume
-                                        ? 'Mute the video'
-                                        : 'Unmute the video',
+                                        ? 'Mute video'
+                                        : 'Unmute video',
                                     position: 'top',
                                     gap: MODAL_GAP,
                                 });
@@ -97,9 +95,10 @@ export default function Overlay({
 
                                 if (volume) {
                                     prevVolumeRef.current = volume;
-                                    setVolume((videoRef.current.volume = 0));
+                                    videoRef.current.volume = 0;
                                 } else {
-                                    setVolume(prevVolumeRef.current);
+                                    videoRef.current.volume =
+                                        prevVolumeRef.current;
                                 }
                             }}
                         >

@@ -7,6 +7,8 @@ import { useHotkeyStore } from '@/store/HotkeyStore';
 import Overlay from './Overlay';
 
 import videoStyles from './VideoPlayer.module.scss';
+// TODO: remove this to global store
+const __INITIAL_VOLUME = 0.6;
 
 interface VideoPlayerProps {
     videoUrl: string;
@@ -17,7 +19,7 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     const [paused, setPaused] = useState<boolean>(true);
-    const [volume, setVolume] = useState<number>(0.6);
+    const [volume, setVolume] = useState<number>(__INITIAL_VOLUME);
 
     const pauseHintRef = useRef<HTMLDivElement>(null);
 
@@ -42,10 +44,14 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
 
     // biome-ignore lint: lint/correctness/useExhaustiveDependencies
     useEffect(() => {
+        const video = videoRef.current;
+
+        if (!video) return;
+
+        video.volume = __INITIAL_VOLUME;
+
         const toggleVideoPlaying = (event: KeyboardEvent): void => {
             event.preventDefault();
-
-            const video = videoRef.current;
 
             if (video) {
                 if (video.paused) {
@@ -87,9 +93,9 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
             name: 'Increase video volume',
             key: 'ArrowUp',
             callback: () => {
-                console.log('b');
                 if (playerRef.current?.contains(document.activeElement)) {
-                    setVolume((prev) => prev + 0.01);
+                    video.volume += 0.01;
+                    setVolume(video.volume);
                 }
             },
         });
@@ -97,12 +103,21 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
         registerHotkey({
             name: 'Decrease video volume',
             key: 'ArrowDown',
+
             callback: (event) => {
                 if (playerRef.current?.contains(document.activeElement)) {
                     event.preventDefault();
 
-                    setVolume((prev) => prev - 0.01);
+                    video.volume -= 0.01;
                 }
+            },
+        });
+
+        registerHotkey({
+            name: 'Mute video',
+            key: 'M',
+            callback: () => {
+                video.volume = 0;
             },
         });
 
@@ -114,6 +129,8 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
             unregisterHotkey('Increase video volume');
 
             unregisterHotkey('Decrease video volume');
+
+            unregisterHotkey('Mute video');
         };
     }, []);
 
@@ -136,6 +153,9 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
                 src={videoUrl}
                 controls={false}
                 className={videoStyles['video']}
+                onVolumeChange={(event) => {
+                    setVolume(event.currentTarget.volume);
+                }}
             >
                 <track
                     src='/.vtt'

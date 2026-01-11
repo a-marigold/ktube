@@ -37,4 +37,5 @@ export type WellKnownHotkey =
     | 'Second way to toggle video playing'
     | 'Increase video volume'
     | 'Decrease video volume'
+    | 'Mute video'
     | 'Open video in full screen';
