@@ -135,25 +135,25 @@ export default function Slider({
             thumb.addEventListener('pointermove', handlePointerMove);
 
             thumb.addEventListener('pointerup', handlePointerUp);
+
             thumb.addEventListener('pointercancel', handlePointerUp);
         };
 
         const handleKeyDown = (event: KeyboardEvent) => {
-            const stepDistance =
-                minValue + (step * usableWidth) / (maxValue - minValue);
+            const stepDistance = step * usableWidth;
 
             if (event.key === 'ArrowLeft') {
                 event.preventDefault();
 
                 lastLeft -= stepDistance;
 
-                onChange(Math.max(minValue, value - step));
+                onChange(Math.max(minValue, lastLeft / usableWidth));
             } else if (event.key === 'ArrowRight') {
                 event.preventDefault();
 
                 lastLeft += stepDistance;
 
-                onChange(Math.min(maxValue, value + step));
+                onChange(Math.min(maxValue, lastLeft / usableWidth));
             }
 
             if (lastLeft < 0) {
@@ -201,7 +201,9 @@ export default function Slider({
                 tabIndex={0}
                 className={sliderStyles['thumb']}
             >
-                <span className={sliderStyles['value']}>{value}</span>
+                <span className={sliderStyles['value']}>
+                    {value.toFixed(2)}
+                </span>
             </div>
         </div>
     );

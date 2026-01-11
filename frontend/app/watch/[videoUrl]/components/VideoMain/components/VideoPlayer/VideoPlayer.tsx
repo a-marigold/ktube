@@ -161,8 +161,6 @@ export default function VideoPlayer({ videoUrl }: VideoPlayerProps) {
                 controls={false}
                 className={videoStyles['video']}
                 onVolumeChange={(event) => {
-                    console.log(event.currentTarget.volume);
-
                     setVolume(event.currentTarget.volume);
                 }}
             >

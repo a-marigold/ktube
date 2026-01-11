@@ -1,4 +1,5 @@
-import ReactionBlock from './components/ReactionBlock/ReactionBlock';
+import ReactionBlock from './components/ReactionBlock';
+import Description from './components/Description';
 
 import infoStyles from './VideoInfo.module.scss';
 
@@ -17,8 +18,12 @@ export default function VideoInfo({ title }: VideoInfoProps) {
                 subsriptions={20000}
                 likes={820}
                 disLikes={320}
-                views={1000}
-                publishDate={Date.now()}
+            />
+
+            <Description
+                views={1000000}
+                publishDate={Date.now() - Date.now() / 2}
+                descriptionContent='conten'
             />
         </div>
     );

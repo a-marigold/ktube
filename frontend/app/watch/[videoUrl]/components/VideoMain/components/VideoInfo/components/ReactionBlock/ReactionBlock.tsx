@@ -13,20 +13,18 @@ interface ReactionBlockProps {
 
     likes: number;
     disLikes: number;
-    views: number;
-    publishDate: number;
 }
 export default function ReactionBlock({
     channelUrl,
     channelName,
 
     avatarUrl,
-    subsriptions,
-    likes,
-    disLikes,
 
-    views,
-    publishDate,
+    subsriptions,
+
+    likes,
+
+    disLikes,
 }: ReactionBlockProps) {
     return (
         <div className={reactStyles['reaction-block']}>

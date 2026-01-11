@@ -121,7 +121,7 @@ export default function Overlay({
                             value={volume}
                             minValue={0}
                             maxValue={1}
-                            step={0.1}
+                            step={0.01}
                             onChange={(value) => {
                                 if (!videoRef.current) return;
 
