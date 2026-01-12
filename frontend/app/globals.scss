@@ -92,6 +92,10 @@ a {
     text-decoration: none;
 }
 
+button {
+    font-family: var(--roboto-font);
+}
+
 a:focus-visible,
 button:focus-visible {
     outline: 2px var(--focus-color) solid;

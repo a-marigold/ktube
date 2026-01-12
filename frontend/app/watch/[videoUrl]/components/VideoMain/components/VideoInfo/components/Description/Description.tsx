@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+
 import descStyles from './Description.module.scss';
 
 interface DescriptionProps {
@@ -10,12 +14,24 @@ interface DescriptionProps {
 export default function Description({
     views,
     publishDate,
+
     descriptionContent,
 }: DescriptionProps) {
-    const rtf = new Intl.RelativeTimeFormat();
+    const isContentLarge = descriptionContent.length > 60;
+
+    const contentSnippet = descriptionContent.slice(0, 60);
+
+    const [expanded, setExpanded] = useState<boolean>(!isContentLarge);
 
     return (
-        <div className={descStyles['description']}>
+        <div
+            className={`${descStyles['description']} ${
+                expanded && descStyles['expanded']
+            }`}
+            onClick={() => {
+                setExpanded(true);
+            }}
+        >
             <div className={descStyles['stats-block']}>
                 <span className={descStyles['stat']}>{views} views</span>
 
@@ -24,8 +40,37 @@ export default function Description({
                 </span>
             </div>
 
-            <div className={descStyles['description-content']}>
-                {descriptionContent}
+            <div
+                id='description-content'
+                className={descStyles['description-content']}
+            >
+                {expanded ? (
+                    <>
+                        {descriptionContent}
+
+                        {isContentLarge && (
+                            <button
+                                aria-label='Collapse description of video'
+                                aria-expanded='true'
+                                aria-controls='description-content'
+                                className={`${descStyles['expand-button']} ${descStyles['expand-hint']}`}
+                                onClick={(event) => {
+                                    event.stopPropagation();
+                                    setExpanded(false);
+                                }}
+                            >
+                                Collapse
+                            </button>
+                        )}
+                    </>
+                ) : (
+                    <>
+                        {contentSnippet}
+                        <span className={descStyles['expand-hint']}>
+                            &nbsp; ...more
+                        </span>
+                    </>
+                )}
             </div>
         </div>
     );

@@ -18,8 +18,6 @@ import ModalBackdrop from '@/UI/ModalBackdrop';
 import searchStyles from './SearchModal.module.scss';
 
 interface SearchModalProps {
-    id?: string;
-
     relativeElement: HTMLElement;
     position: Position;
     gap?: number;
@@ -27,10 +25,10 @@ interface SearchModalProps {
     onMouseDown: HTMLAttributes<HTMLUListElement>['onMouseDown'];
 }
 export default function SearchModal({
-    id,
-
     relativeElement,
+
     gap,
+
     position,
 
     onMouseDown,
@@ -49,7 +47,6 @@ export default function SearchModal({
         <ModalBackdrop background='empty' onClick={closeModal}>
             <ul
                 ref={modalRef}
-                id={id}
                 className={searchStyles['search-modal']}
                 tabIndex={-1}
                 onMouseDown={onMouseDown}

@@ -17,8 +17,16 @@
         "enabled": true,
         "rules": {
             "recommended": true,
+
             "complexity": { "useLiteralKeys": "off" },
+
             "suspicious": { "noAssignInExpressions": "off" },
+
+            "security": {
+                "noDangerouslySetInnerHtml": "off",
+                "noDangerouslySetInnerHtmlWithChildren": "off"
+            },
+
             "a11y": {
                 "useKeyWithClickEvents": "off",
                 "noStaticElementInteractions": "off",

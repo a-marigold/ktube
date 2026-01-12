@@ -30,7 +30,6 @@ export default function Header() {
     const openSearchModal = (relativeElement: HTMLElement) => {
         openModal(
             <SearchModal
-                id='search-modal'
                 relativeElement={relativeElement}
                 position='bottom'
                 onMouseDown={() => {
@@ -62,7 +61,6 @@ export default function Header() {
             <SearchInput
                 placeholder='Search'
                 aria-label='Search for content'
-                aria-controls='search-modal'
                 onFocus={(event) => {
                     openSearchModal(event.currentTarget);
                 }}

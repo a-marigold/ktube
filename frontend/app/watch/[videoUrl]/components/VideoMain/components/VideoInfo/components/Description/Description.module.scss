@@ -1,19 +1,50 @@
 @use '@/styles/_mixins.scss' as *;
 
+// ''
+//
+
+//
+
 .description {
     @include flex-column;
 
     gap: 0.25rem;
 
-    background-color: var(--modal-bg-color);
+    background-color: var(--description-bg-color);
+
     border-radius: 12px;
 
     padding: 0.75rem;
+
     box-sizing: border-box;
+
+    transition: background-color var(--d-transition-dur) ease;
+
+    cursor: pointer;
+
+    &:hover {
+        --description-bg-color: var(--alpha-hover-bg);
+    }
+
+    &:active {
+        --description-bg-color: var(--active-btn-bg);
+    }
+
+    &.expanded {
+        cursor: default;
+
+        &:hover,
+        &:active {
+            --description-bg-color: var(--modal-bg-color);
+        }
+    }
+
+    --description-bg-color: var(--modal-bg-color);
 }
 
 .stats-block {
     display: flex;
+
     gap: 0.75rem;
 }
 
@@ -25,4 +56,37 @@
 
 .description-content {
     font-size: var(--d-font-size);
+}
+
+.expand-hint {
+    box-shadow: 0 0 16px 10px var(--description-bg-color);
+
+    color: var(--font-color);
+
+    font-weight: 500;
+
+    transition: box-shadow var(--d-transition-dur) ease;
+
+    user-select: none;
+}
+
+.expand-button {
+    margin-top: 0.5rem;
+
+    display: block;
+
+    background-color: transparent;
+
+    border: 0;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--hover-btn-bg);
+    }
+    &:active {
+        background-color: var(--active-btn-bg);
+    }
 }

@@ -1,7 +1,8 @@
 'use client';
 
 import { useRef } from 'react';
-import type { RefObject, Dispatch, SetStateAction } from 'react';
+
+import type { RefObject, Dispatch } from 'react';
 
 import { useTooltipStore } from '@/store/TooltipStore';
 
