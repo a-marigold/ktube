@@ -18,6 +18,7 @@ export default function Comments() {
             <CommentInput
                 avatarUrl={'/__test-avatar.png'}
                 aria-label='Input a comment'
+                placeholder='Input a comment'
             />
         </div>
     );

@@ -9,8 +9,6 @@ import ReactionButton from '@/UI/ReactionButton';
 import inputStyles from './CommentInput.module.scss';
 
 interface CommentInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    value: string;
-
     avatarUrl: string;
 
     'aria-label': string;
@@ -43,7 +41,9 @@ export default function CommentInput({
                             className ?? ''
                         }`}
                     />
-                    <div className={inputStyles['growing-line']} />
+                    <div className={inputStyles['line']}>
+                        <div className={inputStyles['growing-line']} />
+                    </div>
                 </div>
 
                 <ReactionButton
