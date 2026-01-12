@@ -1,5 +1,6 @@
 import ReactionBlock from './components/ReactionBlock';
 import Description from './components/Description';
+import Comments from './components/Comments';
 
 import infoStyles from './VideoInfo.module.scss';
 
@@ -55,6 +56,8 @@ export default function VideoInfo({ title }: VideoInfoProps) {
 }
 `}
             />
+
+            <Comments />
         </div>
     );
 }

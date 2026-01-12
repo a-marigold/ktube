@@ -15,5 +15,8 @@
     @include flex-x-center;
     gap: 1.5rem;
 
+    width: 100%;
+    max-width: 2300px;
+
     padding: 1.5rem;
 }

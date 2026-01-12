@@ -1,0 +1,44 @@
+@use '@/styles/_mixins.scss' as *;
+
+.container {
+    display: flex;
+    gap: 1rem;
+}
+
+.interactive-block {
+    @include flex-column;
+
+    gap: 0.5rem;
+
+    width: 100%;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+.comment-input {
+    background-color: transparent;
+
+    border: 0;
+
+    outline: none;
+
+    font-size: 1rem;
+    color: var(--font-color);
+}
+
+.growing-line {
+    width: 100%;
+    height: 1px;
+
+    background-color: var(--modal-bg-color);
+}
+
+.comment-input-block {
+}
+
+.send-button {
+    margin-left: auto;
+    width: max-content;
+}

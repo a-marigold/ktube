@@ -1,0 +1,10 @@
+@use '@/styles/_mixins.scss' as *;
+
+.comments {
+    @include flex-column;
+}
+
+.comments-quantity {
+    font-size: 1.25rem;
+    font-weight: 700;
+}

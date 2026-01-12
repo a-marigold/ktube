@@ -32,7 +32,7 @@ export default function ReactionButton({
             {...attributes}
             className={`${buttonStyles['reaction-button']} ${
                 buttonStyles[variant]
-            } ${icon && buttonStyles['with-icon']}`}
+            } ${icon && buttonStyles['with-icon']} ${className ?? ''}`}
         >
             {icon && (
                 <svg
