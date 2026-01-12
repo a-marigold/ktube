@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import type { InputHTMLAttributes } from 'react';
 
 import Image from 'next/image';
@@ -22,6 +23,8 @@ export default function CommentInput({
     onSend,
     ...attributes
 }: CommentInputProps) {
+    const [comment, setComment] = useState<string>('');
+
     return (
         <div className={inputStyles['container']}>
             <Image
@@ -40,6 +43,9 @@ export default function CommentInput({
                         className={`${inputStyles['comment-input']} ${
                             className ?? ''
                         }`}
+                        onChange={(event) => {
+                            setComment(event.target.value);
+                        }}
                     />
                     <div className={inputStyles['line']}>
                         <div className={inputStyles['growing-line']} />
@@ -51,6 +57,7 @@ export default function CommentInput({
                     title='Send comment'
                     aria-label='Send comment'
                     className={inputStyles['send-button']}
+                    disabled={!comment}
                 />
             </div>
         </div>
