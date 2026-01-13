@@ -1,10 +1,11 @@
 {
     "name": "@ktube/shared",
+    "version": "0.1.0",
     "module": "index.ts",
     "type": "module",
     "private": true,
     "scripts": {
-        "build": "tsc && bun pm pack"
+        "build": "bun build ./src/index.ts --minify --outdir=./dist && bun pm pack"
     },
     "devDependencies": {
         "@types/bun": "latest"
