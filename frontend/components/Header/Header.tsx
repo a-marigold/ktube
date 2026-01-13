@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 
+import { useUserStore } from '@/store/UserStore/useUserStore';
 import { useNavbarStore } from '@/store/NavbarStore';
 import { useModalStore } from '@/store/ModalStore';
 import { useTooltipStore } from '@/store/TooltipStore';
@@ -12,20 +13,21 @@ import SearchModal from '../ModalRoot/modals/SearchModal';
 
 import SearchInput from '@/UI/SearchInput/SearchInput';
 import IconButton from '@/UI/IconButton';
+import ReactionButton from '@/UI/ReactionButton';
 
 import headerStyles from './Header.module.scss';
 
 export default function Header() {
     const toggleNavbar = useNavbarStore((state) => state.toggleNavbar);
 
+    const showTooltip = useTooltipStore((state) => state.show);
+    const hideTooltip = useTooltipStore((state) => state.hide);
+
     const currentModal = useModalStore((state) => state.currentModal);
     const openModal = useModalStore((state) => state.openModal);
     const closeModal = useModalStore((state) => state.closeModal);
 
     const modalClickedRef = useRef<boolean>(false);
-
-    const showTooltip = useTooltipStore((state) => state.show);
-    const hideTooltip = useTooltipStore((state) => state.hide);
 
     const openSearchModal = (relativeElement: HTMLElement) => {
         openModal(
@@ -37,9 +39,12 @@ export default function Header() {
                 }}
                 gap={12}
             />,
+
             false
         );
     };
+
+    const user = useUserStore((state) => state.user);
 
     return (
         <header className={headerStyles['header']}>
@@ -93,6 +98,21 @@ export default function Header() {
                     }}
                     onPointerLeave={hideTooltip}
                 />
+
+                {!user && (
+                    <ReactionButton
+                        variant='accent'
+                        title='Sign in'
+                        aria-label='Sign in your account or create an account'
+                        icon={{
+                            iconHref: '#user-icon',
+                            iconWidth: 24,
+                            iconHeight: 24,
+                            iconColor: 'var(--background-color)',
+                        }}
+                        data-testid='sign-in-button'
+                    />
+                )}
             </div>
         </header>
     );

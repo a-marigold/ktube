@@ -2,6 +2,8 @@ import { describe, it, expect } from 'vitest';
 
 import { render, screen, fireEvent } from '@testing-library/react';
 
+import { useUserStore } from '@/store/UserStore';
+
 import { useNavbarStore } from '@/store/NavbarStore';
 
 import Header from './Header';
@@ -73,5 +75,19 @@ describe('Toggle Navbar logic in Header', () => {
         expect(screen.getByTestId('mini-navbar')).toBeDefined();
 
         expect(screen.getByTestId('full-navbar')).toBeDefined();
+    });
+
+    it('should contain `sign-in-button` if the useUserStore.getState().user is null and should not contain this button in the user in not null', () => {
+        useUserStore.setState({ user: null });
+
+        render(<Header />);
+
+        expect(screen.queryByTestId('sign-in-button')).toBeDefined();
+
+        useUserStore.setState({ user: {} });
+
+        render(<Header />);
+
+        expect(screen.queryByTestId('sign-in-button')).toBeNull();
     });
 });
