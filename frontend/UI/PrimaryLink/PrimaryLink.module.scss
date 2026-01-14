@@ -1,0 +1,33 @@
+@use '@/styles/_mixins.scss' as *;
+
+.primary-link {
+    @include flex-center;
+    gap: 0.5rem;
+
+    width: max-content;
+
+    height: 36px;
+
+    border: 1px var(--border-color) solid;
+
+    border-radius: 18px;
+
+    text-decoration: none;
+    color: var(--font-color);
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+
+    &:hover {
+        background-color: var(--hover-btn-bg);
+    }
+
+    &:active {
+        background-color: var(--active-btn-bg);
+    }
+}
+
+.with-icon {
+    padding-left: 0.5rem;
+}
