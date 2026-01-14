@@ -565,7 +565,7 @@ packages:
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
   '@ktube/shared@file:../shared/ktube-shared-0.1.0.tgz':
-    resolution: {integrity: sha512-4LhzgIjByLO+owbbGvjZNjkJj65+Fns+95REL/V1MtXMttyvY4+hF3sBkF/0zkl2jt8/xj7hqxvZa+03yNzX4A==, tarball: file:../shared/ktube-shared-0.1.0.tgz}
+    resolution: {integrity: sha512-LQzaLkv0RWiyU4/NoASLa+fKr2BQmPyJ3hFUaX29T80GDAlIJdXBfu6fPtvE/8iHO2ilIPD3eUdFqExoVtzYmw==, tarball: file:../shared/ktube-shared-0.1.0.tgz}
     version: 0.1.0
     peerDependencies:
       typescript: ^5

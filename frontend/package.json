@@ -8,12 +8,12 @@
         "start": "next start",
         "lint": "biome check",
         "test": "vitest",
-        "upshared": "..."
+        "upshared": "pnpm remove @ktube/shared && pnpm install && pnpm add ../shared/ktube-shared-0.1.0.tgz && pnpm install"
     },
     "dependencies": {
+        "@ktube/shared": "file:..\\shared\\ktube-shared-0.1.0.tgz",
         "next": "16.0.10",
         "react": "19.2.1",
-        "@ktube/shared": "file:..\\shared\\ktube-shared-0.1.0.tgz",
         "react-dom": "19.2.1",
         "zustand": "^5.0.9"
     },

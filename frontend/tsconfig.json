@@ -19,6 +19,7 @@
             }
         ],
         "baseUrl": ".",
+        "verbatimModuleSyntax": true,
         "paths": {
             "@/*": ["./*"],
             "@modals/*": ["./components/ModalRoot/modals/*"]
