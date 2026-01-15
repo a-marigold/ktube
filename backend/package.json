@@ -1,16 +1,21 @@
 {
-  "name": "backend",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "bun-crumb": "^0.6.0",
-    "zod": "^4.3.5"
-  }
+    "name": "backend",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "scripts": {
+        "upshared": "bun rm @ktube/shared && bun install && bun add ../shared/ktube-shared-0.1.0.tgz",
+        "build": "bun build ./src/index.ts --minify --outdir=./dist"
+    },
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "dependencies": {
+        "@ktube/shared": "../shared/ktube-shared-0.1.0.tgz",
+        "bun-crumb": "^0.7.0",
+        "zod": "^4.3.5"
+    }
 }

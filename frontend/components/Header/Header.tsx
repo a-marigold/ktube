@@ -12,8 +12,10 @@ import { MODAL_GAP } from '@/constants/modalGap';
 import SearchModal from '../ModalRoot/modals/SearchModal';
 
 import SearchInput from '@/UI/SearchInput/SearchInput';
+
 import IconButton from '@/UI/IconButton';
-import ReactionButton from '@/UI/ReactionButton';
+
+import PrimaryLink from '@/UI/PrimaryLink';
 
 import headerStyles from './Header.module.scss';
 
@@ -100,17 +102,17 @@ export default function Header() {
                 />
 
                 {!user && (
-                    <ReactionButton
-                        variant='accent'
+                    <PrimaryLink
+                        href='https://ktube-2y4u.onrender.com/auth/google'
+                        aria-label='Sign in via google'
                         title='Sign in'
-                        aria-label='Sign in your account or create an account'
                         icon={{
                             iconHref: '#user-icon',
                             iconWidth: 24,
                             iconHeight: 24,
-                            iconColor: 'var(--background-color)',
+                            iconColor: 'var(--font-color)',
                         }}
-                        data-testid='sign-in-button'
+                        data-testid='sign-in-link'
                     />
                 )}
             </div>

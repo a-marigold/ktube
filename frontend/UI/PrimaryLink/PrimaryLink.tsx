@@ -31,6 +31,7 @@ export default function PrimaryLink({
                     width={icon.iconWidth}
                     height={icon.iconHeight}
                     color={icon.iconColor}
+                    aria-hidden='true'
                 >
                     <use href={icon.iconHref} />
                 </svg>

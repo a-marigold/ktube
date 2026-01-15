@@ -82,12 +82,12 @@ describe('Toggle Navbar logic in Header', () => {
 
         render(<Header />);
 
-        expect(screen.queryByTestId('sign-in-button')).toBeDefined();
+        expect(screen.queryByTestId('sign-in-link')).toBeDefined();
 
         useUserStore.setState({ user: {} });
 
         render(<Header />);
 
-        expect(screen.queryByTestId('sign-in-button')).toBeNull();
+        expect(screen.queryByTestId('sign-in-link')).toBeNull();
     });
 });
