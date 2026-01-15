@@ -6,7 +6,7 @@
       "name": "backend",
       "dependencies": {
         "@ktube/shared": "../shared/ktube-shared-0.1.0.tgz",
-        "bun-crumb": "^0.7.0",
+        "bun-crumb": "^0.8.0",
         "zod": "^4.3.5",
       },
       "devDependencies": {
@@ -24,7 +24,7 @@
 
     "@types/node": ["@types/node@25.0.8", "", { "dependencies": { "undici-types": "~7.16.0" } }, "sha512-powIePYMmC3ibL0UJ2i2s0WIbq6cg6UyVFQxSCpaPxxzAaziRfimGivjdF943sSGV6RADVbk0Nvlm5P/FB44Zg=="],
 
-    "bun-crumb": ["bun-crumb@0.7.0", "", { "peerDependencies": { "typescript": "^5" } }, "sha512-e4cBIsn3XdllRamKF/3RJHe32AumF1X4ubRyD1lxHbXxOykOZWCoMYJ85jIzZAFMUpx/GrmGFOZ58/B9qofmPg=="],
+    "bun-crumb": ["bun-crumb@0.8.0", "", { "peerDependencies": { "typescript": "^5" } }, "sha512-QZvuotb6Xu7xiIwg3PAiICL/uKKjMBtSFPEJc1owArf7V0z4TU7HbKnan4Z1qayg0ZNQ4JnTcPNwtLxZqpa2xw=="],
 
     "bun-types": ["bun-types@1.3.6", "", { "dependencies": { "@types/node": "*" } }, "sha512-OlFwHcnNV99r//9v5IIOgQ9Uk37gZqrNMCcqEaExdkVq3Avwqok1bJFmvGMCkCE0FqzdY8VMOZpfpR3lwI+CsQ=="],
 

@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         // Environment setup & latest features
+
         "lib": ["ESNext"],
         "target": "ESNext",
         "module": "Preserve",
@@ -8,6 +9,7 @@
         "allowJs": true,
 
         // Bundler mode
+
         "moduleResolution": "bundler",
         "allowImportingTsExtensions": true,
         "verbatimModuleSyntax": true,
@@ -23,8 +25,15 @@
         // Some stricter flags (disabled by default)
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noPropertyAccessFromIndexSignature": true
+        "noPropertyAccessFromIndexSignature": false,
+
+        "baseUrl": ".",
+
+        "paths": {
+            "@/*": ["./src/*"]
+        }
     },
+
     "include": ["./src"],
     "exclude": ["node_modules", "dist"]
 }

@@ -1,6 +1,6 @@
-import { object, string, number } from 'zod';
+import { object, string, number } from 'zod/v4-mini';
 
-import type { infer as zInfer } from 'zod';
+import type { infer as zInfer } from 'zod/v4-mini';
 
 export const apiResponseSchema = object({
     message: string(),
@@ -14,6 +14,7 @@ export const apiResponseSchema = object({
  *
  *
  * Default API response with status and message
+ *
  *
  *
  */

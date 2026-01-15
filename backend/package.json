@@ -15,7 +15,7 @@
     },
     "dependencies": {
         "@ktube/shared": "../shared/ktube-shared-0.1.0.tgz",
-        "bun-crumb": "^0.7.0",
+        "bun-crumb": "^0.8.0",
         "zod": "^4.3.5"
     }
 }
