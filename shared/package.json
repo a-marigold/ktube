@@ -5,7 +5,9 @@
     "type": "module",
     "private": true,
     "scripts": {
-        "build": "tsc && bun pm pack"
+        "build": "tsc && bun pm pack",
+        "backendBuild": "tsc && bun pm pack",
+        "frontendBuild": "tsc && pnpm pack"
     },
     "files": [
         "dist"
