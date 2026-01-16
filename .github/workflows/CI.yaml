@@ -34,7 +34,7 @@ jobs:
     - name: build shared
       working-directory: shared
 
-      run: pnpm frontendBuild
+      run: pnpm install && pnpm frontendBuild
 
     - name: Install dependencies
 
@@ -49,3 +49,36 @@ jobs:
     - name: Build frontend
 
       run: pnpm build
+
+  backendCI:
+    name: backend CI
+
+    defaults:
+      run:
+
+        working-directory: backend
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: set up bun
+      uses: oven-sh/setup-bun@v2
+
+    - name: build shared
+
+      working-directory: shared
+      run: bun install && bun run backendBuild
+
+    - name: Install dependencies
+      run: bun install
+
+    - name: run linter
+
+      run: bun run lint
+
+    - name: run tests
+
+      run: bun test
+
+    - name: build
+      run: bun run build
