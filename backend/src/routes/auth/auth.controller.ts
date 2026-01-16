@@ -24,7 +24,8 @@ export const redirectToGoogleOauth: RouteHandler = (_request, response) => {
 };
 
 export const handleGoogleOauthCode: RouteHandler = (
-    request: RouteRequest<{ params: GoogleOauthParam }>
+    request: RouteRequest<{ params: GoogleOauthParam }>,
+    response
 ) => {
     const code = request.params.code;
 
@@ -38,5 +39,7 @@ export const handleGoogleOauthCode: RouteHandler = (
             grant_type: 'authorization_code',
             code,
         }),
+    }).then(() => {
+        response.setCookie({ name: 's' });
     });
 };
