@@ -53,6 +53,8 @@ jobs:
   backendCI:
     name: backend CI
 
+    runs-on: ubuntu-latest
+
     defaults:
       run:
 
