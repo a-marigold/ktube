@@ -1,0 +1,1 @@
+export { validateDataOrThrow } from './validateDataOrThrow';

@@ -1,9 +1,34 @@
+import { string, object } from 'zod/v4-mini';
+import type { infer as zInfer } from 'zod/v4-mini';
+
 export type GoogleOauthParam = 'code';
 
-export type GoogleOauthResponse = {
-    access_token: string;
-    refresh_token: string;
+export type GoogleOauthFetchBody = {
+    client_id: string;
+    client_secret?: string;
 
-    id_token: string;
-    expires_in: number;
+    redirect_uri: string;
+    response_type?: string;
+
+    grant_type?: 'authorization_code';
+
+    code?: string;
+
+    scope?: string;
 };
+
+export const googleOauthTokenSchema = object({
+    access_token: string(),
+
+    id_token: string(),
+});
+export type GoogleOauthToken = zInfer<typeof googleOauthTokenSchema>;
+
+export const googleOauthUserSchema = object({
+    sub: string(),
+    name: string(),
+
+    picture: string(),
+    email: string(),
+});
+export type GoogleOauthUser = zInfer<typeof googleOauthUserSchema>;

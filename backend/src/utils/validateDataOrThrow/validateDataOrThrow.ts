@@ -4,6 +4,13 @@ import type { ZodMiniType } from 'zod/v4-mini';
 
 import { ApiError } from '@ktube/shared';
 
+type ValidateDataOrThrow = <T>(
+    data: unknown,
+    schema: ZodType<T> | ZodMiniType<T>,
+    error: string,
+    status: number,
+) => asserts data is T;
+
 /**
  * #### Validates data by provided schema and throws an `ApiError` instance if it is not success
  *
@@ -14,7 +21,7 @@ import { ApiError } from '@ktube/shared';
  * @param error error message
  * @param status HTTP status code for this error
  */
-export const validateDataOrThrow = <T>(
+export const validateDataOrThrow: ValidateDataOrThrow = <T>(
     data: unknown,
     schema: ZodType<T> | ZodMiniType<T>,
 
