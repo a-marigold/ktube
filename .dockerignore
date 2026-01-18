@@ -1,0 +1,7 @@
+sfrontend
+
+.git
+
+**/dist
+
+**/node_modules
