@@ -1,2 +1,2 @@
 export * from './oauth';
-export * from './websiteUrl';
+export * from './urlOrigins';

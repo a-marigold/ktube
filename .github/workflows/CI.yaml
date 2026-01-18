@@ -34,11 +34,12 @@ jobs:
     - name: build shared
       working-directory: shared
 
-      run: pnpm store prune && pnpm install && pnpm frontendBuild
+      run: pnpm install  && pnpm frontendBuild
 
     - name: Install dependencies
 
-      run: pnpm install
+      run: pnpm store prune && pnpm install
+
     - name: Run Linter
       run: pnpm lint
 
