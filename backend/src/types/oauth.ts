@@ -13,8 +13,8 @@ export type GoogleOauthFetchBody = {
     grant_type?: 'authorization_code';
 
     code?: string;
-
     scope?: string;
+    state?: string;
 };
 
 export const googleOauthTokenSchema = object({

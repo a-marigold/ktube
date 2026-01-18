@@ -1,3 +1,4 @@
+import type { CookieInit } from 'bun';
 import jwt from 'jsonwebtoken';
 
 import { validateDataOrThrow } from '@/utils';
@@ -50,4 +51,43 @@ export const handleGoogleUser = (idToken: string): GoogleOauthUser => {
         400,
     );
     return googleUser;
+};
+
+/**
+ * Generates cookies for authorization as `Bun.CookieInit`.
+ *
+ *
+ * @param userSub `User.sub` (unique subject identifier) for accessToken.
+ */
+export const generateAuthCookies = (
+    userSub: string,
+): {
+    accessTokenCookie: CookieInit;
+    refreshTokenCookie: CookieInit;
+} => {
+    const accessToken = jwt.sign(userSub, '', { algorithm: 'RS256' });
+
+    const refreshToken = crypto.randomUUID();
+
+    const accessTokenCookie: CookieInit = {
+        name: 'accessToken',
+        value: accessToken,
+
+        httpOnly: true,
+        secure: true,
+
+        sameSite: 'none',
+        path: '/',
+    };
+
+    const refreshTokenCookie: CookieInit = {
+        name: 'refreshToken',
+        value: refreshToken,
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none',
+        path: '/',
+    };
+
+    return { accessTokenCookie, refreshTokenCookie };
 };

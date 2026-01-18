@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
-
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 
 import { useUserStore } from '@/store/UserStore';
 
@@ -31,7 +30,7 @@ describe('Toggle Navbar logic in Header', () => {
                 <Header />
 
                 <Navbar />
-            </>
+            </>,
         );
 
         const toggleButton = screen.getByTestId('navbar-toggle-button');
@@ -61,7 +60,7 @@ describe('Toggle Navbar logic in Header', () => {
                 <Header />
 
                 <Navbar />
-            </>
+            </>,
         );
 
         const toggleButton = screen.getByTestId('navbar-toggle-button');
@@ -84,7 +83,9 @@ describe('Toggle Navbar logic in Header', () => {
 
         expect(screen.queryByTestId('sign-in-link')).toBeDefined();
 
-        useUserStore.setState({ user: {} });
+        act(() => {
+            useUserStore.setState({ user: {} });
+        });
 
         render(<Header />);
 

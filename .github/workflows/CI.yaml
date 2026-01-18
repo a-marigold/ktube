@@ -34,7 +34,7 @@ jobs:
     - name: build shared
       working-directory: shared
 
-      run: pnpm install && pnpm frontendBuild
+      run: pnpm store prune && pnpm install && pnpm frontendBuild
 
     - name: Install dependencies
 
