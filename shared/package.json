@@ -5,6 +5,7 @@
     "type": "module",
     "private": true,
     "scripts": {
+        "lint": "bunx biome lint",
         "build": "tsc && bun pm pack",
         "backendBuild": "tsc && bun pm pack",
         "frontendBuild": "tsc && pnpm pack"
@@ -15,6 +16,7 @@
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "devDependencies": {
+        "@biomejs/biome": "^2.3.11",
         "@types/bun": "latest"
     },
     "peerDependencies": {
