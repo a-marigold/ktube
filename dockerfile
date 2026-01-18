@@ -1,4 +1,4 @@
-FROM oven/bun:1.0
+FROM oven/bun:latest
 
 
 
@@ -25,4 +25,8 @@ RUN bun run build
 ENV NODE_ENV=production
 
 CMD ["bun", "run", "start"]
+
+
+
+
 

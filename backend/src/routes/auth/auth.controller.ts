@@ -11,7 +11,12 @@ import {
 import { ApiError } from '@ktube/shared';
 import type { ApiResponse } from '@ktube/shared';
 
-import { GOOGLE_OAUTH_ENDPOINT, GOOGLE_REDIRECT_URI } from '@/constants';
+import {
+    GOOGLE_OAUTH_ENDPOINT,
+    GOOGLE_REDIRECT_URI,
+    AuthCookies,
+    WEBSITE_ORIGIN,
+} from '@/constants';
 
 import type { GoogleOauthParam, GoogleOauthFetchBody } from '@/types/oauth';
 
@@ -27,7 +32,7 @@ export const redirectToGoogleOauth: RouteHandler = (_request, response) => {
     };
 
     response.setCookie({
-        name: 'state',
+        name: AuthCookies.googleOauthState,
         value: state,
         httpOnly: true,
         secure: true,
@@ -49,6 +54,18 @@ export const handleGoogleOauthCode: RouteHandler = (
 ) => {
     const code = request.query.get('code');
 
+    const googleOauthQueryState = request.query.get('state');
+    const googleOauthCookieState = request.cookies.get(
+        AuthCookies.googleOauthState,
+    );
+
+    if (
+        !googleOauthQueryState ||
+        googleOauthQueryState !== googleOauthCookieState
+    ) {
+        return response.redirect(WEBSITE_ORIGIN, 302);
+    }
+
     const body: GoogleOauthFetchBody = {
         client_id: process.env.GOOGLE_OAUTH_CLIENT_ID ?? '',
 
@@ -64,7 +81,7 @@ export const handleGoogleOauthCode: RouteHandler = (
         .then((data) => {
             const googleUser = handleGoogleUser(data.id_token);
 
-            db.query.users
+            return db.query.users
                 .findFirst({
                     where: (users, operators) => {
                         return operators.eq(users.sub, googleUser.sub);
@@ -82,7 +99,7 @@ export const handleGoogleOauthCode: RouteHandler = (
 
                     response.setCookie(cookies.refreshTokenCookie);
 
-                    return response.send();
+                    return response.redirect(WEBSITE_ORIGIN, 302);
                 });
         })
         .catch((error) => {
