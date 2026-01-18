@@ -1,6 +1,5 @@
 {
     "name": "backend",
-    "module": "index.ts",
     "type": "module",
     "private": true,
     "devDependencies": {
@@ -24,6 +23,7 @@
     },
     "scripts": {
         "dev": "bun ./src/index.ts",
+        "start": "bun ./dist/index.js",
         "upshared": "bun rm @ktube/shared && bun install && bun add ../shared/ktube-shared-0.1.0.tgz",
         "build": "bun build --target=bun ./src/index.ts --minify --outdir=./dist",
         "lint": "bunx biome lint"

@@ -1,0 +1,22 @@
+FROM oven/bun:1.0
+
+
+
+
+WORKDIR /app
+
+
+
+COPY bun.lock package.json ./
+
+
+
+
+
+RUN bun install 
+RUN bun run build
+
+
+COPY . .
+
+ENV NODE_ENV=production
