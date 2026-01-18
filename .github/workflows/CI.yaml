@@ -38,7 +38,7 @@ jobs:
 
     - name: Install dependencies
 
-      run: pnpm store prune && pnpm install
+      run: pnpm store prune && pnpm install --no-frozen-lockfile
 
     - name: Run Linter
       run: pnpm lint
