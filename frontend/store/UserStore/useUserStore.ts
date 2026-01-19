@@ -1,11 +1,13 @@
 import { create } from 'zustand';
 
+import type { User } from '@ktube/shared';
+
 // TODO: add real user type
 
 interface UserStore {
-    user: object | null;
+    user: User | null;
 
-    setUser: (newUser: object) => void;
+    setUser: (newUser: User) => void;
 }
 
 export const useUserStore = create<UserStore>()((set) => ({
