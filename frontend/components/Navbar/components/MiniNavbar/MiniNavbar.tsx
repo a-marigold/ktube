@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useModalStore } from '@/store/ModalStore';
 import { useTooltipStore } from '@/store/TooltipStore';
 
-import { MODAL_GAP } from '@/constants/modalGap';
+import { MODAL_GAP } from '@/constants';
 
 import SubscriptionsModal from '@modals/SubscriptionsModal';
 
@@ -75,7 +75,7 @@ export default function MiniNavbar() {
                                 position='right'
                                 gap={MODAL_GAP}
                             />,
-                            false
+                            false,
                         );
                         if (link.tooltipTitle) {
                             showTooltip({

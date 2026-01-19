@@ -4,7 +4,7 @@ import type { infer as zInfer } from 'zod/v4-mini';
 export type GoogleOauthParam = 'code';
 
 export type GoogleOauthFetchBody = {
-    client_id: string;
+    client_id?: string;
     client_secret?: string;
 
     redirect_uri: string;

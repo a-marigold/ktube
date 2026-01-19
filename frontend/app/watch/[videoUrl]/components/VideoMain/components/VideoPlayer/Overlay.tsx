@@ -6,7 +6,7 @@ import type { RefObject, Dispatch } from 'react';
 
 import { useTooltipStore } from '@/store/TooltipStore';
 
-import { MODAL_GAP } from '@/constants/modalGap';
+import { MODAL_GAP } from '@/constants';
 
 import OverlayButton from '@/UI/OverlayButton';
 import Slider from '@/UI/Slider';

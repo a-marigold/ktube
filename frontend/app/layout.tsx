@@ -2,7 +2,8 @@ import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
-import HotkeyRoot from '@/components/HotkeyRoot/HotkeyRoot';
+import AuthRoot from '@/components/AuthRoot';
+import HotkeyRoot from '@/components/HotkeyRoot';
 import ModalRoot from '@/components/ModalRoot';
 import TooltipRoot from '@/components/TooltipRoot';
 
@@ -12,7 +13,6 @@ import Navbar from '@/components/Navbar';
 import SvgSprites from '@/UI/SvgSprites';
 
 import './globals.scss';
-
 const roboto = Roboto({ variable: '--roboto-font', subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -28,6 +28,8 @@ export default function RootLayout({
     return (
         <html lang='en'>
             <body className={roboto.className}>
+                <AuthRoot />
+
                 <HotkeyRoot />
                 <ModalRoot />
                 <TooltipRoot />

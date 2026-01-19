@@ -8,7 +8,7 @@ import {
     mediaBreakpoints,
     miniNavbarWidth,
     fullNavbarWidth,
-} from '@/constants/styles';
+} from '@/constants';
 
 import { useNavbarStore } from '@/store/NavbarStore';
 
@@ -19,7 +19,7 @@ export default function Navbar() {
     const showNavbar = useNavbarStore((state) => state.showNavbar);
 
     const maxWidthMatches = useMediaQuery(
-        `(max-width: ${mediaBreakpoints.extraLarge}px)`
+        `(max-width: ${mediaBreakpoints.extraLarge}px)`,
     );
 
     useEffect(() => {
@@ -28,8 +28,8 @@ export default function Navbar() {
             maxWidthMatches
                 ? miniNavbarWidth + 'px'
                 : showNavbar
-                ? fullNavbarWidth + 'px'
-                : miniNavbarWidth + 'px'
+                  ? fullNavbarWidth + 'px'
+                  : miniNavbarWidth + 'px',
         );
     }, [showNavbar, maxWidthMatches]);
 
