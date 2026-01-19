@@ -3,7 +3,7 @@ import { ApiError } from '@ktube/shared';
 import type { ApiResponse } from '@ktube/shared';
 
 /**
- * Throws an ApiError even if `response.ok` is true.
+ * #### If the `response.ok` is `false`, throws an ApiError instance
  *
  *
  * @param {Response} response an API response.
@@ -17,7 +17,12 @@ import type { ApiResponse } from '@ktube/shared';
  */
 
 export const handleApiError = (response: Response): Promise<never> => {
-    return response.json().then((data: ApiResponse) => {
-        throw new ApiError(data.message, data.status);
-    });
+    return response.json().then(
+        (data: ApiResponse) => {
+            throw new ApiError(data.message, data.status);
+        },
+        () => {
+            throw new ApiError('Internal server error', 500);
+        },
+    );
 };
