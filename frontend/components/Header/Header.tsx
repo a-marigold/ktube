@@ -7,7 +7,7 @@ import { useNavbarStore } from '@/store/NavbarStore';
 import { useModalStore } from '@/store/ModalStore';
 import { useTooltipStore } from '@/store/TooltipStore';
 
-import { MODAL_GAP } from '@/constants/modalGap';
+import { MODAL_GAP, API_ORIGIN } from '@/constants';
 
 import SearchModal from '../ModalRoot/modals/SearchModal';
 
@@ -42,7 +42,7 @@ export default function Header() {
                 gap={12}
             />,
 
-            false
+            false,
         );
     };
 
@@ -103,7 +103,7 @@ export default function Header() {
 
                 {!user && (
                     <PrimaryLink
-                        href='https://ktube-2y4u.onrender.com/auth/google'
+                        href={API_ORIGIN + '/auth/google'}
                         aria-label='Sign in via google'
                         title='Sign in'
                         icon={{

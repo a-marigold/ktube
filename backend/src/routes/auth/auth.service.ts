@@ -12,7 +12,6 @@ import type {
     GoogleOauthUser,
 } from '@/types/oauth';
 
-//
 export const fetchGoogleOauthTokens = (
     body: GoogleOauthFetchBody,
 ): Promise<GoogleOauthToken> => {

@@ -14,7 +14,7 @@ export const authRoutes = () => {
 
     createRoute({
         url: '/auth/google/callback',
-        method: 'GET',
+        method: 'POST',
 
         handler: handleGoogleOauthCode,
     });

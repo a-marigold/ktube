@@ -53,7 +53,7 @@ export const handleGoogleOauthCode: RouteHandler = (
     response: RouteResponse<{ body: ApiResponse }>,
 ) => {
     const code = request.query.get('code');
-
+    Bun.stdout.write('API_ORIGIN from env:' + process.env.API_ORIGIN + '\n');
     const googleOauthQueryState = request.query.get('state');
     const googleOauthCookieState = request.cookies.get(
         AuthCookies.googleOauthState,
