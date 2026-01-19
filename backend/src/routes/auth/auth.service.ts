@@ -3,7 +3,12 @@ import jwt from 'jsonwebtoken';
 
 import { validateDataOrThrow } from '@/utils';
 
-import { GOOGLE_OAUTH_TOKEN_ENDPOINT } from '@/constants';
+import {
+    GOOGLE_OAUTH_CLIENT_ID,
+    GOOGLE_OAUTH_CLIENT_SECRET,
+    GOOGLE_OAUTH_TOKEN_ENDPOINT,
+    GOOGLE_REDIRECT_URI,
+} from '@/constants';
 
 import { googleOauthTokenSchema, googleOauthUserSchema } from '@/types/oauth';
 import type {
@@ -13,8 +18,19 @@ import type {
 } from '@/types/oauth';
 
 export const fetchGoogleOauthTokens = (
-    body: GoogleOauthFetchBody,
+    code: string,
 ): Promise<GoogleOauthToken> => {
+    const body: GoogleOauthFetchBody = {
+        client_id: GOOGLE_OAUTH_CLIENT_ID,
+        client_secret: GOOGLE_OAUTH_CLIENT_SECRET,
+
+        redirect_uri: GOOGLE_REDIRECT_URI,
+
+        grant_type: 'authorization_code',
+
+        code,
+    };
+
     return fetch(GOOGLE_OAUTH_TOKEN_ENDPOINT, {
         method: 'POST',
 

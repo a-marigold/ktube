@@ -7,6 +7,7 @@ export const GOOGLE_OAUTH_ENDPOINT =
     'https://accounts.google.com/o/oauth2/v2/auth';
 
 /**
+ *
  * Google oauth v2 token endpoint
  */
 export const GOOGLE_OAUTH_TOKEN_ENDPOINT =
@@ -18,3 +19,8 @@ export const GOOGLE_OAUTH_TOKEN_ENDPOINT =
  * Google oauth redirect URL
  */
 export const GOOGLE_REDIRECT_URI = API_ORIGIN + '/auth/google/callback';
+
+export const GOOGLE_OAUTH_CLIENT_ID = process.env.GOOGLE_OAUTH_CLIENT_ID;
+
+export const GOOGLE_OAUTH_CLIENT_SECRET =
+    process.env.GOOGLE_OAUTH_CLIENT_SECRER;

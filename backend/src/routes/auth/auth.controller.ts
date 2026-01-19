@@ -1,3 +1,4 @@
+import { redis } from 'bun';
 import type { RouteHandler, RouteRequest, RouteResponse } from 'bun-crumb';
 
 import { db, users } from '@/db';
@@ -14,6 +15,8 @@ import type { ApiResponse } from '@ktube/shared';
 import {
     GOOGLE_OAUTH_ENDPOINT,
     GOOGLE_REDIRECT_URI,
+    GOOGLE_OAUTH_CLIENT_ID,
+    GOOGLE_OAUTH_CLIENT_SECRET,
     AuthCookies,
     WEBSITE_ORIGIN,
 } from '@/constants';
@@ -24,7 +27,7 @@ export const redirectToGoogleOauth: RouteHandler = (_request, response) => {
     const state = crypto.randomUUID();
 
     const payload: GoogleOauthFetchBody = {
-        client_id: process.env.GOOGLE_OAUTH_CLIENT_ID ?? '',
+        client_id: GOOGLE_OAUTH_CLIENT_ID ?? '',
         redirect_uri: GOOGLE_REDIRECT_URI,
         response_type: 'code',
         scope: 'openid email profile',
@@ -53,7 +56,7 @@ export const handleGoogleOauthCode: RouteHandler = (
     response: RouteResponse<{ body: ApiResponse }>,
 ) => {
     const code = request.query.get('code');
-    Bun.stdout.write('API_ORIGIN from env:' + process.env.API_ORIGIN + '\n');
+
     const googleOauthQueryState = request.query.get('state');
     const googleOauthCookieState = request.cookies.get(
         AuthCookies.googleOauthState,
@@ -66,18 +69,7 @@ export const handleGoogleOauthCode: RouteHandler = (
         return response.redirect(WEBSITE_ORIGIN, 302);
     }
 
-    const body: GoogleOauthFetchBody = {
-        client_id: process.env.GOOGLE_OAUTH_CLIENT_ID ?? '',
-
-        client_secret: process.env.GOOGLE_OAUTH_CLIENT_SECRET ?? '',
-
-        redirect_uri: GOOGLE_REDIRECT_URI,
-
-        grant_type: 'authorization_code',
-        code: code ?? '',
-    };
-
-    return fetchGoogleOauthTokens(body)
+    return fetchGoogleOauthTokens(code ?? '')
         .then((data) => {
             const googleUser = handleGoogleUser(data.id_token);
 
@@ -106,8 +98,35 @@ export const handleGoogleOauthCode: RouteHandler = (
             if (error instanceof ApiError) {
                 return response.send({
                     message: error.message,
+
                     status: error.status,
                 });
             }
+        });
+};
+
+export const refresh: RouteHandler = (request, response) => {
+    const refreshToken = request.cookies.get(AuthCookies.refreshToken);
+
+    if (!refreshToken) {
+        return response.send(null, { status: 401 });
+    }
+
+    return redis
+        .get(refreshToken)
+        .then((userSub) => {
+            if (!userSub) {
+                return response.send(null, { status: 403 });
+            }
+
+            const newCookies = generateAuthCookies(userSub);
+
+            response.setCookie(newCookies.accessTokenCookie);
+            response.setCookie(newCookies.refreshTokenCookie);
+
+            return response.send();
+        })
+        .catch(() => {
+            return response.send(null, { status: 401 });
         });
 };

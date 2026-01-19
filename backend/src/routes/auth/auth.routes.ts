@@ -3,6 +3,7 @@ import { createRoute } from 'bun-crumb';
 import {
     redirectToGoogleOauth,
     handleGoogleOauthCode,
+    refresh,
 } from './auth.controller';
 
 export const authRoutes = () => {
@@ -17,5 +18,11 @@ export const authRoutes = () => {
         method: 'POST',
 
         handler: handleGoogleOauthCode,
+    });
+
+    createRoute({
+        url: '/auth/refresh',
+        method: 'POST',
+        handler: refresh,
     });
 };
