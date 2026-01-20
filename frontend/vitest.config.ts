@@ -14,8 +14,12 @@ export default defineConfig({
                 find: '@modals',
                 replacement: path.resolve(
                     __dirname,
-                    './components/ModalRoot/modals'
+                    './components/ModalRoot/modals',
                 ),
+            },
+            {
+                find: '@ktube/shared',
+                replacement: path.resolve(__dirname, '../shared/dist'),
             },
         ],
         extensions: ['.ts', '.tsx', '.js', '.jsx'],

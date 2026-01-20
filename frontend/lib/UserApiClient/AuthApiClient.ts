@@ -1,7 +1,6 @@
 // TODO: deprecate
 
 import { handleVoid } from '@/utils/handleVoid';
-import { handleApiError } from '@/utils/handleApiError';
 
 import { API_ORIGIN } from '@/constants/apiOrigin';
 

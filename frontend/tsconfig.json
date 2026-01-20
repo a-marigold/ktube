@@ -22,7 +22,8 @@
         "verbatimModuleSyntax": true,
         "paths": {
             "@/*": ["./*"],
-            "@modals/*": ["./components/ModalRoot/modals/*"]
+            "@modals/*": ["./components/ModalRoot/modals/*"],
+            "@ktube/shared": ["../shared/dist"]
         }
     },
 

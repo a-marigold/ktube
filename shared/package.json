@@ -6,9 +6,7 @@
     "private": true,
     "scripts": {
         "lint": "bunx biome lint",
-        "build": "tsc && bun pm pack",
-        "backendBuild": "tsc && bun pm pack",
-        "frontendBuild": "tsc && pnpm pack"
+        "build": "tsc"
     },
     "files": [
         "dist"

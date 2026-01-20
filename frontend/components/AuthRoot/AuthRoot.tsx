@@ -1,16 +1,14 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useUserStore } from '@/store/UserStore';
 
-import { useEffect } from 'react';
-
 import { refreshAccessToken, getUser } from '@/lib/UserApiClient';
-
 import { REFRESH_TOKEN_MAX_AGE_MS } from '@ktube/shared';
 
 export default function AuthRoot() {
     const setUser = useUserStore((state) => state.setUser);
-
+    // biome-ignore lint: lint/correctness/useExhaustiveDependencies
     useEffect(() => {
         const refreshUser = () => {
             refreshAccessToken();

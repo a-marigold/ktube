@@ -3,7 +3,6 @@
 // TODO: handler and effect order
 
 import { useEffect, useRef } from 'react';
-import type { Dispatch, SetStateAction } from 'react';
 
 import sliderStyles from './Slider.module.scss';
 
@@ -104,7 +103,7 @@ export default function Slider({
                 onChange(maxValue);
             } else {
                 onChange(
-                    minValue + (lastLeft / usableWidth) * (maxValue - minValue)
+                    minValue + (lastLeft / usableWidth) * (maxValue - minValue),
                 );
             }
 
