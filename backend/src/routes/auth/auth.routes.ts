@@ -4,6 +4,7 @@ import {
     redirectToGoogleOauth,
     handleGoogleOauthCode,
     refresh,
+    getUserBySub,
 } from './auth.controller';
 
 export const authRoutes = () => {
@@ -24,5 +25,11 @@ export const authRoutes = () => {
         url: '/auth/refresh',
         method: 'POST',
         handler: refresh,
+    });
+
+    createRoute({
+        url: '/auth/user',
+        method: 'GET',
+        handler: getUserBySub,
     });
 };

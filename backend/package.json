@@ -14,7 +14,6 @@
     },
     "dependencies": {
         "@biomejs/biome": "^2.3.11",
-        "@ktube/shared": "../shared/ktube-shared-0.1.0.tgz",
         "bun-crumb": "^0.12.4",
         "drizzle-orm": "^0.45.1",
         "jsonwebtoken": "^8.5.1",
@@ -24,7 +23,6 @@
     "scripts": {
         "dev": "bun ./src/index.ts",
         "start": "bun ./dist/index.js",
-        "upshared": "bun rm @ktube/shared && bun install && bun add ../shared/ktube-shared-0.1.0.tgz",
         "build": "bun build --target=bun ./src/index.ts --minify --outdir=./dist",
         "lint": "bunx biome lint"
     }

@@ -1,6 +1,8 @@
 import type { CookieInit } from 'bun';
 import jwt from 'jsonwebtoken';
 
+import { db } from '@/db';
+
 import { validateDataOrThrow } from '@/utils';
 
 import {
@@ -16,6 +18,9 @@ import type {
     GoogleOauthToken,
     GoogleOauthUser,
 } from '@/types/oauth';
+
+import { ApiError } from '@ktube/shared';
+import type { User } from '@ktube/shared';
 
 export const fetchGoogleOauthTokens = (
     code: string,
@@ -35,10 +40,10 @@ export const fetchGoogleOauthTokens = (
         method: 'POST',
 
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
         },
 
-        body: JSON.stringify(body),
+        body: new URLSearchParams(body),
     })
         .then((response) => {
             return response.json();
@@ -105,4 +110,31 @@ export const generateAuthCookies = (
     };
 
     return { accessTokenCookie, refreshTokenCookie };
+};
+
+export const getUserFromAccessToken = (accessToken: string): Promise<User> => {
+    const userSub = jwt.verify(accessToken, '');
+
+    if (!userSub) {
+        return Promise.reject(
+            new ApiError(
+                'Subject identifier from access token is not valid',
+                403,
+            ),
+        );
+    }
+
+    return db.query.users
+        .findFirst({
+            where: (user, operators) => {
+                return operators.eq(user.sub, userSub as string);
+            },
+        })
+        .then((user) => {
+            if (!user) {
+                throw new ApiError('User is not found', 404);
+            }
+
+            return user;
+        });
 };

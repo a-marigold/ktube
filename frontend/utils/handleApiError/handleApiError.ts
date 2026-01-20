@@ -3,7 +3,7 @@ import { ApiError } from '@ktube/shared';
 import type { ApiResponse } from '@ktube/shared';
 
 /**
- * #### If the `response.ok` is `false`, throws an ApiError instance
+ * #### Throws an ApiError instance even if the `response.ok` is true.
  *
  *
  * @param {Response} response an API response.

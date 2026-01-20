@@ -12,14 +12,24 @@ export default function AuthRoot() {
     const setUser = useUserStore((state) => state.setUser);
 
     useEffect(() => {
-        const refreshInterval = setInterval(() => {
+        const refreshUser = () => {
             refreshAccessToken();
-
             getUser().then(setUser);
-        }, REFRESH_TOKEN_MAX_AGE_MS);
+        };
+
+        const refreshInterval = setInterval(
+            refreshUser,
+            REFRESH_TOKEN_MAX_AGE_MS,
+        );
+
+        refreshUser();
+
+        window.addEventListener('focus', refreshAccessToken);
 
         return () => {
             clearInterval(refreshInterval);
+
+            window.removeEventListener('focus', refreshAccessToken);
         };
     }, []);
 

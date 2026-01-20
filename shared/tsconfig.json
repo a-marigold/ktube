@@ -4,6 +4,7 @@
 
         "lib": ["ESNext"],
         "target": "esnext",
+
         "moduleDetection": "force",
 
         "allowJs": true,
@@ -11,6 +12,7 @@
         "moduleResolution": "bundler",
 
         "allowImportingTsExtensions": false,
+
         "verbatimModuleSyntax": true,
 
         "noEmit": false,
