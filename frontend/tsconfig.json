@@ -23,7 +23,7 @@
         "paths": {
             "@/*": ["./*"],
             "@modals/*": ["./components/ModalRoot/modals/*"],
-            "@ktube/shared": ["../shared/dist"]
+            "@ktube/shared": ["../shared/dist/index.d.ts"]
         }
     },
 
