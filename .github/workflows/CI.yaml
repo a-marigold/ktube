@@ -61,7 +61,7 @@ jobs:
     - name: build shared
       working-directory: shared
 
-      run: pnpm install  && pnpm frontendBuild
+      run: pnpm install && pnpm build
 
     - name: Install dependencies
 
@@ -98,7 +98,7 @@ jobs:
     - name: build shared
 
       working-directory: shared
-      run: bun install && bun run backendBuild
+      run: bun install && bun run build
 
     - name: Install dependencies
 
