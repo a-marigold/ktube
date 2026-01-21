@@ -103,6 +103,7 @@ export default function Header() {
 
                 {!user && (
                     <PrimaryLink
+                        external
                         href={API_ORIGIN + '/auth/google'}
                         aria-label='Sign in via google'
                         title='Sign in'

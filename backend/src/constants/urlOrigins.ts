@@ -8,3 +8,12 @@ export const WEBSITE_ORIGIN =
  * The URL of server where this code is running
  */
 export const API_ORIGIN = process.env.API_ORIGIN ?? 'http://localhost:8080';
+
+/**
+ *
+ *
+ *
+ * The URL of frontend `/auth` page
+ */
+
+export const WEBSITE_AUTH_URL = WEBSITE_ORIGIN + '/auth';

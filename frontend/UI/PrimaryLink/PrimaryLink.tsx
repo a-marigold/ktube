@@ -1,3 +1,5 @@
+import NextLink from 'next/link';
+
 import type { AnchorHTMLAttributes } from 'react';
 
 import type { IconProps } from '@/types/IconProps';
@@ -5,6 +7,8 @@ import type { IconProps } from '@/types/IconProps';
 import linkStyles from './PrimaryLink.module.scss';
 
 interface PrimaryLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+    external?: boolean;
+
     href: string;
     'aria-label': string;
 
@@ -12,14 +16,19 @@ interface PrimaryLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
     icon?: IconProps;
 }
 export default function PrimaryLink({
+    external = false,
+
     title,
     icon,
 
     className,
+
     ...attributes
 }: PrimaryLinkProps) {
+    const Link = external ? 'a' : NextLink;
+
     return (
-        <a
+        <Link
             rel='noopener noreferrer'
             {...attributes}
             className={`${linkStyles['primary-link']} ${
@@ -38,6 +47,6 @@ export default function PrimaryLink({
             )}
 
             {title}
-        </a>
+        </Link>
     );
 }

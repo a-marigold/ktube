@@ -26,7 +26,7 @@ export default function Navbar() {
         document.documentElement.style.setProperty(
             '--navbar-width',
             maxWidthMatches
-                ? miniNavbarWidth + 'px'
+                ? '0'
                 : showNavbar
                   ? fullNavbarWidth + 'px'
                   : miniNavbarWidth + 'px',

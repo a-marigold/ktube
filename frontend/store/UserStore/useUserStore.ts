@@ -7,7 +7,7 @@ import type { User } from '@ktube/shared';
 interface UserStore {
     user: User | null;
 
-    setUser: (newUser: User) => void;
+    setUser: (newUser: User | null) => void;
 }
 
 export const useUserStore = create<UserStore>()((set) => ({
@@ -15,6 +15,6 @@ export const useUserStore = create<UserStore>()((set) => ({
 
     setUser: (newUser) =>
         set((state) => ({
-            user: { ...state.user, ...newUser },
+            user: newUser ? { ...state.user, ...newUser } : newUser,
         })),
 }));

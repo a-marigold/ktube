@@ -1,2 +1,3 @@
-export * from './User.js';
-export * from './ApiResponse.js';
+export * from './User';
+export * from './ApiResponse';
+export * from './AuthQueryParams';
