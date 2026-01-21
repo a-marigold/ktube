@@ -13,8 +13,7 @@ import {
 } from './auth.service';
 
 import { ApiError } from '@ktube/shared';
-
-import type { ApiResponse, User } from '@ktube/shared';
+import type { ApiResponse, User, AuthQueryParams } from '@ktube/shared';
 
 import {
     GOOGLE_OAUTH_ENDPOINT,
@@ -22,6 +21,7 @@ import {
     GOOGLE_OAUTH_CLIENT_ID,
     AuthCookies,
     WEBSITE_ORIGIN,
+    WEBSITE_AUTH_URL,
 } from '@/constants';
 
 import type { GoogleOauthParam, GoogleOauthFetchBody } from '@/types/oauth';
@@ -96,12 +96,26 @@ export const handleGoogleOauthCode: RouteHandler = (
 
                     response.setCookie(cookies.refreshTokenCookie);
 
-                    return response.redirect(WEBSITE_ORIGIN, 302);
+                    return response.redirect(
+                        WEBSITE_AUTH_URL +
+                            new URLSearchParams({
+                                status: 'Authorized successfully',
+                            } satisfies AuthQueryParams),
+                        302,
+                    );
                 });
         })
         .catch((error) => {
             if (error instanceof ApiError) {
-                return response.redirect(WEBSITE_ORIGIN, 302);
+                return response.redirect(
+                    WEBSITE_AUTH_URL +
+                        new URLSearchParams({
+                            message: error.message,
+
+                            status: 'Authorization error',
+                        } satisfies AuthQueryParams),
+                    302,
+                );
             }
         });
 };
