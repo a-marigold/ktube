@@ -19,7 +19,9 @@ out/
 
 # production
 build
+
 dist
+!/shared/dist/
 
 # misc
 .DS_Store
