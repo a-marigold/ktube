@@ -8,7 +8,7 @@ interface AuthPageProps {
     searchParams: Promise<Partial<AuthQueryParams>>;
 }
 
-export default function Auth({ searchParams }: AuthPageProps) {
+export default function AuthPage({ searchParams }: AuthPageProps) {
     return searchParams.then((params) => {
         const message = params.message;
         const status = params.status;
@@ -17,11 +17,11 @@ export default function Auth({ searchParams }: AuthPageProps) {
             <main className={authStyles['auth-page']}>
                 <div className={authStyles['message-box']}>
                     {message && (
-                        <span className={authStyles['status']}>{message}</span>
+                        <span className={authStyles['status']}>{status}</span>
                     )}
 
                     {status && (
-                        <h1 className={authStyles['message']}>{status}</h1>
+                        <h1 className={authStyles['message']}>{message}</h1>
                     )}
 
                     <PrimaryLink

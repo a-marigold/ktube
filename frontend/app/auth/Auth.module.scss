@@ -13,7 +13,7 @@
 .message-box {
     @include flex-column;
 
-    // align-items: center;
+    gap: 0.5rem;
 
     width: 100%;
     max-width: 600px;
@@ -22,10 +22,11 @@
     box-sizing: border-box;
 }
 .status {
-    color: var(--secondary-font-color);
     font-size: 2rem;
 }
 
 .message {
+    color: var(--secondary-font-color);
+
     @include text-wo-margin(1.5rem);
 }
