@@ -18,29 +18,41 @@ import FullNavbar from './components/FullNavbar';
 export default function Navbar() {
     const showNavbar = useNavbarStore((state) => state.showNavbar);
 
-    const maxWidthMatches = useMediaQuery(
+    const mediumMatches = useMediaQuery(
+        `(max-width: ${mediaBreakpoints.medium}px`,
+    );
+    const extraLargeMatches = useMediaQuery(
         `(max-width: ${mediaBreakpoints.extraLarge}px)`,
     );
 
     useEffect(() => {
+        let calcedNavbarWidth: number = 0;
+
+        if (mediumMatches) {
+            calcedNavbarWidth = 0;
+        } else if (extraLargeMatches) {
+            calcedNavbarWidth = miniNavbarWidth;
+        } else if (showNavbar) {
+            calcedNavbarWidth = fullNavbarWidth;
+        } else {
+            calcedNavbarWidth = miniNavbarWidth;
+        }
+
         document.documentElement.style.setProperty(
             '--navbar-width',
-            maxWidthMatches
-                ? '0'
-                : showNavbar
-                  ? fullNavbarWidth + 'px'
-                  : miniNavbarWidth + 'px',
-        );
-    }, [showNavbar, maxWidthMatches]);
 
-    return maxWidthMatches ? (
+            calcedNavbarWidth + 'px',
+        );
+    }, [showNavbar, extraLargeMatches, mediumMatches]);
+
+    return extraLargeMatches ? (
         <>
-            <FullNavbar maxWidthMatches={maxWidthMatches} />
+            <FullNavbar maxWidthMatches={extraLargeMatches} />
 
             <MiniNavbar />
         </>
     ) : showNavbar ? (
-        <FullNavbar maxWidthMatches={maxWidthMatches} />
+        <FullNavbar maxWidthMatches={extraLargeMatches} />
     ) : (
         <MiniNavbar />
     );
