@@ -16,25 +16,26 @@ import { useState, useEffect } from 'react';
  * return <div style={{ color: maxWidthMatches ? 'red' : 'black' }}> Hello </div>;
  * ```
  */
-export const useMediaQuery = (queryString: string) => {
-    const [isMatched, setIsMatched] = useState<boolean>(() => {
-        return typeof window === 'undefined'
+export const useMediaQuery = (query: string): boolean => {
+    const [isMatches, setIsMatches] = useState(() =>
+        typeof window === 'undefined'
             ? false
-            : window.matchMedia(queryString).matches;
-    });
+            : window.matchMedia(query).matches,
+    );
 
     useEffect(() => {
-        const mediaQuery = window.matchMedia(queryString);
-
-        const handleChange = (event: MediaQueryListEvent) => {
-            setIsMatched(event.matches);
+        const handleMatches = (event: MediaQueryListEvent) => {
+            setIsMatches(event.matches);
         };
-        mediaQuery.addEventListener('change', handleChange);
+
+        const mediaQuery = window.matchMedia(query);
+
+        mediaQuery.addEventListener('change', handleMatches);
 
         return () => {
-            mediaQuery.removeEventListener('change', handleChange);
+            mediaQuery.removeEventListener('change', handleMatches);
         };
-    }, [queryString]);
+    }, [query]);
 
-    return isMatched;
+    return isMatches;
 };
