@@ -109,6 +109,7 @@ export const handleGoogleOauthCode: RouteHandler = (
             if (error instanceof ApiError) {
                 return response.redirect(
                     WEBSITE_AUTH_URL +
+                        '?' +
                         new URLSearchParams({
                             message: error.message,
 

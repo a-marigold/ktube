@@ -52,7 +52,7 @@ export const fetchGoogleOauthTokens = (
             validateDataOrThrow(
                 data,
                 googleOauthTokenSchema,
-                'Invalid google tokens payload',
+                JSON.stringify(data),
                 400,
             );
 

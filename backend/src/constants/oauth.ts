@@ -1,12 +1,15 @@
 import { API_ORIGIN } from './urlOrigins';
 
 /**
+ *
+ *
  * Google oauth v2 endpoint
  */
 export const GOOGLE_OAUTH_ENDPOINT =
     'https://accounts.google.com/o/oauth2/v2/auth';
 
 /**
+ *
  *
  * Google oauth v2 token endpoint
  */
