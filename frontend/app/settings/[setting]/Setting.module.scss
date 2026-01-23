@@ -1,0 +1,11 @@
+.setting-page {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: var(--header-height);
+    margin-left: var(--navbar-width);
+
+    width: 100%;
+
+    height: 100%;
+}
