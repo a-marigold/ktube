@@ -1,17 +1,17 @@
-import type { SettingSection } from '../../../../settingContents';
+import type { SettingSection as SettingSectionProps } from '../../../../settingContents';
 
 import settingStyles from './SettingSection.module.scss';
 
 export default function SettingSection({
-    name,
+    title,
     description,
 
     groups,
-}: SettingSection) {
+}: SettingSectionProps) {
     return (
         <section className={settingStyles['setting-section']}>
             <header className={settingStyles['header']}>
-                <h2 className={settingStyles['title']}>{name}</h2>
+                <h2 className={settingStyles['title']}>{title}</h2>
 
                 <p className={settingStyles['description']}>{description}</p>
             </header>

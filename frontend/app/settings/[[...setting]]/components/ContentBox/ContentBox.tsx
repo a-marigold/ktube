@@ -33,7 +33,7 @@ export default function ContentBox({ currentSetting }: ContentBoxProps) {
 
             <div className={contentStyles['content-box']}>
                 {content.sections.map((section) => (
-                    <SettingSection {...section} />
+                    <SettingSection key={section.title} {...section} />
                 ))}
             </div>
         </main>
