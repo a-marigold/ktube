@@ -20,7 +20,10 @@
 
             "complexity": { "useLiteralKeys": "off" },
 
-            "suspicious": { "noAssignInExpressions": "off" },
+            "suspicious": {
+                "noAssignInExpressions": "off",
+                "noRedeclare": "off"
+            },
 
             "security": {
                 "noDangerouslySetInnerHtml": "off",

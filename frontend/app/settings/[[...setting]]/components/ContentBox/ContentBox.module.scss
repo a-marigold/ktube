@@ -32,6 +32,7 @@
 
 .description {
     @include text-wo-margin(var(--d-font-size));
+    color: var(--secondary-font-color);
 }
 .groups {
     @include flex-column;

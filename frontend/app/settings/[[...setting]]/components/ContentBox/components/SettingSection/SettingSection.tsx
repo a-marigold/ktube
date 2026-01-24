@@ -1,5 +1,7 @@
 import type { SettingSection as SettingSectionProps } from '../../../../settingContents';
 
+import SettingGroup from '../SettingGroup';
+
 import settingStyles from './SettingSection.module.scss';
 
 export default function SettingSection({
@@ -16,7 +18,11 @@ export default function SettingSection({
                 <p className={settingStyles['description']}>{description}</p>
             </header>
 
-            <div className={settingStyles['groups']}>{groups.toString()}</div>
+            <div className={settingStyles['groups']}>
+                {groups.map((group) => (
+                    <SettingGroup key={group.title} {...group} />
+                ))}
+            </div>
         </section>
     );
 }

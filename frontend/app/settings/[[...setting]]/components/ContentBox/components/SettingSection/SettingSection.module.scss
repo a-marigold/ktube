@@ -4,17 +4,20 @@
     @include flex-column;
 
     gap: 1.25rem;
+
+    padding: 1.5rem 0;
+    box-sizing: border-box;
 }
 
 .header {
     @include flex-column;
     gap: 0.5rem;
 }
-
 .title {
     @include text-wo-margin(1.25rem, 700);
 }
 .description {
     @include text-wo-margin(0.75rem);
+
     color: var(--secondary-font-color);
 }

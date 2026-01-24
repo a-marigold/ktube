@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 /**
  * The type of setting content.
  *
@@ -37,12 +39,7 @@ export type SettingSection = {
 export type SettingGroup = {
     title: string;
 
-    controls: SettingControl[];
-};
-export type SettingControl = {
-    name: string;
-
-    description: string;
+    controls: ReactNode[];
 };
 
 export const settingContents: Record<string, SettingContent> = {
