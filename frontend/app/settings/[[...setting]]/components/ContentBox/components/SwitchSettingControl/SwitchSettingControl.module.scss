@@ -1,0 +1,22 @@
+@use '@/styles/_mixins.scss' as *;
+
+.switch-setting-control {
+    display: flex;
+
+    gap: 1.25rem;
+}
+
+.text-block {
+    @include flex-column;
+    gap: 0.25rem;
+}
+
+.title {
+    font-size: var(--d-font-size);
+    font-weight: 500;
+}
+
+.description {
+    @include text-wo-margin(var(--d-font-size));
+    color: var(--tretiary-font-color);
+}
