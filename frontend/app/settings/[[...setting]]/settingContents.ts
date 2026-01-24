@@ -22,18 +22,20 @@
 
 export type SettingContent = {
     name: string;
+
+    title: string;
     description?: string;
     sections: SettingSection[];
 };
 
 export type SettingSection = {
-    name: string;
+    title: string;
     description?: string;
     groups: SettingGroup[];
 };
 
 export type SettingGroup = {
-    name: string;
+    title: string;
 
     controls: SettingControl[];
 };
@@ -45,13 +47,16 @@ export type SettingControl = {
 
 export const settingContents: Record<string, SettingContent> = {
     account: {
-        name: 'Information about you',
+        name: 'Account',
+        title: 'Information about you',
 
+        description: 'hello',
         sections: [
             {
-                name: 'Your account',
+                title: 'Your account',
+                description: 'hello',
 
-                groups: [{ name: 'Information about you', controls: [] }],
+                groups: [{ title: 'Information about you', controls: [] }],
             },
         ],
     },

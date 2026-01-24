@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import type { Setting } from './types';
+
 import Navbar from './components/Navbar';
 
 import ContentBox from './components/ContentBox';
@@ -7,7 +9,7 @@ import ContentBox from './components/ContentBox';
 import settingStyles from './Setting.module.scss';
 
 interface SettingPageProps {
-    params: Promise<{ setting?: string[] }>;
+    params: Promise<{ setting?: [Setting] }>;
 }
 
 export const generateMetadata = ({
@@ -29,7 +31,7 @@ export default function SettingPage({ params }: SettingPageProps) {
         return (
             <div className={settingStyles['setting-page']}>
                 <Navbar currentSetting={currentSetting} />
-                <ContentBox />
+                <ContentBox currentSetting={currentSetting} />
             </div>
         );
     });
