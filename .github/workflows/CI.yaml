@@ -5,9 +5,7 @@ on:
     branches: '**'
 
 jobs:
-  sharedCI:
-    name: shared CI
-
+  shared CI:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -31,10 +29,7 @@ jobs:
     - name: build
       run: bun run build
 
-  frontendCI:
-    needs: sharedCI
-    name: Frontend CI
-
+  frontend CI:
     runs-on: ubuntu-latest
 
     defaults:
@@ -45,9 +40,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: set up bun
+      uses: oven-sh/setup-bun@v2
+
     - name: build shared
 
       working-directory: shared
+
       run: bun install && bun run build
 
     - name: Install dependencies
@@ -62,10 +61,7 @@ jobs:
     - name: Build frontend
       run: bun build
 
-  backendCI:
-    needs: sharedCI
-    name: backend CI
-
+  backend CI:
     runs-on: ubuntu-latest
 
     defaults:
