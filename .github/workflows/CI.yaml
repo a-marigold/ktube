@@ -45,38 +45,22 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 10.25.0
-        run_install: false
-
-    - name: Set up Node js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 23
-        cache: pnpm
-        cache-dependency-path: frontend/pnpm-lock.yaml
-
     - name: build shared
-      working-directory: shared
 
-      run: pnpm install && pnpm build
+      working-directory: shared
+      run: bun install && bun run build
 
     - name: Install dependencies
-
-      run: pnpm store prune && pnpm install --no-frozen-lockfile
+      run: bun install
 
     - name: Run Linter
-      run: pnpm lint
+      run: bun run lint
 
     - name: Run tests
-
-      run: pnpm test
+      run: bun run test
 
     - name: Build frontend
-
-      run: pnpm build
+      run: bun build
 
   backendCI:
     needs: sharedCI
@@ -96,22 +80,17 @@ jobs:
       uses: oven-sh/setup-bun@v2
 
     - name: build shared
-
       working-directory: shared
       run: bun install && bun run build
 
     - name: Install dependencies
-
       run: bun install
 
     - name: run linter
-
       run: bun run lint
 
     - name: run tests
-
       run: bun test
 
     - name: build
-
       run: bun run build
