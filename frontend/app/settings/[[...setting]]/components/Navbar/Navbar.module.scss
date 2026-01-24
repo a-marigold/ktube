@@ -2,7 +2,6 @@
 
 .navbar {
     @include flex-column;
-    gap: 1.5rem;
 
     width: 100%;
 
@@ -14,4 +13,5 @@
 
     font-size: 1.25rem;
     padding-left: 0.5rem;
+    padding-bottom: 1.5rem;
 }

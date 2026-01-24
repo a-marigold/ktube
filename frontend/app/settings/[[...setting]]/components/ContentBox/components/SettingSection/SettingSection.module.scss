@@ -16,8 +16,9 @@
 .title {
     @include text-wo-margin(1.25rem, 700);
 }
+
 .description {
     @include text-wo-margin(0.75rem);
 
-    color: var(--secondary-font-color);
+    color: var(--tretiary-font-color);
 }

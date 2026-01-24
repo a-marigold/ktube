@@ -1,1 +1,1 @@
-export type Setting = 'account' | 'video' | 'advanced' | (string & {});
+export type Setting = 'account' | 'control' | (string & {});

@@ -4,11 +4,10 @@
     display: flex;
     gap: 3.5rem;
 }
-
 .title-block {
     max-width: 120px;
 }
 
 .title {
-    @include text-wo-margin(var(--d-font-size));
+    @include text-wo-margin(var(--d-font-size), 500);
 }

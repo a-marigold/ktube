@@ -4,6 +4,8 @@ import type { Setting } from './types';
 
 import Navbar from './components/Navbar';
 
+import { settingContents } from './settingContents';
+
 import ContentBox from './components/ContentBox';
 
 import settingStyles from './Setting.module.scss';
@@ -18,8 +20,12 @@ export const generateMetadata = ({
     return params.then((resolvedParams) => {
         const currentSetting = resolvedParams.setting?.[0];
 
+        const settingName = currentSetting
+            ? settingContents[currentSetting].name
+            : undefined;
+
         return {
-            title: currentSetting ? 'Settings | ' + currentSetting : 'Settings',
+            title: settingName ? 'Settings | ' + settingName : 'Settings',
         };
     });
 };
