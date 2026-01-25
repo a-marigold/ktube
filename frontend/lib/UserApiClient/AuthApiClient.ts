@@ -10,13 +10,14 @@ export const refreshAccessToken = (): void => {
     fetch(API_ORIGIN + '/auth/refresh', {
         method: 'POST',
         credentials: 'include',
+        cache: 'no-store',
     }).catch(handleVoid);
 };
-
 export const getUser = (): Promise<User> => {
     return fetch(API_ORIGIN + '/auth/user', {
         method: 'GET',
         credentials: 'include',
+        cache: 'no-store',
     })
         .then((response) => {
             return response.json();

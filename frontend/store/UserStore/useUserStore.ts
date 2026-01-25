@@ -7,14 +7,17 @@ import type { User } from '@ktube/shared';
 interface UserStore {
     user: User | null;
 
+    isAuthorized: boolean;
     setUser: (newUser: User | null) => void;
 }
 
 export const useUserStore = create<UserStore>()((set) => ({
     user: null,
+    isAuthorized: false,
 
     setUser: (newUser) =>
-        set((state) => ({
-            user: newUser ? { ...state.user, ...newUser } : newUser,
-        })),
+        set({
+            user: newUser,
+            isAuthorized: Boolean(newUser),
+        }),
 }));

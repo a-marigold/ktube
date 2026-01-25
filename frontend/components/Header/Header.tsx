@@ -27,6 +27,7 @@ export default function Header() {
 
     const currentModal = useModalStore((state) => state.currentModal);
     const openModal = useModalStore((state) => state.openModal);
+
     const closeModal = useModalStore((state) => state.closeModal);
 
     const modalClickedRef = useRef<boolean>(false);
@@ -46,7 +47,7 @@ export default function Header() {
         );
     };
 
-    const user = useUserStore((state) => state.user);
+    const isAuthorized = useUserStore((state) => state.isAuthorized);
 
     return (
         <header className={headerStyles['header']}>
@@ -101,7 +102,7 @@ export default function Header() {
                     onPointerLeave={hideTooltip}
                 />
 
-                {!user && (
+                {!isAuthorized && (
                     <PrimaryLink
                         external
                         href={API_ORIGIN + '/auth/google'}
