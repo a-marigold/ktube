@@ -29,7 +29,7 @@ jobs:
     - name: build
       run: bun run build
 
-  frontend CI:
+  frontendCI:
     runs-on: ubuntu-latest
 
     defaults:
