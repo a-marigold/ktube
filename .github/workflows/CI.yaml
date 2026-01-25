@@ -61,7 +61,7 @@ jobs:
     - name: Build frontend
       run: bun build
 
-  backend CI:
+  backendCI:
     runs-on: ubuntu-latest
 
     defaults:
