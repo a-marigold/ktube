@@ -1,5 +1,11 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { describe, it, expect, afterEach } from 'bun:test';
+import {
+    render,
+    screen,
+    fireEvent,
+    act,
+    cleanup,
+} from '@testing-library/react';
 
 import { useUserStore } from '@/store/UserStore';
 
@@ -8,6 +14,7 @@ import { useNavbarStore } from '@/store/NavbarStore';
 import Header from './Header';
 
 import Navbar from '../Navbar';
+import { beforeEach } from 'node:test';
 
 const mockMatchMedia = (matches: boolean) => {
     Object.defineProperty(window, 'matchMedia', {
@@ -18,6 +25,8 @@ const mockMatchMedia = (matches: boolean) => {
         }),
     });
 };
+
+beforeEach(cleanup);
 
 describe('Toggle Navbar logic in Header', () => {
     it('should toggle the Navbar and Navbar should be FullNavbar on page load', () => {
@@ -33,17 +42,17 @@ describe('Toggle Navbar logic in Header', () => {
             </>,
         );
 
-        const toggleButton = screen.getByTestId('navbar-toggle-button');
+        const toggleButton = screen.getAllByTestId('navbar-toggle-button');
 
         expect(screen.queryByTestId('mini-navbar')).toBeDefined();
 
-        fireEvent.click(toggleButton);
+        fireEvent.click(toggleButton[0]);
 
         expect(screen.queryByTestId('mini-navbar')).toBeNull();
 
         expect(screen.queryByTestId('full-navbar')).toBeDefined();
 
-        fireEvent.click(toggleButton);
+        fireEvent.click(toggleButton[0]);
 
         expect(screen.getByTestId('mini-navbar')).toBeDefined();
 
@@ -63,13 +72,13 @@ describe('Toggle Navbar logic in Header', () => {
             </>,
         );
 
-        const toggleButton = screen.getByTestId('navbar-toggle-button');
+        const toggleButton = screen.getAllByTestId('navbar-toggle-button');
 
         expect(screen.getByTestId('mini-navbar')).toBeDefined();
 
         expect(screen.queryByTestId('full-navbar')).toBeDefined();
 
-        fireEvent.click(toggleButton);
+        fireEvent.click(toggleButton[0]);
 
         expect(screen.getByTestId('mini-navbar')).toBeDefined();
 
@@ -81,10 +90,10 @@ describe('Toggle Navbar logic in Header', () => {
 
         render(<Header />);
 
-        expect(screen.queryByTestId('sign-in-link')).toBeDefined();
+        expect(screen.queryAllByTestId('sign-in-link')[0]).toBeDefined();
 
         act(() => {
-            useUserStore.setState({ user: {} });
+            useUserStore.setState({ user: { sub: '', name: '', email: '' } });
         });
 
         render(<Header />);

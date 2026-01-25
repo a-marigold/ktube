@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'bun:test';
 
 import { calculateModalPosition } from './calculateModalPosition';
 
@@ -29,7 +29,7 @@ describe('calculateModalPosition', () => {
             testModalElement,
             testRelativeElement,
             'right',
-            testGap
+            testGap,
         );
 
         const testRelativeRect = testRelativeElement.getBoundingClientRect();
@@ -41,7 +41,7 @@ describe('calculateModalPosition', () => {
                 testRelativeRect.top +
                 testRelativeRect.height / 2 -
                 testModalRect.height / 2
-            }px)`
+            }px)`,
         );
     });
 
@@ -89,7 +89,7 @@ describe('calculateModalPosition', () => {
                 relativeRect.top +
                 relativeRect.height / 2 -
                 modalRect.height / 2
-            }px)`
+            }px)`,
         );
     });
 
@@ -126,7 +126,7 @@ describe('calculateModalPosition', () => {
                 relativeRect.top +
                 relativeRect.height / 2 -
                 modalRect.height / 2
-            }px)`
+            }px)`,
         );
     });
 });
