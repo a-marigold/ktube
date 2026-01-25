@@ -1,1 +1,0 @@
-export { SwitchSettingControl } from './SwitchSettingControl';

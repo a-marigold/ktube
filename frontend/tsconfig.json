@@ -23,6 +23,9 @@
         "paths": {
             "@/*": ["./*"],
             "@modals/*": ["./components/ModalRoot/modals/*"],
+            "@settings/components/*": [
+                "./app/settings/[[...setting]]/components/*"
+            ],
             "@ktube/shared": ["../shared/dist/index.d.ts"]
         }
     },

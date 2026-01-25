@@ -1,0 +1,1 @@
+export { controlContent } from './controlContent';

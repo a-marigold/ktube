@@ -13,7 +13,7 @@ interface SwitchSettingControlProps extends Pick<
     switchAriaLabel: string;
 }
 
-export const SwitchSettingControl = ({
+const SwitchSettingControl = ({
     title,
     description,
 
@@ -43,3 +43,5 @@ export const SwitchSettingControl = ({
         </div>
     );
 };
+
+export default SwitchSettingControl;

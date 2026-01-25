@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import type { Setting } from './types';
 
 import { accountContent } from './contents/account';
+import { controlContent } from './contents/control';
 
 /**
  * The type of setting content.
@@ -31,28 +32,20 @@ export type SettingContent = {
 
     title: string;
     description?: string;
+
     sections: SettingSection[];
 };
 
 export type SettingSection = {
     title: string;
+
     description?: string;
 
-    groups: SettingGroup[];
-};
-
-export type SettingGroup = {
-    title: string;
-
-    controls: ReactNode;
+    groups: ReactNode;
 };
 
 export const settingContents: Record<Setting, SettingContent> = {
     account: accountContent,
 
-    control: {
-        name: 'Control',
-        title: 'Configure hotkeys, Video Player settings',
-        sections: [],
-    },
+    control: controlContent,
 };
