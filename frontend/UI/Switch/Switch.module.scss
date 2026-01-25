@@ -3,30 +3,33 @@
 .switch {
     position: relative;
 
-    width: 37px;
+    min-width: 37px;
     height: 16px;
 
     background-color: var(--dim-border-color);
 
-    outline: none;
-
     border: 0;
     border-radius: 8px;
 
-    &[aria-checked] {
-        background-color: var(--focus-color);
-        .thumb {
+    &[aria-checked='true'] {
+        background-color: var(--dim-focus-color);
+
+        & .thumb {
             transform: translate(100%, -50%);
 
             background-color: var(--focus-color);
         }
+
+        &:focus-visible .focus-block {
+            background-color: var(--dim-focus-color);
+        }
     }
 
     &:focus-visible {
+        outline: 0;
+
         & .focus-block {
             visibility: visible;
-
-            background-color: var(--focus-color);
         }
     }
 
@@ -36,6 +39,7 @@
 .thumb {
     position: absolute;
     left: 0;
+
     transform: translate(0, -50%);
 
     @include flex-center;
@@ -46,14 +50,15 @@
     background-color: var(--tretiary-font-color);
 
     border-radius: 50%;
+
+    transition: transform var(--d-transition-dur) ease;
 }
 
 .focus-block {
     visibility: hidden;
 
-    width: 37px;
-
-    height: 37px;
+    min-width: 37px;
+    min-height: 37px;
 
     background-color: var(--dim-border-color);
     border-radius: 50%;

@@ -16,7 +16,6 @@ export default function Switch({
     className,
     onChange,
 }: SwitchProps) {
-    console.log(value);
     return (
         <button
             type='button'
@@ -24,7 +23,7 @@ export default function Switch({
             className={`${switchStyles['switch']} ${className ?? ''}`}
             aria-checked={value}
             aria-label={ariaLabel}
-            onPointerDown={onChange}
+            onClick={onChange}
         >
             <div className={switchStyles['thumb']}>
                 <div className={switchStyles['focus-block']}></div>

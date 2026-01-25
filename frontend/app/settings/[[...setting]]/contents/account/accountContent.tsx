@@ -15,6 +15,7 @@ export const accountContent: SettingContent = {
             groups: [
                 {
                     title: 'Information about you',
+
                     controls: <AccountControls />,
                 },
             ],
