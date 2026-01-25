@@ -5,7 +5,7 @@ on:
     branches: '**'
 
 jobs:
-  shared CI:
+  sharedCI:
     runs-on: ubuntu-latest
     defaults:
       run:
