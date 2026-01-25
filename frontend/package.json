@@ -6,8 +6,7 @@
         "dev": "next dev",
         "build": "bun run --bun next build",
         "start": "bun run --bun next start",
-        "lint": "biome check",
-        "test": "vitest"
+        "lint": "biome check"
     },
     "dependencies": {
         "next": "16.0.10",
